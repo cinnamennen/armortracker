@@ -2809,6 +2809,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"immer@npm:^10.0.2":
+  version: 10.0.2
+  resolution: "immer@npm:10.0.2"
+  checksum: 525a3b14210d02ae420c3b9f6ca14f7e9bcf625611d1356e773e7739f14c7c8de50dac442e6c7de3a6e24a782f7b792b6b8666bc0b3f00269d21a95f8f68ca84
+  languageName: node
+  linkType: hard
+
 "import-fresh@npm:^3.0.0, import-fresh@npm:^3.2.1":
   version: 3.3.0
   resolution: "import-fresh@npm:3.3.0"
@@ -3594,6 +3601,7 @@ __metadata:
     eslint-config-prettier: ^8.3.0
     eslint-plugin-react: ^7.31.11
     eslint-plugin-tailwindcss: ^3.8.0
+    immer: ^10.0.2
     lucide-react: 0.105.0-alpha.4
     next: ^13.3.0
     next-redux-wrapper: ^8.1.0
@@ -3608,6 +3616,7 @@ __metadata:
     tailwindcss: ^3.3.1
     tailwindcss-animate: ^1.0.5
     typescript: ^4.9.3
+    use-immer: ^0.9.0
   languageName: unknown
   linkType: soft
 
@@ -5065,6 +5074,16 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 7913df383a5a6fcb399212eedefaac2e0c6f843555202d4e3010bac3848afe38ecaa3d0d6500ad1d936fbeffd637e6c517e68edb024af5e6beca7f27f3ce7b21
+  languageName: node
+  linkType: hard
+
+"use-immer@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "use-immer@npm:0.9.0"
+  peerDependencies:
+    immer: ">=2.0.0"
+    react: ^16.8.0 || ^17.0.1 || ^18.0.0
+  checksum: 3f02e31d38f354125e6cffaaed0a08d9bf122b9df261aa7b38a25246813b3bd8b22bf97b192099d4e84adcfbbb07e69e14ba29520e0ac8d93f3991ef3a3652b4
   languageName: node
   linkType: hard
 
