@@ -6,13 +6,19 @@ export const siteConfig = {
     "Beautifully designed components built with Radix UI and Tailwind CSS.",
   mainNav: [
     {
-      title: "Home",
-      href: "/",
+      title: "Armor",
+      href: "/armor",
+    },
+    {
+      title: "Inventory",
+      href: "/inventory",
+    },
+    {
+      title: "Missing",
+      href: "/missing",
     },
   ],
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui",
-    docs: "https://ui.shadcn.com",
+    github: "https://github.com/shadcn/ui", // TODO: Change this
   },
 }
