@@ -1,6 +1,7 @@
 import "@/styles/globals.css"
 import { Metadata } from "next"
-import { AppWrapper } from "@/context/AppContext"
+import { ArmorWrapper } from "@/context/ArmorContext"
+import { ItemWrapper } from "@/context/ItemContext"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
@@ -41,12 +42,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <AppWrapper>
-              <div className="relative flex min-h-screen flex-col">
-                <SiteHeader />
-                <div className="flex-1 space-y-4 p-8 pt-6">{children}</div>
-              </div>
-            </AppWrapper>
+            <ArmorWrapper>
+              <ItemWrapper>
+                <div className="relative flex min-h-screen flex-col">
+                  <SiteHeader />
+                  <div className="flex-1 space-y-4 p-8 pt-6">{children}</div>
+                </div>
+              </ItemWrapper>
+            </ArmorWrapper>
           </ThemeProvider>
         </body>
       </html>

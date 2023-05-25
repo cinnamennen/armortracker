@@ -7,12 +7,12 @@ export enum Slot {
 }
 
 export enum Level {
-  Base = "base",
-  One = "one",
-  Two = "two",
-  Three = "three",
-  Four = "four",
-  Ignored = "ignored",
+  Base = 0,
+  One = 1,
+  Two = 2,
+  Three = 3,
+  Four = 4,
+  Ignored = -1,
 }
 
 export type Ingredient = { displayName: string; path?: string }
