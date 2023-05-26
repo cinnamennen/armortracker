@@ -14,8 +14,7 @@ import {
   ArmorReducer,
   ArmorState,
 } from "@/context/ArmorReducer"
-
-import { Level } from "@/types/data"
+import {useImmerReducer} from "use-immer";
 
 export type ArmorDispatcher = <
   Type extends ArmorActions["type"],
@@ -32,7 +31,7 @@ export type ArmorContextInterface = readonly [ArmorState, ArmorDispatcher]
 export const ArmorContext = createContext<ArmorContextInterface>([{}, () => {}])
 
 export const ArmorWrapper = ({ children }: PropsWithChildren) => {
-  const [state, _dispatch] = useReducer(ArmorReducer, initialState)
+  const [state, _dispatch] = useImmerReducer(ArmorReducer, initialState)
 
   const dispatch: ArmorDispatcher = useCallback((type, ...payload) => {
     _dispatch({ type, payload: payload[0] } as ArmorActions)
@@ -61,17 +60,21 @@ export const ArmorWrapper = ({ children }: PropsWithChildren) => {
   )
 }
 
-export function useArmor(armorName: string) {
-  const [allArmor, dispatch] = useContext(ArmorContext)
-  const setArmor = useCallback(
+export function useArmorContext() {
+  const [value, dispatch] = useContext(ArmorContext)
+  const set = useCallback(
     (armor: string, level: number) => dispatch("set_armor", { armor, level }),
     [dispatch]
   )
-
-  return { value: allArmor[armorName] ?? Level.Ignored, set: setArmor }
+  const upgrade = useCallback(
+    (armor: string) => dispatch("upgrade_armor", { armor }),
+    [dispatch]
+  )
+  return { value, dispatch, set, upgrade }
 }
 
-export function useAllArmor() {
-  const [allArmor, dispatch] = useContext(ArmorContext)
-  return allArmor
+export function useArmor(armorName: string) {
+  const { value, ...rest } = useArmorContext()
+
+  return { value: value[armorName], ...rest }
 }

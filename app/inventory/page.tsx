@@ -1,6 +1,6 @@
 import { ingredientsData } from "@/data/ingredients"
 
-import { IngredientCard } from "@/components/ingredientCard"
+import { IngredientCard } from "@/app/inventory/ingredientCard"
 
 export default function Ingredients() {
   return (

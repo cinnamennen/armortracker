@@ -1,6 +1,7 @@
 "use client"
 
-import { useArmor } from "@/context/ArmorContext"
+import { useEffect } from "react"
+import {useArmor, useArmorContext} from "@/context/ArmorContext"
 import { Star } from "lucide-react"
 
 import { Level } from "@/types/data"
@@ -8,6 +9,11 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function ArmorSelect({ name }: { name: string }) {
   const { value, set } = useArmor(name)
+
+  useEffect(() => {
+    if (value == undefined) set(name, Level.Base)
+  }, [name, value, set])
+
   return (
     <Tabs
       value={value?.toString()}
