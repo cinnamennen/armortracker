@@ -1,9 +1,9 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Next.js",
+  name: "TotK Armor Planner",
   description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+    "A handy tool for planning your armor upgrades in Tears of the Kingdom.",
   mainNav: [
     {
       title: "Armor",
