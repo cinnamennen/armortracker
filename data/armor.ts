@@ -572,7 +572,6 @@ export const armor: Armor[] = [
     upgrades: sharedUpgrades.twilight,
   },
   {
-    // TODO: check
     displayName: "Champion's Leathers",
     slot: Slot.Body,
     upgrades: [
@@ -640,7 +639,6 @@ export const armor: Armor[] = [
     upgrades: sharedUpgrades.voe,
   },
   {
-    //TODO: check
     displayName: "Diamond Circlet",
     slot: Slot.Head,
     upgrades: [
