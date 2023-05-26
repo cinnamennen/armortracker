@@ -28,5 +28,5 @@ export const columns = [
     ),
   }),
   columnHelper.accessor("name", { header: "Item" }),
-  columnHelper.accessor("amount", { header: "Amount" }),
+  columnHelper.accessor("amount", { header: "Amount to Gather" }),
 ] satisfies ColumnDef<Missing, any>[]
