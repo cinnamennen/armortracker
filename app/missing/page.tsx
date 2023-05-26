@@ -1,37 +1,23 @@
 "use client"
 
-import { useSelectedArmor } from "@/components/dataComponents"
+import {ingredientsData} from "@/data/ingredients"
+import useChecklist from "@/components/useChecklist"
 
-import { Payment, columns } from "./columns"
-import { DataTable } from "./data-table"
+import {columns, Missing} from "./columns"
+import {DataTable} from "./data-table"
+import {getMaterialPath} from "@/lib/utils";
 
-async function getData(): Promise<Payment[]> {
-  // Fetch data from your API here.
-  return [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "489e1d42",
-      amount: 125,
-      status: "processing",
-      email: "example@gmail.com",
-    },
-    // ...
-  ]
-}
 
-export default async function Missing() {
-  const data = await getData()
+export default function Missing() {
+  const foo = useChecklist()
+  const data = Object.entries(foo).map(([key, val]) => ({
+    name: ingredientsData[key].displayName, amount: val as number, path: getMaterialPath(ingredientsData[key])
+  })) satisfies Missing[]
 
-  const foo = useSelectedArmor()
-
+  console.log(data)
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={data}/>
     </div>
   )
 }

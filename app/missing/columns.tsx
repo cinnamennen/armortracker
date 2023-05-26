@@ -1,27 +1,32 @@
 "use client"
 
-import { ColumnDef } from "@tanstack/react-table"
+import Image from "next/image"
+import { ColumnDef, createColumnHelper } from "@tanstack/react-table"
+
+import { getMaterialPath } from "@/lib/utils"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Payment = {
-  id: string
+export type Missing = {
+  name: string
+  path: string
   amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
 }
 
-export const columns: ColumnDef<Payment>[] = [
-  {
-    accessorKey: "status",
-    header: "Status",
-  },
-  {
-    accessorKey: "email",
-    header: "Email",
-  },
-  {
-    accessorKey: "amount",
-    header: "Amount",
-  },
-]
+const columnHelper = createColumnHelper<Missing>()
+
+export const columns = [
+  columnHelper.display({
+    id: "path",
+    cell: (props) => (
+      <Image
+        src={props.row.original.path}
+        alt={"A picture of " + props.row.original.name}
+        width="100"
+        height="100"
+      />
+    ),
+  }),
+  columnHelper.accessor("name", { header: "Item" }),
+  columnHelper.accessor("amount", { header: "Amount" }),
+] satisfies ColumnDef<Missing, any>[]

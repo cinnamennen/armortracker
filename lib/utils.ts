@@ -1,16 +1,25 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-import { Ingredient } from "@/types/data"
+import { Armor, Ingredient } from "@/types/data"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function getMaterialPath(ingredient: Ingredient) {
+export function getDetectedPath(
+  item: { displayName: string; path?: string },
+  directory: string
+) {
   return (
-    "/materials/" +
-    (ingredient.path ??
-      ingredient.displayName.toLowerCase().replaceAll(" ", "_") + ".png")
+    directory + item.displayName + ".png"
   )
+}
+
+export function getMaterialPath(ingredient: Ingredient) {
+  return getDetectedPath(ingredient, "/images/")
+}
+
+export function getArmorPath(armor: Armor) {
+  return getDetectedPath(armor, "/images/")
 }

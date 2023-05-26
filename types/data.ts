@@ -1,4 +1,5 @@
 import { Ingredients } from "@/data/ingredients"
+import {RequireAtLeastOne} from "type-fest";
 
 export enum Slot {
   Head,
@@ -16,11 +17,25 @@ export enum Level {
 }
 
 export type Ingredient = { displayName: string; path?: string }
-export type Recipe = { [key in Ingredients]?: number }
-export type Armor = {
+
+export type Recipe = RequireAtLeastOne<{ [key in Ingredients]?: number }>
+
+interface BaseArmor {
   displayName: string
   slot: Slot
-  upgrades: UpgradeList | null
-  path: string
+  path?: string
 }
+
+interface UpgradeableArmor extends BaseArmor {
+  upgrades: UpgradeList
+}
+
+interface StaticArmor extends BaseArmor {
+  upgrades: null
+}
+
+export type Armor = UpgradeableArmor | StaticArmor
 export type UpgradeList = [Recipe, Recipe, Recipe, Recipe]
+
+export const isUpgradeable = (armor: Armor): armor is UpgradeableArmor =>
+  armor.upgrades != null

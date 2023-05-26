@@ -15,6 +15,10 @@ import {
   ItemState,
 } from "@/context/ItemReducer"
 
+import { Recipe } from "@/types/data"
+import {ingredientsData} from "@/data/ingredients";
+import {useImmerReducer} from "use-immer";
+
 export type ItemDispatcher = <
   Type extends ItemActions["type"],
   Payload extends ItemActionsMap[Type]
@@ -30,7 +34,7 @@ export type ItemContextInterface = readonly [ItemState, ItemDispatcher]
 export const ItemContext = createContext<ItemContextInterface>([{}, () => {}])
 
 export const ItemWrapper = ({ children }: PropsWithChildren) => {
-  const [state, _dispatch] = useReducer(ItemReducer, initialState)
+  const [state, _dispatch] = useImmerReducer(ItemReducer, initialState)
 
   const dispatch: ItemDispatcher = useCallback((type, ...payload) => {
     _dispatch({ type, payload: payload[0] } as ItemActions)
@@ -59,17 +63,25 @@ export const ItemWrapper = ({ children }: PropsWithChildren) => {
   )
 }
 
-export function useItem(itemName: string) {
-  const [allItem, dispatch] = useContext(ItemContext)
-  const setItem = useCallback(
+export function useItemContext() {
+  const [value, dispatch] = useContext(ItemContext)
+  const set = useCallback(
     (item: string, level: number) => dispatch("set_item", { item, level }),
     [dispatch]
   )
-
-  return { value: allItem[itemName] ?? 0, set: setItem }
+  const consume = useCallback(
+    (recipe: Recipe) => {
+      Object.entries(recipe).forEach(([item, amount]) =>
+        dispatch("use_item", { item: ingredientsData[item].displayName, amount: amount ?? 0 })
+      )
+    },
+    [dispatch]
+  )
+  return { value, dispatch, set, consume }
 }
 
-export function useAllItems() {
-  const [allItem, dispatch] = useContext(ItemContext)
-  return allItem
+export function useItem(itemName: string) {
+  const { value, ...rest } = useItemContext()
+
+  return { value: value[itemName] ?? 0, ...rest }
 }
