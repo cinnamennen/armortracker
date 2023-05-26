@@ -17,6 +17,14 @@ export const siteConfig = {
       title: "Missing",
       href: "/missing",
     },
+    {
+      title: "How to use",
+      href: "/how-to-use",
+    },
+    {
+      title: "FAQ",
+      href: "/faq",
+    },
   ],
   links: {
     github: "https://github.com/cinnamennen/armortracker",
