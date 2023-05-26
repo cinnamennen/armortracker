@@ -19,6 +19,6 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/shadcn/ui", // TODO: Change this
+    github: "https://github.com/cinnamennen/armortracker",
   },
 }
