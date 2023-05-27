@@ -1,12 +1,6 @@
-import { Ingredients } from "@/data/ingredients";
+import { Ingredients } from "@/data/shared"
 
-
-
-import { Armor, Slot, UpgradeList } from "@/types/data";
-
-
-
-
+import { Armor, Slot, UpgradeList } from "@/types/data"
 
 const sharedUpgrades = {
   awakening: [
