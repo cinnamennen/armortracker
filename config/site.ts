@@ -28,7 +28,7 @@ export const siteConfig = {
     {
       title: "Feedback",
       href: "https://github.com/cinnamennen/armortracker/issues/new",
-    }
+    },
   ],
   links: {
     github: "https://github.com/cinnamennen/armortracker",
