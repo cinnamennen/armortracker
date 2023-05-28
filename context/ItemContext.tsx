@@ -14,10 +14,10 @@ import {
   ItemReducer,
   ItemState,
 } from "@/context/ItemReducer"
+import { ingredientsData } from "@/data/ingredients"
+import { useImmerReducer } from "use-immer"
 
 import { Recipe } from "@/types/data"
-import {ingredientsData} from "@/data/ingredients";
-import {useImmerReducer} from "use-immer";
 
 export type ItemDispatcher = <
   Type extends ItemActions["type"],
@@ -72,7 +72,10 @@ export function useItemContext() {
   const consume = useCallback(
     (recipe: Recipe) => {
       Object.entries(recipe).forEach(([item, amount]) =>
-        dispatch("use_item", { item: ingredientsData[item].displayName, amount: amount ?? 0 })
+        dispatch("use_item", {
+          item: ingredientsData[item].displayName,
+          amount: amount ?? 0,
+        })
       )
     },
     [dispatch]

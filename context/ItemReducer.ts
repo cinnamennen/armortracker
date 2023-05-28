@@ -7,11 +7,15 @@ export const ItemReducer = (state: ItemState, action: ItemActions) => {
     case "init_store":
       return action.payload
     case "use_item":
-      if (state[action.payload.item] === undefined) state[action.payload.item] = 0
+      if (state[action.payload.item] === undefined)
+        state[action.payload.item] = 0
       state[action.payload.item] -= action.payload.amount
-      state[action.payload.item] = Math.max(state[action.payload.item] as number, 0)
+      state[action.payload.item] = Math.max(
+        state[action.payload.item] as number,
+        0
+      )
 
-      return state;
+      return state
   }
 }
 export type ItemState = Record<string, number>

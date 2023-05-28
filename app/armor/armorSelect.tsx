@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import {useArmor, useArmorContext} from "@/context/ArmorContext"
+import { useArmor, useArmorContext } from "@/context/ArmorContext"
 import { Star } from "lucide-react"
 
 import { Level } from "@/types/data"
