@@ -603,7 +603,7 @@ export const armor: Armor[] = [
     upgrades: sharedUpgrades.charged,
   },
   {
-    displayName: "Climber's Bandana",
+    displayName: "Climber's Bandanna",
     slot: Slot.Head,
     upgrades: sharedUpgrades.climber,
   },
