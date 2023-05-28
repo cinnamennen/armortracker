@@ -1,5 +1,6 @@
 import { UpgradeList } from "@/types/data"
-import {Ingredients} from "@/data/ingredients";
+
+import {Ingredients} from "@/data/enum";
 
 export const sharedUpgrades = {
   awakening: [
@@ -460,18 +461,6 @@ const dragons = {
       | "shardFang"
       | "shardSpike"]: Ingredients
   }
-}
-
-export function earrings(catalyst: Ingredients): UpgradeList {
-  return [
-    { [catalyst]: 10, [Ingredients.Flint]: 5 },
-    {
-      [catalyst]: 20,
-      [Ingredients.Flint]: 10,
-    },
-    { [catalyst]: 35, [Ingredients.Flint]: 15 },
-    { [catalyst]: 60, [Ingredients.Flint]: 25 },
-  ]
 }
 
 export function wild(dragon_name: DRAGON_NAME): UpgradeList {
