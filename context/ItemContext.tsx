@@ -8,6 +8,7 @@ import {
   useEffect,
   useReducer,
 } from "react"
+import { ArmorState } from "@/context/ArmorReducer"
 import {
   ItemActions,
   ItemActionsMap,
@@ -36,9 +37,12 @@ export const ItemContext = createContext<ItemContextInterface>([{}, () => {}])
 export const ItemWrapper = ({ children }: PropsWithChildren) => {
   const [state, _dispatch] = useImmerReducer(ItemReducer, initialState)
 
-  const dispatch: ItemDispatcher = useCallback((type, ...payload) => {
-    _dispatch({ type, payload: payload[0] } as ItemActions)
-  }, [])
+  const dispatch: ItemDispatcher = useCallback(
+    (type, ...payload) => {
+      _dispatch({ type, payload: payload[0] } as ItemActions)
+    },
+    [_dispatch]
+  )
 
   useEffect(() => {
     const localItem = localStorage.getItem("item")
@@ -80,7 +84,11 @@ export function useItemContext() {
     },
     [dispatch]
   )
-  return { value, dispatch, set, consume }
+  const load = useCallback(
+    (items: ItemState) => dispatch("init_store", items),
+    [dispatch]
+  )
+  return { value, dispatch, set, consume, load }
 }
 
 export function useItem(itemName: string) {
