@@ -1,5 +1,5 @@
-import { Ingredients } from "@/data/shared"
 import { RequireAtLeastOne } from "type-fest"
+import {Ingredients} from "@/data/ingredients";
 
 export enum Slot {
   Head,
