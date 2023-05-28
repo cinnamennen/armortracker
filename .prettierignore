@@ -10,3 +10,10 @@ node_modules
 .next
 build
 .contentlayer
+.idea
+*.tsbuildinfo
+*.lock
+.editorconfig
+.*ignore
+
+```
