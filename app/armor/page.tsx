@@ -1,9 +1,5 @@
-import { armor, setData } from "@/data/armor"
 import { armorGroup } from "@/data/enum"
 
-import { isUpgradeable } from "@/types/data"
-import { sortArmor } from "@/lib/utils"
-import { ArmorCard } from "@/app/armor/armorCard"
 import ArmorSection from "@/app/armor/armorSection"
 
 export default function Armor() {
@@ -14,9 +10,6 @@ export default function Armor() {
         .map((group) => {
           return <ArmorSection group={group} key={group} />
         })}
-      {/*{upgradeableArmors.map((a) => (*/}
-      {/*  <ArmorCard key={a.displayName} armor={a} />*/}
-      {/*))}*/}
     </div>
   )
 

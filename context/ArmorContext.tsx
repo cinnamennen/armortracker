@@ -14,7 +14,10 @@ import {
   ArmorReducer,
   ArmorState,
 } from "@/context/ArmorReducer"
+import { armor } from "@/data/armor"
 import { useImmerReducer } from "use-immer"
+
+import { Level } from "@/types/data"
 
 export type ArmorDispatcher = <
   Type extends ArmorActions["type"],
@@ -26,9 +29,14 @@ export type ArmorDispatcher = <
   // there should be a payload then you need the second argument.
   ...payload: Payload extends undefined ? [undefined?] : [Payload]
 ) => void
-const initialState = {} satisfies ArmorState
+const initialState: ArmorState = Object.fromEntries(
+  armor.map((a) => [a.displayName, { level: Level.Base, ignored: false }])
+)
 export type ArmorContextInterface = readonly [ArmorState, ArmorDispatcher]
-export const ArmorContext = createContext<ArmorContextInterface>([{}, () => {}])
+export const ArmorContext = createContext<ArmorContextInterface>([
+  initialState,
+  () => {},
+])
 
 export const ArmorWrapper = ({ children }: PropsWithChildren) => {
   const [state, _dispatch] = useImmerReducer(ArmorReducer, initialState)
@@ -77,7 +85,11 @@ export function useArmorContext() {
     (armor: ArmorState) => dispatch("init_store", armor),
     [dispatch]
   )
-  return { value, dispatch, set, upgrade, load }
+  const toggleIgnore = useCallback(
+    (armor: string) => dispatch("toggle_ignore", { armor }),
+    [dispatch]
+  )
+  return { value, dispatch, set, upgrade, load, toggleIgnore }
 }
 
 export function useArmor(armorName: string) {

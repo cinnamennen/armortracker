@@ -3,29 +3,51 @@ import { Level } from "@/types/data"
 export const ArmorReducer = (state: ArmorState, action: ArmorActions) => {
   switch (action.type) {
     case "set_armor": {
-      state[action.payload.armor] = action.payload.level
+      console.log("setting", action)
+      const stateElement = state[action.payload.armor]
+      if (stateElement === undefined) {
+        throw new Error("Armor didn't initialize itself")
+      }
+      stateElement.level = action.payload.level
       return state
     }
+
     case "init_store":
-      return action.payload
-    case "upgrade_armor":
-      if (state[action.payload.armor] === undefined)
-        state[action.payload.armor] = Level.Ignored
-      if (state[action.payload.armor] === Level.Ignored)
-        state[action.payload.armor] = Level.Base
-      state[action.payload.armor] += 1
-      state[action.payload.armor] = Math.min(
-        state[action.payload.armor] as number,
-        Level.Four
-      )
+      for (const key in action.payload) {
+        const payloadElement = action.payload[key]
+        if (payloadElement === undefined) continue
+        if (typeof payloadElement === "number") {
+          state[key] = { level: payloadElement, ignored: false }
+        } else {
+          state[key] = payloadElement
+        }
+      }
       return state
+    case "upgrade_armor": {
+      const stateElement = state[action.payload.armor]
+      if (stateElement === undefined) {
+        throw new Error("Armor didn't initialize itself")
+      }
+      stateElement.level += 1
+      stateElement.level = Math.min(stateElement.level, Level.Four)
+      return state
+    }
+    case "toggle_ignore": {
+      const stateElement = state[action.payload.armor]
+      if (stateElement === undefined) {
+        throw new Error("Armor didn't initialize itself")
+      }
+      stateElement.ignored = !stateElement.ignored
+    }
   }
 }
-export type ArmorState = Record<string, number>
+type ArmorData = { level: number; ignored: boolean }
+export type ArmorState = Record<string, ArmorData>
 export type ArmorActionsMap = {
   ["set_armor"]: { armor: string; level: number }
   ["upgrade_armor"]: { armor: string }
-  ["init_store"]: ArmorState
+  ["toggle_ignore"]: { armor: string }
+  ["init_store"]: ArmorState | Record<string, number>
 }
 export type ArmorActions = {
   [Key in keyof ArmorActionsMap]: {

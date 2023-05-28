@@ -23,12 +23,15 @@ export default function useChecklist(): Recipe {
   const recipeIngredients = useMemo(
     () =>
       armor
-        .filter((a) => armorSelections[a.displayName] != Level.Ignored)
+        .filter((a) => {
+          const armorSelection = armorSelections[a.displayName]
+          return armorSelection && !armorSelection.ignored
+        })
         .filter(isUpgradeable)
         .map((a) => ({
           ...a,
           upgrades: a.upgrades.slice(
-            armorSelections[a.displayName] ?? Level.Base - 1
+            (armorSelections[a.displayName]?.level ?? Level.Base) - 1
           ),
         }))
         .map((a) => a.upgrades)
