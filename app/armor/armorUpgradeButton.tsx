@@ -3,7 +3,7 @@
 import { forwardRef, useCallback, useMemo } from "react"
 import { useArmor } from "@/context/ArmorContext"
 import { useItemContext } from "@/context/ItemContext"
-import { CornerRightUp } from "lucide-react"
+import { ChevronsUp } from "lucide-react"
 
 import { Armor, Level } from "@/types/data"
 import { Button } from "@/components/ui/button"
@@ -14,7 +14,6 @@ const ArmorUpgradeButton = forwardRef(
     const { consume } = useItemContext()
 
     const doUpgrade = useCallback(() => {
-      console.log("fff")
       if (armor.upgrades == null) return
       upgrade(armor.displayName)
       const upgradeCost = armor.upgrades[value ?? Level.Base]
@@ -36,7 +35,7 @@ const ArmorUpgradeButton = forwardRef(
         className="w-10 rounded-full p-0"
         onClick={() => doUpgrade()}
       >
-        <CornerRightUp className="h-4 w-4" />
+        <ChevronsUp className="h-4 w-4" />
       </Button>
     )
   }
