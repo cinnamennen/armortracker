@@ -1,11 +1,13 @@
 import Link from "next/link"
+import { Github } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
 import { buttonVariants } from "@/components/ui/button"
+import Export from "@/components/Export"
+import Import from "@/components/Import"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
-import {Github} from "lucide-react";
 
 export function SiteHeader() {
   return (
@@ -14,6 +16,8 @@ export function SiteHeader() {
         <MainNav items={siteConfig.mainNav} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
+            <Import />
+            <Export />
             <Link
               href={siteConfig.links.github}
               target="_blank"
