@@ -1,7 +1,8 @@
+"use client"
 import Image from "next/image"
 
 import { Armor } from "@/types/data"
-import { getArmorPath } from "@/lib/utils"
+import {cn, getArmorPath} from "@/lib/utils"
 import {
   Card,
   CardContent,
@@ -12,14 +13,16 @@ import {
 import { ArmorIgnore } from "@/app/armor/armorIgnore"
 import ArmorSelect from "@/app/armor/armorSelect"
 import { ArmorUpgrade } from "@/app/armor/armorUpgrade"
+import {useArmor} from "@/context/ArmorContext";
 
 export function ArmorCard({ armor }: { armor: Armor }) {
+  const {value} = useArmor(armor.displayName)
   return (
-    <Card>
+    <Card className={cn(value?.ignored && "opacity-50", "transition-opacity")}>
       <CardHeader>
         <CardTitle>
           {/*Align the items to the left and right corner*/}
-          <div className="flex items-center justify-between">
+          <div className={cn("flex items-center justify-between", )}>
             {armor.displayName}
             <div className="flex flex-1 items-center justify-end space-x-2">
               <ArmorIgnore armor={armor} />

@@ -17,7 +17,7 @@ export default function ArmorSelect({ name }: { name: string }) {
   const star = <Star size="1em" />;
   return (
     <Tabs
-      value={value?.toString()}
+      value={value?.level.toString()}
       onValueChange={(value) => {
         console.log("value changed to", value)
         set(name, Number(value));
