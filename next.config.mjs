@@ -5,8 +5,8 @@ const nextConfig = {
     appDir: true,
   },
   async redirects() {
-    return [{source: '/', destination: '/armor', permanent: true}]
-  }
+    return [{ source: "/", destination: "/armor", permanent: true }]
+  },
 }
 
 export default nextConfig

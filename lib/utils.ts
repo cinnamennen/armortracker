@@ -11,9 +11,7 @@ export function getDetectedPath(
   item: { displayName: string; path?: string },
   directory: string
 ) {
-  return (
-    directory + item.displayName + ".png"
-  )
+  return directory + item.displayName + ".png"
 }
 
 export function getMaterialPath(ingredient: Ingredient) {
