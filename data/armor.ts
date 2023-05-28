@@ -1,7 +1,7 @@
 import { Ingredients, armorGroup } from "@/data/enum"
 import { fierce, sharedUpgrades, wild } from "@/data/upgrades"
 
-import { Armor, Slot } from "@/types/data"
+import { Armor, Ingredient, Slot } from "@/types/data"
 
 export const armor: Armor[] = [
   {
@@ -878,6 +878,45 @@ export const armor: Armor[] = [
   { displayName: "Phantom Armor", upgrades: null, slot: Slot.Body },
   { displayName: "Phantom Greaves", upgrades: null, slot: Slot.Legs },
   { displayName: "Phantom Helm", upgrades: null, slot: Slot.Head },
-  { displayName: "Thunder Helm", upgrades: null, slot: Slot.Head },
+  { displayName: "Thunder Helm", slot: Slot.Head, upgrades: null },
   { displayName: "Well-Worn Hair Band", upgrades: null, slot: Slot.Head },
 ]
+
+export const setData: { [key in armorGroup]: { displayName: string } } = {
+  [armorGroup.Ancient]: { displayName: "Ancient Armor" },
+  [armorGroup.Barbarian]: { displayName: "Barbarian Armor" },
+  [armorGroup.Charged]: { displayName: "Charged Armor" },
+  [armorGroup.Climber]: { displayName: "Climbing Gear" },
+  [armorGroup.Depths]: { displayName: "Armor of the Depths" },
+  [armorGroup.Divine]: { displayName: "Divine Beast Armor" },
+  [armorGroup.Fierce]: { displayName: "Fierce Deity Armor" },
+  [armorGroup.Flamebreaker]: { displayName: "Flamebreaker Armor" },
+  [armorGroup.Hylian]: { displayName: "Hylian Armor" },
+  [armorGroup.Radiant]: { displayName: "Radiant Armor" },
+  [armorGroup.RoyalGuard]: { displayName: "Royal Guard Armor" },
+  [armorGroup.Sheik]: { displayName: "Sheik Armor" },
+  [armorGroup.Snowquill]: { displayName: "Snowquill Armor" },
+  [armorGroup.Soldier]: { displayName: "Soldier Armor" },
+  [armorGroup.Stealth]: { displayName: "Stealth Armor" },
+  [armorGroup.Wild]: { displayName: "Armor of the Wild" },
+  [armorGroup.Yiga]: { displayName: "Yiga Clan Armor" },
+  [armorGroup.Zonaite]: { displayName: "Zonaite Armor" },
+  [armorGroup.Zora]: { displayName: "Zora Armor" },
+  [armorGroup.Voe]: { displayName: "Voe Armor" },
+  [armorGroup.Rubber]: { displayName: "Rubber Armor" },
+  [armorGroup.Froggy]: { displayName: "Froggy Armor" },
+  [armorGroup.Glide]: { displayName: "Glide Armor" },
+  [armorGroup.Miner]: { displayName: "Miner's Armor" },
+  [armorGroup.Ember]: { displayName: "Ember Armor" },
+  [armorGroup.Frostbite]: { displayName: "Frostbite Armor" },
+  [armorGroup.Circlet]: { displayName: "Circlets" },
+  [armorGroup.Earrings]: { displayName: "Earrings" },
+  [armorGroup.Puff]: { displayName: "Boots" },
+  [armorGroup.Champion]: { displayName: "Champion's Tunics" },
+  [armorGroup.Awakening]: { displayName: "Armor of Awakening" },
+  [armorGroup.Hero]: { displayName: "Hero's Armor" },
+  [armorGroup.Time]: { displayName: "Armor of Time" },
+  [armorGroup.Wind]: { displayName: "Armor of Wind" },
+  [armorGroup.Twilight]: { displayName: "Twilight Armor" },
+  [armorGroup.Sky]: { displayName: "Sky Armor" },
+}
