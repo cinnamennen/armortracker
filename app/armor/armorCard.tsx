@@ -39,7 +39,7 @@ export function ArmorCard({ armor }: { armor: Armor }) {
             alt={"A picture of " + armor.displayName}
             width={0}
             height={0}
-            sizes="100vw"
+            sizes="100vw" quality={100}
           />
         </div>
       </CardContent>

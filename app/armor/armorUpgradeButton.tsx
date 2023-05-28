@@ -9,7 +9,7 @@ import { Armor, Level } from "@/types/data"
 import { Button } from "@/components/ui/button"
 
 const ArmorUpgradeButton = forwardRef<HTMLButtonElement, { armor: Armor }>(
-  ({ armor }, forwardedRef) => {
+  ({ armor, ...rest }, forwardedRef) => {
     const { value, upgrade } = useArmor(armor.displayName)
     const { consume } = useItemContext()
 
@@ -27,6 +27,7 @@ const ArmorUpgradeButton = forwardRef<HTMLButtonElement, { armor: Armor }>(
     )
     return (
       <Button
+        {...rest}
         ref={forwardedRef}
         disabled={disabled}
         variant="outline"
