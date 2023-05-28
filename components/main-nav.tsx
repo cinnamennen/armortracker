@@ -1,43 +1,50 @@
+"use client"
+
 import * as React from "react"
 import Link from "next/link"
+import { Download, LucideIcon, Mail, Upload } from "lucide-react"
 
-import { NavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { Icons } from "@/components/icons"
+import {
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
+import Export from "@/components/Export"
+import Import from "@/components/Import"
+import { ListItem } from "@/components/list-item"
 
-interface MainNavProps {
-  items?: NavItem[]
-}
-
-export function MainNav({ items }: MainNavProps) {
+export function MainNav() {
   return (
-    <div className="flex gap-6 md:gap-10">
-      <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Icons.logo className="h-6 w-6 mr-4" />
-        <span className="hidden font-bold sm:inline-block">
-          {siteConfig.name}
-        </span>
-      </Link>
-      {items?.length ? (
-        <nav className="hidden gap-6 md:flex">
-          {items?.map(
-            (item, index) =>
-              item.href && (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className={cn(
-                    "flex items-center text-lg font-semibold text-muted-foreground sm:text-sm",
-                    item.disabled && "cursor-not-allowed opacity-80"
-                  )}
-                >
-                  {item.title}
-                </Link>
-              )
-          )}
-        </nav>
-      ) : null}
-    </div>
+    <NavigationMenuList>
+      {siteConfig.mainNav.map(({ href, title }) => (
+        <NavigationMenuItem key={title}>
+          <Link href={href} legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              {title}
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+      ))}
+      <NavigationMenuItem>
+        <NavigationMenuTrigger>Options</NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+            <Export />
+            <Import />
+            <ListItem
+              title={"Give Feedback"}
+              href={siteConfig.links.feedback}
+              Icon={Mail}
+            >
+              Open a issue in GitHub to provide feedback.
+            </ListItem>
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+    </NavigationMenuList>
   )
 }
