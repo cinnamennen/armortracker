@@ -8,16 +8,17 @@ import {
   useEffect,
   useReducer,
 } from "react"
+import { ArmorState } from "@/context/ArmorReducer"
 import {
   ItemActions,
   ItemActionsMap,
   ItemReducer,
   ItemState,
 } from "@/context/ItemReducer"
+import { ingredientsData } from "@/data/ingredients"
+import { useImmerReducer } from "use-immer"
 
 import { Recipe } from "@/types/data"
-import {ingredientsData} from "@/data/ingredients";
-import {useImmerReducer} from "use-immer";
 
 export type ItemDispatcher = <
   Type extends ItemActions["type"],
@@ -36,9 +37,12 @@ export const ItemContext = createContext<ItemContextInterface>([{}, () => {}])
 export const ItemWrapper = ({ children }: PropsWithChildren) => {
   const [state, _dispatch] = useImmerReducer(ItemReducer, initialState)
 
-  const dispatch: ItemDispatcher = useCallback((type, ...payload) => {
-    _dispatch({ type, payload: payload[0] } as ItemActions)
-  }, [])
+  const dispatch: ItemDispatcher = useCallback(
+    (type, ...payload) => {
+      _dispatch({ type, payload: payload[0] } as ItemActions)
+    },
+    [_dispatch]
+  )
 
   useEffect(() => {
     const localItem = localStorage.getItem("item")
@@ -72,12 +76,19 @@ export function useItemContext() {
   const consume = useCallback(
     (recipe: Recipe) => {
       Object.entries(recipe).forEach(([item, amount]) =>
-        dispatch("use_item", { item: ingredientsData[item].displayName, amount: amount ?? 0 })
+        dispatch("use_item", {
+          item: ingredientsData[item].displayName,
+          amount: amount ?? 0,
+        })
       )
     },
     [dispatch]
   )
-  return { value, dispatch, set, consume }
+  const load = useCallback(
+    (items: ItemState) => dispatch("init_store", items),
+    [dispatch]
+  )
+  return { value, dispatch, set, consume, load }
 }
 
 export function useItem(itemName: string) {
