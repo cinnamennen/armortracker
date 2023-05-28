@@ -1,2 +1,12 @@
-- name: Prettier Action
-  uses: creyD/prettier_action@v4.3
+name: Prettier
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prettier Action
+        uses: creyD/prettier_action@v4.3
+
+
