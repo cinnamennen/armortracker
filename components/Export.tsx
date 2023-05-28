@@ -25,7 +25,9 @@ export default function Export() {
             className=""
             size="sm"
             onClick={() => {
-              copy(btoa(JSON.stringify({ armor, items })), {format: "text/plain"})
+              copy(btoa(JSON.stringify({ armor, items })), {
+                format: "text/plain",
+              })
             }}
           >
             <Upload className="h-4 w-4" />

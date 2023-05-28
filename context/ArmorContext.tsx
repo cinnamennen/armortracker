@@ -33,9 +33,12 @@ export const ArmorContext = createContext<ArmorContextInterface>([{}, () => {}])
 export const ArmorWrapper = ({ children }: PropsWithChildren) => {
   const [state, _dispatch] = useImmerReducer(ArmorReducer, initialState)
 
-  const dispatch: ArmorDispatcher = useCallback((type, ...payload) => {
-    _dispatch({ type, payload: payload[0] } as ArmorActions)
-  }, [_dispatch])
+  const dispatch: ArmorDispatcher = useCallback(
+    (type, ...payload) => {
+      _dispatch({ type, payload: payload[0] } as ArmorActions)
+    },
+    [_dispatch]
+  )
 
   useEffect(() => {
     const localArmor = localStorage.getItem("armor")
