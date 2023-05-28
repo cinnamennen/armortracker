@@ -4,7 +4,7 @@ import { Ingredient } from "@/types/data"
 
 export const ingredientsData: { [key in Ingredients]: Ingredient } = {
   [Ingredients.Acorn]: { displayName: "Acorn" },
-  [Ingredients.AerocudaEyes]: { displayName: "Aerocuda Eyes" },
+  [Ingredients.AerocudaEyes]: { displayName: "Aerocuda Eyeball" },
   [Ingredients.AerocudaWing]: { displayName: "Aerocuda Wing" },
   [Ingredients.Amber]: { displayName: "Amber" },
   [Ingredients.BlackBokoblinHorn]: { displayName: "Black Bokoblin Horn" },
@@ -29,7 +29,7 @@ export const ingredientsData: { [key in Ingredients]: Ingredient } = {
   [Ingredients.BokoblinGuts]: { displayName: "Bokoblin Guts" },
   [Ingredients.BokoblinHorn]: { displayName: "Bokoblin Horn" },
   [Ingredients.BossBokoblinHorn]: { displayName: "Boss Bokoblin Horn" },
-  [Ingredients.BrightCaps]: { displayName: "Bright Caps" },
+  [Ingredients.BrightCaps]: { displayName: "Brightcap" },
   [Ingredients.BrightbloomSeeds]: { displayName: "Brightbloom Seeds" },
   [Ingredients.CaptainConstructIHorn]: {
     displayName: "Captain Construct I Horn",
