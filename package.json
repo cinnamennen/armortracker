@@ -10,8 +10,8 @@
     "lint:fix": "next lint --fix",
     "preview": "next build && next start",
     "typecheck": "tsc --noEmit",
-    "format:write": "prettier --write \"**/*.{ts,tsx,mdx,md,json,css,html}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts,tsx,mdx,md,json,css,html}\" --cache"
+    "format:write": "prettier --write \"**/*\" --cache",
+    "format:check": "prettier --check \"**/*\" --cache"
   },
   "dependencies": {
     "@radix-ui/react-separator": "^1.0.2",
