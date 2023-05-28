@@ -1,569 +1,107 @@
-import { Ingredients } from "@/data/shared"
+import { Ingredients, armorGroup } from "@/data/enum"
+import { fierce, sharedUpgrades, wild } from "@/data/upgrades"
 
-import { Armor, Slot, UpgradeList } from "@/types/data"
-
-const sharedUpgrades = {
-  awakening: [
-    { [Ingredients.LuminousStone]: 10, [Ingredients.StarFragment]: 1 },
-    {
-      [Ingredients.LuminousStone]: 15,
-      [Ingredients.StarFragment]: 1,
-    },
-    { [Ingredients.LuminousStone]: 20, [Ingredients.StarFragment]: 1 },
-    {
-      [Ingredients.LuminousStone]: 30,
-      [Ingredients.StarFragment]: 1,
-    },
-  ],
-  barbarian: [
-    { [Ingredients.MightyThistle]: 3 },
-    {
-      [Ingredients.LynelSaberHorn]: 2,
-      [Ingredients.LynelMaceHorn]: 2,
-      [Ingredients.Razorshroom]: 5,
-    },
-    {
-      [Ingredients.BlueManedLynelSaberHorn]: 3,
-      [Ingredients.BlueManedLynelMaceHorn]: 3,
-      [Ingredients.RazorclawCrab]: 3,
-    },
-    {
-      [Ingredients.WhiteManedLynelSaberHorn]: 3,
-      [Ingredients.WhiteManedLynelMaceHorn]: 3,
-      [Ingredients.BladedRhinoBeetle]: 3,
-    },
-  ],
-  charged: [
-    { [Ingredients.ShockFruit]: 3 },
-    {
-      [Ingredients.ElectricLizalHorn]: 5,
-      [Ingredients.ThunderwingButterfly]: 3,
-    },
-    {
-      [Ingredients.LargeZonaiCharge]: 3,
-      [Ingredients.ShockLikeStone]: 5,
-      [Ingredients.ElectricDarner]: 5,
-    },
-    {
-      [Ingredients.LargeZonaiCharge]: 10,
-      [Ingredients.VoltfinTrout]: 10,
-      [Ingredients.GleeokThunderHorn]: 5,
-    },
-  ],
-  climber: [
-    { [Ingredients.KeeseWing]: 3, [Ingredients.Rushroom]: 3 },
-    {
-      [Ingredients.ElectricKeeseWing]: 5,
-      [Ingredients.HightailLizard]: 5,
-    },
-    { [Ingredients.IceKeeseWing]: 8, [Ingredients.HotFootedFrog]: 10 },
-    {
-      [Ingredients.FireKeeseWing]: 10,
-      [Ingredients.SwiftViolet]: 20,
-    },
-  ],
-  depths: [
-    { [Ingredients.DeepFirefly]: 3 },
-    {
-      [Ingredients.DarkClump]: 5,
-      [Ingredients.FroxFang]: 3,
-    },
-    {
-      [Ingredients.FroxFingernail]: 3,
-      [Ingredients.ObsidianFroxFang]: 3,
-      [Ingredients.Zonaite]: 20,
-    },
-    {
-      [Ingredients.BlueWhiteFroxFang]: 5,
-      [Ingredients.LargeZonaite]: 10,
-      [Ingredients.FroxGuts]: 3,
-    },
-  ],
-  ember: [
-    { [Ingredients.FireFruit]: 3 },
-    {
-      [Ingredients.FireBreathLizalfosHorn]: 5,
-      [Ingredients.SummerwingButterfly]: 5,
-    },
-    {
-      [Ingredients.FireLikeStone]: 5,
-      [Ingredients.WarmDarner]: 7,
-      [Ingredients.LargeZonaiCharge]: 5,
-    },
-    {
-      [Ingredients.GleeokFlameHorn]: 5,
-      [Ingredients.SizzlefinTrout]: 10,
-      [Ingredients.LargeZonaiCharge]: 10,
-    },
-  ],
-  flamebreaker: [
-    { [Ingredients.MoblinHorn]: 3 },
-    {
-      [Ingredients.MoblinFang]: 5,
-      [Ingredients.FireproofLizard]: 5,
-    },
-    {
-      [Ingredients.BlueMoblinHorn]: 5,
-      [Ingredients.SmotherwingButterfly]: 3,
-      [Ingredients.Flint]: 15,
-    },
-    {
-      [Ingredients.BlackMoblinHorn]: 5,
-      [Ingredients.SmotherwingButterfly]: 5,
-      [Ingredients.Flint]: 30,
-    },
-  ],
-  froggy: [
-    { [Ingredients.StickyLizard]: 3 },
-    {
-      [Ingredients.StickyLizard]: 5,
-      [Ingredients.HorriblinHorn]: 5,
-    },
-    { [Ingredients.BlueHorriblinHorn]: 5, [Ingredients.StickyFrog]: 5 },
-    {
-      [Ingredients.BlackHorriblinHorn]: 5,
-      [Ingredients.HorriblinGuts]: 10,
-      [Ingredients.Opal]: 10,
-    },
-  ],
-  frostbite: [
-    { [Ingredients.IceFruit]: 3 },
-    {
-      [Ingredients.IceBreathLizalfosHorn]: 5,
-      [Ingredients.WinterwingButterfly]: 5,
-    },
-    {
-      [Ingredients.IceLikeStone]: 5,
-      [Ingredients.ColdDarner]: 5,
-      [Ingredients.LargeZonaiCharge]: 5,
-    },
-    {
-      [Ingredients.GleeokFrostHorn]: 5,
-      [Ingredients.ChillfinTrout]: 10,
-      [Ingredients.LargeZonaiCharge]: 10,
-    },
-  ],
-  glide: [
-    { [Ingredients.KeeseWing]: 3 },
-    {
-      [Ingredients.AerocudaEyes]: 6,
-      [Ingredients.KeeseWing]: 5,
-    },
-    { [Ingredients.AerocudaEyes]: 8, [Ingredients.AerocudaWing]: 6 },
-    {
-      [Ingredients.GleeokWing]: 12,
-      [Ingredients.AerocudaWing]: 10,
-      [Ingredients.GibdoWing]: 8,
-    },
-  ],
-  hero: [
-    { [Ingredients.Ruby]: 1, [Ingredients.StarFragment]: 1 },
-    {
-      [Ingredients.Ruby]: 4,
-      [Ingredients.StarFragment]: 1,
-    },
-    { [Ingredients.Ruby]: 6, [Ingredients.StarFragment]: 1 },
-    {
-      [Ingredients.Ruby]: 10,
-      [Ingredients.StarFragment]: 1,
-    },
-  ],
-  hylian: [
-    { [Ingredients.BokoblinHorn]: 5 },
-    {
-      [Ingredients.BlueBokoblinHorn]: 5,
-      [Ingredients.BokoblinFang]: 3,
-    },
-    {
-      [Ingredients.BlackBokoblinHorn]: 5,
-      [Ingredients.BokoblinGuts]: 3,
-      [Ingredients.Amber]: 20,
-    },
-    {
-      [Ingredients.SilverBokoblinHorn]: 5,
-      [Ingredients.BokoblinGuts]: 5,
-      [Ingredients.Amber]: 30,
-    },
-  ],
-  miner: [
-    { [Ingredients.BrightbloomSeeds]: 10 },
-    {
-      [Ingredients.BrightbloomSeeds]: 20,
-      [Ingredients.BrightCaps]: 5,
-    },
-    {
-      [Ingredients.GiantBrightbloomSeeds]: 15,
-      [Ingredients.GlowingCaveFish]: 5,
-      [Ingredients.DeepFirefly]: 10,
-    },
-    {
-      [Ingredients.GiantBrightbloomSeed]: 20,
-      [Ingredients.Diamond]: 3,
-      [Ingredients.LargeZonaite]: 10,
-    },
-  ],
-  radiant: [
-    { [Ingredients.LuminousStone]: 10, [Ingredients.BokoblinGuts]: 1 },
-    {
-      [Ingredients.LuminousStone]: 15,
-      [Ingredients.MoblinGuts]: 2,
-    },
-    {
-      [Ingredients.LuminousStone]: 20,
-      [Ingredients.HorriblinGuts]: 3,
-      [Ingredients.GibdoBone]: 10,
-    },
-    {
-      [Ingredients.LuminousStone]: 30,
-      [Ingredients.LynelGuts]: 3,
-      [Ingredients.MoldugaJaw]: 3,
-    },
-  ],
-  royal: [
-    { [Ingredients.BossBokoblinHorn]: 3, [Ingredients.BokoblinGuts]: 3 },
-    {
-      [Ingredients.BlueBossBokoblinHorn]: 3,
-      [Ingredients.BossBokoblinFang]: 3,
-    },
-    {
-      [Ingredients.BlackBossBokoblinHorn]: 3,
-      [Ingredients.HinoxGuts]: 3,
-    },
-    {
-      [Ingredients.SilverBossBokoblinHorn]: 3,
-      [Ingredients.MoldugaGuts]: 3,
-      [Ingredients.GleeokGuts]: 3,
-    },
-  ],
-  rubber: [
-    {
-      [Ingredients.ElectricLizalfosHorn]: 1,
-      [Ingredients.YellowChuchuJelly]: 3,
-    },
-    { [Ingredients.YellowChuchuJelly]: 8, [Ingredients.Voltfruit]: 5 },
-    {
-      [Ingredients.Zapshroom]: 5,
-      [Ingredients.ElectricLizalfosTail]: 5,
-      [Ingredients.ElectricSafflina]: 8,
-    },
-    {
-      [Ingredients.ElectricLizalfosHorn]: 5,
-      [Ingredients.Topaz]: 5,
-      [Ingredients.ElectricLizalfosTail]: 8,
-    },
-  ],
-  sky: [
-    { [Ingredients.Sapphire]: 1, [Ingredients.StarFragment]: 1 },
-    {
-      [Ingredients.Sapphire]: 4,
-      [Ingredients.StarFragment]: 1,
-    },
-    { [Ingredients.Sapphire]: 6, [Ingredients.StarFragment]: 1 },
-    {
-      [Ingredients.Sapphire]: 10,
-      [Ingredients.StarFragment]: 1,
-    },
-  ],
-  snowquill: [
-    { [Ingredients.RedChuchuJelly]: 3 },
-    {
-      [Ingredients.RedChuchuJelly]: 5,
-      [Ingredients.WarmSafflina]: 3,
-    },
-    {
-      [Ingredients.FireKeeseWing]: 5,
-      [Ingredients.FireBreathLizalfosTail]: 3,
-      [Ingredients.Sunshroom]: 5,
-    },
-    {
-      [Ingredients.FireBreathLizalfosHorn]: 5,
-      [Ingredients.FireBreathLizalfosTail]: 10,
-      [Ingredients.Ruby]: 5,
-    },
-  ],
-  soldier: [
-    { [Ingredients.ChuchuJelly]: 5, [Ingredients.BokoblinGuts]: 3 },
-    {
-      [Ingredients.KeeseEyeball]: 5,
-      [Ingredients.MoblinGuts]: 3,
-    },
-    {
-      [Ingredients.LizalfosTail]: 3,
-      [Ingredients.HinoxGuts]: 3,
-      [Ingredients.Flint]: 30,
-    },
-    {
-      [Ingredients.LynelGuts]: 3,
-      [Ingredients.LynelHoof]: 5,
-      [Ingredients.Amber]: 30,
-    },
-  ],
-  stealth: [
-    { [Ingredients.BlueNightshade]: 3 },
-    {
-      [Ingredients.BlueNightshade]: 5,
-      [Ingredients.SunsetFirefly]: 5,
-    },
-    {
-      [Ingredients.SilentShroom]: 8,
-      [Ingredients.SneakyRiverSnail]: 5,
-      [Ingredients.StickyFrog]: 5,
-    },
-    {
-      [Ingredients.StealthfinTrout]: 10,
-      [Ingredients.SilentPrincess]: 5,
-      [Ingredients.Sundelion]: 10,
-    },
-  ],
-  time: [
-    { [Ingredients.Amber]: 10, [Ingredients.StarFragment]: 1 },
-    {
-      [Ingredients.Amber]: 20,
-      [Ingredients.StarFragment]: 1,
-    },
-    { [Ingredients.Amber]: 30, [Ingredients.StarFragment]: 1 },
-    {
-      [Ingredients.Amber]: 50,
-      [Ingredients.StarFragment]: 1,
-    },
-  ],
-  twilight: [
-    { [Ingredients.Topaz]: 1, [Ingredients.StarFragment]: 1 },
-    {
-      [Ingredients.Topaz]: 4,
-      [Ingredients.StarFragment]: 1,
-    },
-    { [Ingredients.Topaz]: 6, [Ingredients.StarFragment]: 1 },
-    {
-      [Ingredients.Topaz]: 10,
-      [Ingredients.StarFragment]: 1,
-    },
-  ],
-  voe: [
-    { [Ingredients.WhiteChuchuJelly]: 3 },
-    {
-      [Ingredients.WhiteChuchuJelly]: 5,
-      [Ingredients.CoolSafflina]: 3,
-    },
-    {
-      [Ingredients.IceKeeseWing]: 5,
-      [Ingredients.IceBreathLizalTail]: 3,
-      [Ingredients.Chillshroom]: 5,
-    },
-    {
-      [Ingredients.IceBreathLizalfosHorn]: 5,
-      [Ingredients.IceBreathLizalfosTail]: 10,
-      [Ingredients.Sapphire]: 5,
-    },
-  ],
-  wind: [
-    { [Ingredients.Opal]: 5, [Ingredients.StarFragment]: 1 },
-    {
-      [Ingredients.Opal]: 10,
-      [Ingredients.StarFragment]: 1,
-    },
-    { [Ingredients.Opal]: 15, [Ingredients.StarFragment]: 1 },
-    {
-      [Ingredients.Opal]: 25,
-      [Ingredients.StarFragment]: 1,
-    },
-  ],
-  yiga: [
-    { [Ingredients.OctorokEyeball]: 2 },
-    {
-      [Ingredients.FireBreathLizalfosTail]: 3,
-      [Ingredients.Puffshroom]: 3,
-    },
-    { [Ingredients.IceBreathLizalfosTail]: 5, [Ingredients.KeeseEyeball]: 5 },
-    {
-      [Ingredients.ElectricLizalfosTail]: 5,
-      [Ingredients.BlackHinoxHorn]: 3,
-      [Ingredients.MightyBananas]: 10,
-    },
-  ],
-  zonaite: [
-    { [Ingredients.SoldierConstructHorn]: 5 },
-    {
-      [Ingredients.SoldierConstructIIHorn]: 5,
-      [Ingredients.CaptainConstructIHorn]: 5,
-      [Ingredients.Zonaite]: 5,
-    },
-    {
-      [Ingredients.SoldierConstructIIIHorn]: 5,
-      [Ingredients.CaptainConstructIIHorn]: 5,
-      [Ingredients.LargeZonaite]: 5,
-    },
-    {
-      [Ingredients.SoldierConstructIVHorn]: 5,
-      [Ingredients.CaptainConstructIIIHorn]: 5,
-      [Ingredients.LargeZonaite]: 10,
-    },
-  ],
-  zora: [
-    { [Ingredients.LizalfosHorn]: 3 },
-    {
-      [Ingredients.LizalfosTalon]: 5,
-      [Ingredients.HyruleBass]: 5,
-    },
-    {
-      [Ingredients.BlueLizalfosHorn]: 5,
-      [Ingredients.LizalfosTail]: 3,
-      [Ingredients.HeartyBass]: 3,
-    },
-    {
-      [Ingredients.BlackLizalfosHorn]: 5,
-      [Ingredients.BlueLizalfosTail]: 5,
-      [Ingredients.Opal]: 20,
-    },
-  ],
-} satisfies { [key: string]: UpgradeList }
-type DRAGON_NAME = "Dinraal" | "Farosh" | "Naydra" | "Light"
-
-const dragons = {
-  Dinraal: {
-    claw: Ingredients.DinraalsClaw,
-    fang: Ingredients.DinraalsFang,
-    scale: Ingredients.DinraalsScale,
-    horn: Ingredients.DinraalsHorn,
-    shardFang: Ingredients.ShardofDinraalsFang,
-    shardSpike: Ingredients.ShardofDinraalsSpike,
-  },
-  Farosh: {
-    claw: Ingredients.FaroshsClaw,
-    fang: Ingredients.FaroshsFang,
-    scale: Ingredients.FaroshsScale,
-    horn: Ingredients.FaroshsHorn,
-    shardFang: Ingredients.ShardofFaroshsFang,
-    shardSpike: Ingredients.ShardofFaroshsSpike,
-  },
-  Naydra: {
-    claw: Ingredients.NaydrasClaw,
-    fang: Ingredients.NaydrasFang,
-    scale: Ingredients.NaydrasScale,
-    horn: Ingredients.NaydrasHorn,
-    shardFang: Ingredients.ShardofNaydrasFang,
-    shardSpike: Ingredients.ShardofNaydrasSpike,
-  },
-  Light: {
-    claw: Ingredients.LightDragonClaw,
-    fang: Ingredients.LightDragonFang,
-    scale: Ingredients.LightDragonsScale,
-    horn: Ingredients.LightDragonHorn,
-    shardFang: Ingredients.ShardofLightDragonsFang,
-    shardSpike: Ingredients.ShardofLightDragonsSpike,
-  },
-} satisfies {
-  [key in DRAGON_NAME]: {
-    [key in
-      | "claw"
-      | "fang"
-      | "scale"
-      | "horn"
-      | "shardFang"
-      | "shardSpike"]: Ingredients
-  }
-}
-
-function earrings(catalyst: Ingredients): UpgradeList {
-  return [
-    { [catalyst]: 10, [Ingredients.Flint]: 5 },
-    {
-      [catalyst]: 20,
-      [Ingredients.Flint]: 10,
-    },
-    { [catalyst]: 35, [Ingredients.Flint]: 15 },
-    { [catalyst]: 60, [Ingredients.Flint]: 25 },
-  ]
-}
-
-function wild(dragon_name: DRAGON_NAME): UpgradeList {
-  const dragon = dragons[dragon_name]
-  const { claw, fang, scale, shardSpike, horn } = dragon
-  return [
-    { [Ingredients.Acorn]: 10, [scale]: 2 },
-    {
-      [Ingredients.CourserBeeHoney]: 5,
-      [claw]: 2,
-    },
-    {
-      [Ingredients.EnergeticRhinoBeetle]: 3,
-      [fang]: 2,
-      [shardSpike]: 5,
-    },
-    { [Ingredients.StarFragment]: 2, [horn]: 2, [shardSpike]: 10 },
-  ]
-}
-
-function fierce(dragon_name: DRAGON_NAME): UpgradeList {
-  const dragon = dragons[dragon_name]
-
-  const { claw, fang, scale, horn } = dragon
-  return [
-    { [Ingredients.HinoxToenail]: 5, [scale]: 1 },
-    {
-      [Ingredients.HinoxTooth]: 5,
-      [claw]: 1,
-    },
-    { [Ingredients.HinoxGuts]: 2, [fang]: 1 },
-    {
-      [Ingredients.LynelGuts]: 2,
-      [horn]: 1,
-    },
-  ]
-}
+import { Armor, Ingredient, Slot } from "@/types/data"
 
 export const armor: Armor[] = [
   {
     displayName: "Amber Earrings",
     slot: Slot.Head,
-    upgrades: earrings(Ingredients.Amber),
+    upgrades: [
+      { [Ingredients.Amber]: 10, [Ingredients.Flint]: 5 },
+      {
+        [Ingredients.Amber]: 20,
+        [Ingredients.Flint]: 10,
+      },
+      { [Ingredients.Amber]: 35, [Ingredients.Flint]: 15 },
+      { [Ingredients.Amber]: 60, [Ingredients.Flint]: 25 },
+    ],
+    armorGroup: armorGroup.Earrings,
+    sortKey: "c",
   },
-  { displayName: "Ancient Hero's Aspect", upgrades: null, slot: Slot.Head },
+  {
+    displayName: "Ancient Hero's Aspect",
+    upgrades: [
+      {
+        [Ingredients.Zonaite]: 15,
+        [Ingredients.SilverBokoblinHorn]: 9,
+        [Ingredients.HinoxGuts]: 9,
+      },
+      {
+        [Ingredients.LargeZonaite]: 10,
+        [Ingredients.SilverMoblinHorn]: 9,
+        [Ingredients.FroxGuts]: 9,
+      },
+      {
+        [Ingredients.LargeZonaite]: 15,
+        [Ingredients.SilverLizalfosHorn]: 9,
+        [Ingredients.MoldugaGuts]: 9,
+      },
+      {
+        [Ingredients.SilverLynelSaberHorn]: 9,
+        [Ingredients.SilverLynelMaceHorn]: 9,
+        [Ingredients.GleeokGuts]: 9,
+      },
+    ],
+    slot: Slot.Head,
+    armorGroup: armorGroup.Ancient,
+  },
   {
     displayName: "Barbarian Helm",
     upgrades: sharedUpgrades.barbarian,
+
     slot: Slot.Head,
+    armorGroup: armorGroup.Barbarian,
   },
   {
     displayName: "Barbarian Armor",
     slot: Slot.Body,
     upgrades: sharedUpgrades.barbarian,
+
+    armorGroup: armorGroup.Barbarian,
   },
 
   {
     displayName: "Barbarian Leg Wraps",
     upgrades: sharedUpgrades.barbarian,
     slot: Slot.Legs,
+    armorGroup: armorGroup.Barbarian,
   },
   {
     displayName: "Cap of the Hero",
     slot: Slot.Head,
     upgrades: sharedUpgrades.hero,
+    armorGroup: armorGroup.Hero,
   },
   {
     displayName: "Cap of the Sky",
     slot: Slot.Head,
     upgrades: sharedUpgrades.sky,
+    armorGroup: armorGroup.Sky,
   },
   {
     displayName: "Cap of the Wild",
     slot: Slot.Head,
     upgrades: wild("Farosh"),
+    armorGroup: armorGroup.Wild,
   },
   {
     displayName: "Cap of the Wind",
     slot: Slot.Head,
     upgrades: sharedUpgrades.wind,
+    armorGroup: armorGroup.Wind,
   },
   {
     displayName: "Cap of Time",
     slot: Slot.Head,
     upgrades: sharedUpgrades.time,
+    armorGroup: armorGroup.Time,
   },
   {
     displayName: "Cap of Twilight",
     slot: Slot.Head,
     upgrades: sharedUpgrades.twilight,
+    armorGroup: armorGroup.Twilight,
   },
   {
     displayName: "Champion's Leathers",
@@ -586,55 +124,68 @@ export const armor: Armor[] = [
         [Ingredients.Sundelion]: 20,
       },
     ],
+    armorGroup: armorGroup.Champion,
+    sortKey: "b",
   },
   {
     displayName: "Charged Headdress",
     slot: Slot.Head,
     upgrades: sharedUpgrades.charged,
+    armorGroup: armorGroup.Charged,
   },
   {
     displayName: "Charged Shirt",
     slot: Slot.Body,
     upgrades: sharedUpgrades.charged,
+    armorGroup: armorGroup.Charged,
   },
   {
     displayName: "Charged Trousers",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.charged,
+    armorGroup: armorGroup.Charged,
   },
   {
     displayName: "Climber's Bandanna",
     slot: Slot.Head,
     upgrades: sharedUpgrades.climber,
+    armorGroup: armorGroup.Climber,
   },
   {
     displayName: "Climbing Boots",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.climber,
+    armorGroup: armorGroup.Climber,
   },
   {
     displayName: "Climbing Gear",
     slot: Slot.Body,
     upgrades: sharedUpgrades.climber,
+    armorGroup: armorGroup.Climber,
   },
   {
     displayName: "Desert Voe Headband",
     slot: Slot.Head,
     upgrades: sharedUpgrades.voe,
+    armorGroup: armorGroup.Voe,
   },
   {
     displayName: "Desert Voe Spaulder",
     slot: Slot.Body,
     upgrades: sharedUpgrades.voe,
+    armorGroup: armorGroup.Voe,
   },
   {
     displayName: "Desert Voe Trousers",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.voe,
+    armorGroup: armorGroup.Voe,
   },
   {
     displayName: "Diamond Circlet",
     slot: Slot.Head,
+    armorGroup: armorGroup.Circlet,
+    sortKey: "a",
     upgrades: [
       { [Ingredients.Diamond]: 2, [Ingredients.Flint]: 3 },
       {
@@ -652,116 +203,139 @@ export const armor: Armor[] = [
     displayName: "Ember Headdress",
     slot: Slot.Head,
     upgrades: sharedUpgrades.ember,
+    armorGroup: armorGroup.Ember,
   },
   {
     displayName: "Ember Shirt",
     slot: Slot.Body,
     upgrades: sharedUpgrades.ember,
+    armorGroup: armorGroup.Ember,
   },
   {
     displayName: "Ember Trousers",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.ember,
+    armorGroup: armorGroup.Ember,
   },
   {
     displayName: "Fierce Deity Armor",
     slot: Slot.Body,
     upgrades: fierce("Naydra"),
+    armorGroup: armorGroup.Fierce,
   },
   {
     displayName: "Fierce Deity Boots",
     slot: Slot.Legs,
     upgrades: fierce("Farosh"),
+    armorGroup: armorGroup.Fierce,
   },
   {
     displayName: "Fierce Deity Mask",
     slot: Slot.Head,
     upgrades: fierce("Dinraal"),
+    armorGroup: armorGroup.Fierce,
   },
   {
     displayName: "Flamebreaker Armor",
     slot: Slot.Body,
     upgrades: sharedUpgrades.flamebreaker,
+    armorGroup: armorGroup.Flamebreaker,
   },
   {
     displayName: "Flamebreaker Boots",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.flamebreaker,
+    armorGroup: armorGroup.Flamebreaker,
   },
   {
     displayName: "Flamebreaker Helm",
     slot: Slot.Head,
     upgrades: sharedUpgrades.flamebreaker,
+    armorGroup: armorGroup.Flamebreaker,
   },
   {
     displayName: "Froggy Hood",
     slot: Slot.Head,
     upgrades: sharedUpgrades.froggy,
+    armorGroup: armorGroup.Froggy,
   },
   {
     displayName: "Froggy Leggings",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.froggy,
+    armorGroup: armorGroup.Froggy,
   },
   {
     displayName: "Froggy Sleeve",
     slot: Slot.Body,
     upgrades: sharedUpgrades.froggy,
+    armorGroup: armorGroup.Froggy,
   },
   {
     displayName: "Frostbite Headdress",
     slot: Slot.Head,
     upgrades: sharedUpgrades.frostbite,
+    armorGroup: armorGroup.Frostbite,
   },
   {
     displayName: "Frostbite Shirt",
     slot: Slot.Body,
     upgrades: sharedUpgrades.frostbite,
+    armorGroup: armorGroup.Frostbite,
   },
   {
     displayName: "Frostbite Trousers",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.frostbite,
+    armorGroup: armorGroup.Frostbite,
   },
   {
     displayName: "Gaiters of the Depths",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.depths,
+    armorGroup: armorGroup.Depths,
   },
   {
     displayName: "Glide Mask",
     slot: Slot.Head,
     upgrades: sharedUpgrades.glide,
+    armorGroup: armorGroup.Glide,
   },
   {
     displayName: "Glide Shirt",
     slot: Slot.Body,
     upgrades: sharedUpgrades.glide,
+    armorGroup: armorGroup.Glide,
   },
   {
     displayName: "Glide Tights",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.glide,
+    armorGroup: armorGroup.Glide,
   },
   {
     displayName: "Hood of the Depths",
     slot: Slot.Head,
     upgrades: sharedUpgrades.depths,
+    armorGroup: armorGroup.Depths,
   },
   {
     displayName: "Hylian Hood",
     slot: Slot.Head,
     upgrades: sharedUpgrades.hylian,
+    armorGroup: armorGroup.Hylian,
   },
   {
     displayName: "Hylian Trousers",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.hylian,
+    armorGroup: armorGroup.Hylian,
   },
   {
     displayName: "Hylian Tunic",
     slot: Slot.Body,
     upgrades: sharedUpgrades.hylian,
+    armorGroup: armorGroup.Hylian,
   },
   { displayName: "Lobster Shirt", upgrades: null, slot: Slot.Body },
   { displayName: "Majora's Mask", upgrades: null, slot: Slot.Head },
@@ -769,25 +343,31 @@ export const armor: Armor[] = [
     displayName: "Mask of Awakening",
     slot: Slot.Head,
     upgrades: sharedUpgrades.awakening,
+    armorGroup: armorGroup.Awakening,
   },
   {
     displayName: "Miner's Mask",
     slot: Slot.Head,
     upgrades: sharedUpgrades.miner,
+    armorGroup: armorGroup.Miner,
   },
   {
     displayName: "Miner's Top",
     slot: Slot.Body,
     upgrades: sharedUpgrades.miner,
+    armorGroup: armorGroup.Miner,
   },
   {
     displayName: "Miner's Trousers",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.miner,
+    armorGroup: armorGroup.Miner,
   },
   {
     displayName: "Opal Earrings",
     slot: Slot.Head,
+    armorGroup: armorGroup.Earrings,
+    sortKey: "b",
     upgrades: [
       { [Ingredients.Opal]: 6, [Ingredients.Flint]: 5 },
       {
@@ -802,51 +382,62 @@ export const armor: Armor[] = [
     displayName: "Radiant Mask",
     slot: Slot.Head,
     upgrades: sharedUpgrades.radiant,
+    armorGroup: armorGroup.Radiant,
   },
   {
     displayName: "Radiant Shirt",
     slot: Slot.Body,
     upgrades: sharedUpgrades.radiant,
+    armorGroup: armorGroup.Radiant,
   },
   {
     displayName: "Radiant Tights",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.radiant,
+    armorGroup: armorGroup.Radiant,
   },
   { displayName: "Ravio Hood", upgrades: null, slot: Slot.Head },
   {
     displayName: "Royal Guard Boots",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.royal,
+    armorGroup: armorGroup.RoyalGuard,
   },
   {
     displayName: "Royal Guard Cap",
     slot: Slot.Head,
     upgrades: sharedUpgrades.royal,
+    armorGroup: armorGroup.RoyalGuard,
   },
   {
     displayName: "Royal Guard Uniform",
     slot: Slot.Body,
     upgrades: sharedUpgrades.royal,
+    armorGroup: armorGroup.RoyalGuard,
   },
   {
     displayName: "Rubber Armor",
     slot: Slot.Body,
     upgrades: sharedUpgrades.rubber,
+    armorGroup: armorGroup.Rubber,
   },
   {
     displayName: "Rubber Helm",
     slot: Slot.Head,
     upgrades: sharedUpgrades.rubber,
+    armorGroup: armorGroup.Rubber,
   },
   {
     displayName: "Rubber Tights",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.rubber,
+    armorGroup: armorGroup.Rubber,
   },
   {
     displayName: "Ruby Circlet",
     slot: Slot.Head,
+    armorGroup: armorGroup.Circlet,
+    sortKey: "b",
     upgrades: [
       { [Ingredients.Ruby]: 2, [Ingredients.Flint]: 3 },
       {
@@ -863,6 +454,8 @@ export const armor: Armor[] = [
   {
     displayName: "Sand Boots",
     slot: Slot.Legs,
+    armorGroup: armorGroup.Puff,
+    sortKey: "a",
     upgrades: [
       { [Ingredients.HightailLizard]: 3 },
       {
@@ -884,6 +477,8 @@ export const armor: Armor[] = [
   {
     displayName: "Sapphire Circlet",
     slot: Slot.Head,
+    armorGroup: armorGroup.Circlet,
+    sortKey: "c",
     upgrades: [
       { [Ingredients.Sapphire]: 2, [Ingredients.Flint]: 3 },
       {
@@ -900,6 +495,7 @@ export const armor: Armor[] = [
   {
     displayName: "Sheik's Mask",
     slot: Slot.Head,
+    armorGroup: armorGroup.Sheik,
     upgrades: [
       { [Ingredients.SilentPrincess]: 1, [Ingredients.StarFragment]: 1 },
       { [Ingredients.SilentPrincess]: 2, [Ingredients.StarFragment]: 2 },
@@ -910,6 +506,8 @@ export const armor: Armor[] = [
   {
     displayName: "Snow Boots",
     slot: Slot.Legs,
+    armorGroup: armorGroup.Puff,
+    sortKey: "b",
     upgrades: [
       { [Ingredients.HightailLizard]: 3 },
       {
@@ -924,46 +522,55 @@ export const armor: Armor[] = [
     displayName: "Snowquill Headdress",
     slot: Slot.Head,
     upgrades: sharedUpgrades.snowquill,
+    armorGroup: armorGroup.Snowquill,
   },
   {
     displayName: "Snowquill Trousers",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.snowquill,
+    armorGroup: armorGroup.Snowquill,
   },
   {
     displayName: "Snowquill Tunic",
     slot: Slot.Body,
     upgrades: sharedUpgrades.snowquill,
+    armorGroup: armorGroup.Snowquill,
   },
   {
     displayName: "Soldier's Armor",
     slot: Slot.Body,
     upgrades: sharedUpgrades.soldier,
+    armorGroup: armorGroup.Soldier,
   },
   {
     displayName: "Soldier's Greaves",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.soldier,
+    armorGroup: armorGroup.Soldier,
   },
   {
     displayName: "Soldier's Helm",
     slot: Slot.Head,
     upgrades: sharedUpgrades.soldier,
+    armorGroup: armorGroup.Soldier,
   },
   {
     displayName: "Stealth Chest Guard",
     slot: Slot.Body,
     upgrades: sharedUpgrades.stealth,
+    armorGroup: armorGroup.Stealth,
   },
   {
     displayName: "Stealth Mask",
     slot: Slot.Head,
     upgrades: sharedUpgrades.stealth,
+    armorGroup: armorGroup.Stealth,
   },
   {
     displayName: "Stealth Tights",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.stealth,
+    armorGroup: armorGroup.Stealth,
   },
   { displayName: "Tingle's Hood", upgrades: null, slot: Slot.Head },
   { displayName: "Tingle's Shirt", upgrades: null, slot: Slot.Body },
@@ -971,6 +578,8 @@ export const armor: Armor[] = [
   {
     displayName: "Topaz Earrings",
     slot: Slot.Head,
+    armorGroup: armorGroup.Earrings,
+    sortKey: "a",
     upgrades: [
       { [Ingredients.Topaz]: 2, [Ingredients.Flint]: 3 },
       {
@@ -988,45 +597,55 @@ export const armor: Armor[] = [
     displayName: "Trousers of Awakening",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.awakening,
+    armorGroup: armorGroup.Awakening,
   },
   {
     displayName: "Trousers of the Hero",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.hero,
+    armorGroup: armorGroup.Hero,
   },
   {
     displayName: "Trousers of the Sky",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.sky,
+    armorGroup: armorGroup.Sky,
   },
   {
     displayName: "Trousers of the Wild",
     slot: Slot.Legs,
     upgrades: wild("Dinraal"),
+    armorGroup: armorGroup.Wild,
   },
   {
     displayName: "Trousers of the Wind",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.wind,
+    armorGroup: armorGroup.Wind,
   },
   {
     displayName: "Trousers of Time",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.time,
+    armorGroup: armorGroup.Time,
   },
   {
     displayName: "Trousers of Twilight",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.twilight,
+    armorGroup: armorGroup.Twilight,
   },
   {
     displayName: "Tunic of Awakening",
     slot: Slot.Body,
     upgrades: sharedUpgrades.awakening,
+    armorGroup: armorGroup.Awakening,
   },
   {
     displayName: "Tunic of Memories",
     slot: Slot.Body,
+    armorGroup: armorGroup.Champion,
+    sortKey: "a",
     upgrades: [
       { [Ingredients.SilentPrincess]: 3, [Ingredients.LightDragonsScale]: 1 },
       {
@@ -1050,40 +669,49 @@ export const armor: Armor[] = [
     displayName: "Tunic of the Depths",
     slot: Slot.Body,
     upgrades: sharedUpgrades.depths,
+    armorGroup: armorGroup.Depths,
   },
   {
     displayName: "Tunic of the Hero",
     slot: Slot.Body,
     upgrades: sharedUpgrades.hero,
+    armorGroup: armorGroup.Hero,
   },
   {
     displayName: "Tunic of the Sky",
     slot: Slot.Body,
     upgrades: sharedUpgrades.sky,
+    armorGroup: armorGroup.Sky,
   },
   {
     displayName: "Tunic of the Wild",
     slot: Slot.Body,
     upgrades: wild("Naydra"),
+    armorGroup: armorGroup.Wild,
   },
   {
     displayName: "Tunic of the Wind",
     slot: Slot.Body,
     upgrades: sharedUpgrades.wind,
+    armorGroup: armorGroup.Wind,
   },
   {
     displayName: "Tunic of Time",
     slot: Slot.Body,
     upgrades: sharedUpgrades.time,
+    armorGroup: armorGroup.Time,
   },
   {
     displayName: "Tunic of Twilight",
     slot: Slot.Body,
     upgrades: sharedUpgrades.twilight,
+    armorGroup: armorGroup.Twilight,
   },
   {
     displayName: "Vah Medoh Divine Helm",
     slot: Slot.Head,
+    armorGroup: armorGroup.Divine,
+    sortKey: "a",
     upgrades: [
       { [Ingredients.Sapphire]: 1, [Ingredients.Zonaite]: 5 },
       {
@@ -1105,6 +733,8 @@ export const armor: Armor[] = [
   {
     displayName: "Vah Naboris Divine Helm",
     slot: Slot.Head,
+    armorGroup: armorGroup.Divine,
+    sortKey: "d",
     upgrades: [
       { [Ingredients.Topaz]: 1, [Ingredients.Zonaite]: 5 },
       {
@@ -1126,6 +756,8 @@ export const armor: Armor[] = [
   {
     displayName: "Vah Rudania Divine Helm",
     slot: Slot.Head,
+    armorGroup: armorGroup.Divine,
+    sortKey: "b",
     upgrades: [
       { [Ingredients.Ruby]: 1, [Ingredients.Zonaite]: 5 },
       {
@@ -1147,6 +779,8 @@ export const armor: Armor[] = [
   {
     displayName: "Vah Ruta Divine Helm",
     slot: Slot.Head,
+    armorGroup: armorGroup.Divine,
+    sortKey: "c",
     upgrades: [
       { [Ingredients.Opal]: 5, [Ingredients.Zonaite]: 5 },
       {
@@ -1169,46 +803,58 @@ export const armor: Armor[] = [
     displayName: "Yiga Armor",
     slot: Slot.Body,
     upgrades: sharedUpgrades.yiga,
+    armorGroup: armorGroup.Yiga,
   },
   {
     displayName: "Yiga Mask",
     slot: Slot.Head,
     upgrades: sharedUpgrades.yiga,
+    armorGroup: armorGroup.Yiga,
   },
   {
     displayName: "Yiga Tights",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.yiga,
+    armorGroup: armorGroup.Yiga,
   },
   { displayName: "Zant's Helmet", upgrades: null, slot: Slot.Head },
   {
     displayName: "Zonaite Helm",
     slot: Slot.Head,
     upgrades: sharedUpgrades.zonaite,
+    armorGroup: armorGroup.Zonaite,
   },
   {
     displayName: "Zonaite Shin Guards",
     slot: Slot.Legs,
     upgrades: sharedUpgrades.zonaite,
+    armorGroup: armorGroup.Zonaite,
   },
   {
     displayName: "Zonaite Waistguard",
     slot: Slot.Body,
     upgrades: sharedUpgrades.zonaite,
+    armorGroup: armorGroup.Zonaite,
   },
   {
     displayName: "Zora Armor",
     upgrades: sharedUpgrades.zora,
+    armorGroup: armorGroup.Zora,
+
     slot: Slot.Body,
   },
   {
     displayName: "Zora Greaves",
     upgrades: sharedUpgrades.zora,
+    armorGroup: armorGroup.Zora,
+
     slot: Slot.Legs,
   },
   {
     displayName: "Zora Helm",
     upgrades: sharedUpgrades.zora,
+    armorGroup: armorGroup.Zora,
+
     slot: Slot.Head,
   },
   { displayName: "Archaic Legwear", upgrades: null, slot: Slot.Legs },
@@ -1232,6 +878,45 @@ export const armor: Armor[] = [
   { displayName: "Phantom Armor", upgrades: null, slot: Slot.Body },
   { displayName: "Phantom Greaves", upgrades: null, slot: Slot.Legs },
   { displayName: "Phantom Helm", upgrades: null, slot: Slot.Head },
-  { displayName: "Thunder Helm", upgrades: null, slot: Slot.Head },
+  { displayName: "Thunder Helm", slot: Slot.Head, upgrades: null },
   { displayName: "Well-Worn Hair Band", upgrades: null, slot: Slot.Head },
 ]
+
+export const setData: { [key in armorGroup]: { displayName: string } } = {
+  [armorGroup.Ancient]: { displayName: "Ancient Armor" },
+  [armorGroup.Barbarian]: { displayName: "Barbarian Armor" },
+  [armorGroup.Charged]: { displayName: "Charged Armor" },
+  [armorGroup.Climber]: { displayName: "Climbing Gear" },
+  [armorGroup.Depths]: { displayName: "Armor of the Depths" },
+  [armorGroup.Divine]: { displayName: "Divine Beast Armor" },
+  [armorGroup.Fierce]: { displayName: "Fierce Deity Armor" },
+  [armorGroup.Flamebreaker]: { displayName: "Flamebreaker Armor" },
+  [armorGroup.Hylian]: { displayName: "Hylian Armor" },
+  [armorGroup.Radiant]: { displayName: "Radiant Armor" },
+  [armorGroup.RoyalGuard]: { displayName: "Royal Guard Armor" },
+  [armorGroup.Sheik]: { displayName: "Sheik Armor" },
+  [armorGroup.Snowquill]: { displayName: "Snowquill Armor" },
+  [armorGroup.Soldier]: { displayName: "Soldier Armor" },
+  [armorGroup.Stealth]: { displayName: "Stealth Armor" },
+  [armorGroup.Wild]: { displayName: "Armor of the Wild" },
+  [armorGroup.Yiga]: { displayName: "Yiga Clan Armor" },
+  [armorGroup.Zonaite]: { displayName: "Zonaite Armor" },
+  [armorGroup.Zora]: { displayName: "Zora Armor" },
+  [armorGroup.Voe]: { displayName: "Voe Armor" },
+  [armorGroup.Rubber]: { displayName: "Rubber Armor" },
+  [armorGroup.Froggy]: { displayName: "Froggy Armor" },
+  [armorGroup.Glide]: { displayName: "Glide Armor" },
+  [armorGroup.Miner]: { displayName: "Miner's Armor" },
+  [armorGroup.Ember]: { displayName: "Ember Armor" },
+  [armorGroup.Frostbite]: { displayName: "Frostbite Armor" },
+  [armorGroup.Circlet]: { displayName: "Circlets" },
+  [armorGroup.Earrings]: { displayName: "Earrings" },
+  [armorGroup.Puff]: { displayName: "Boots" },
+  [armorGroup.Champion]: { displayName: "Champion's Tunics" },
+  [armorGroup.Awakening]: { displayName: "Armor of Awakening" },
+  [armorGroup.Hero]: { displayName: "Hero's Armor" },
+  [armorGroup.Time]: { displayName: "Armor of Time" },
+  [armorGroup.Wind]: { displayName: "Armor of Wind" },
+  [armorGroup.Twilight]: { displayName: "Twilight Armor" },
+  [armorGroup.Sky]: { displayName: "Sky Armor" },
+}
