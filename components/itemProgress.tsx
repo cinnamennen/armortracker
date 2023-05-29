@@ -7,6 +7,7 @@ import {
 } from "react-circular-progressbar"
 
 import "react-circular-progressbar/dist/styles.css"
+import { ZeldaImage } from "@/components/ZeldaImage"
 import { ItemCollection } from "@/components/itemCollection"
 
 export function ItemProgress({
@@ -27,7 +28,10 @@ export function ItemProgress({
           trailColor: "hsl(var(--secondary))",
         })}
       >
-        <ItemCollection ingredient={ingredient} />
+        <ZeldaImage
+          className="h-fit w-auto p-2"
+          zelda={ingredientData[ingredient]}
+        />
       </CircularProgressbarWithChildren>
       {value} / {need}
       <p>{ingredientData[ingredient].displayName}</p>
