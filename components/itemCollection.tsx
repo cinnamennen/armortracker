@@ -1,14 +1,17 @@
 import Image from "next/image"
+import { useItem } from "@/context/ItemContext"
 import { Ingredient } from "@/data/enum"
+import { ingredientData } from "@/data/ingredients"
+import { Plus } from "lucide-react"
 
 import { getDetectedPath } from "@/lib/utils"
-import {ingredientData} from "@/data/ingredients";
 
 export function ItemCollection({ ingredient }: { ingredient: Ingredient }) {
+  const {value, set} = useItem(ingredientData[ingredient].displayName)
   return (
-    <div>
+    <div className="relative">
       <Image
-        className="h-3/4 w-auto"
+        className="h-fit w-auto"
         src={getDetectedPath(ingredientData[ingredient])}
         alt={"A picture of " + ingredientData[ingredient].displayName}
         width={0}
@@ -16,6 +19,9 @@ export function ItemCollection({ ingredient }: { ingredient: Ingredient }) {
         sizes="100vw"
         quality={100}
       />
+      <div className="absolute inset-0 z-10 flex items-center justify-center opacity-0 transition-opacity hover:opacity-80">
+        <Plus className="h-3/4 w-auto" onClick={()=> set(ingredientData[ingredient].displayName, value + 1)}/>
+      </div>
     </div>
   )
 }
