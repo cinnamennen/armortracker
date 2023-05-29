@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { Upload } from "lucide-react"
 
 import { useExport } from "@/lib/hooks"

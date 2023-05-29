@@ -1,12 +1,9 @@
 "use client"
 
-import * as React from "react"
 import NextLink from "next/link"
 import { usePathname } from "next/navigation"
-import { Mail } from "lucide-react"
 
 import { docsConfig } from "@/config/docs"
-import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import {
   NavigationMenu,
@@ -22,7 +19,6 @@ import Export from "@/components/Export"
 import Feedback from "@/components/Feedback"
 import Import from "@/components/Import"
 import { Icons } from "@/components/icons"
-import { ListItem } from "@/components/list-item"
 
 export function MainNav() {
   const pathname = usePathname()

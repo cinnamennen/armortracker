@@ -25,3 +25,12 @@ export function useImport() {
     })
   }, [loadArmor, loadItems])
 }
+
+export function useClear() {
+  const { clear: clearArmor } = useArmorContext()
+  const { clear: clearItems } = useItemContext()
+  return useCallback(() => {
+    clearArmor()
+    clearItems()
+  }, [clearArmor, clearItems])
+}

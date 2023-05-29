@@ -89,7 +89,10 @@
     "node": ">=18.0.0"
   },
   "lint-staged": {
-    "*.{ts,tsx}": ["eslint --cache", "prettier --write --cache"],
+    "*.{ts,tsx}": [
+      "eslint --cache",
+      "prettier --write --cache"
+    ],
     "*.{css,md}": "prettier --write --cache"
   }
 }
