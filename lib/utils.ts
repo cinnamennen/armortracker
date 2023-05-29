@@ -9,17 +9,8 @@ export function cn(...inputs: ClassValue[]) {
 
 export function getDetectedPath(
   item: { displayName: string; path?: string },
-  directory: string
 ) {
-  return directory + item.displayName + ".png"
-}
-
-export function getMaterialPath(ingredient: Ingredient) {
-  return getDetectedPath(ingredient, "/images/")
-}
-
-export function getArmorPath(armor: Armor) {
-  return getDetectedPath(armor, "/images/")
+  return "/static/images/" + item.displayName + ".png"
 }
 
 export function sortByKey(a: Armor, b: Armor) {

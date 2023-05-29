@@ -1,7 +1,7 @@
 import Image from "next/image"
 
 import { Ingredient } from "@/types/data"
-import { getMaterialPath } from "@/lib/utils"
+import { getDetectedPath } from "@/lib/utils"
 import {
   Card,
   CardContent,
@@ -11,6 +11,10 @@ import {
 } from "@/components/ui/card"
 import IngredientSelect from "@/app/inventory/ingredientSelect"
 
+
+
+
+
 export function IngredientCard({ ingredient }: { ingredient: Ingredient }) {
   return (
     <Card>
@@ -19,7 +23,7 @@ export function IngredientCard({ ingredient }: { ingredient: Ingredient }) {
       </CardHeader>
       <CardContent className="grid place-content-center gap-4">
         <Image
-          src={getMaterialPath(ingredient)}
+          src={getDetectedPath(ingredient)}
           alt={"A picture of " + ingredient.displayName}
           width="100"
           height="100"

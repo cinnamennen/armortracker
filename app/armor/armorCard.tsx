@@ -4,7 +4,7 @@ import Image from "next/image"
 import { useArmor } from "@/context/ArmorContext"
 
 import { Armor } from "@/types/data"
-import { cn, getArmorPath } from "@/lib/utils"
+import { cn, getDetectedPath } from "@/lib/utils"
 import {
   Card,
   CardContent,
@@ -15,6 +15,10 @@ import {
 import { ArmorIgnore } from "@/app/armor/armorIgnore"
 import ArmorSelect from "@/app/armor/armorSelect"
 import { ArmorUpgrade } from "@/app/armor/armorUpgrade"
+
+
+
+
 
 export function ArmorCard({ armor }: { armor: Armor }) {
   const { value } = useArmor(armor.displayName)
@@ -36,7 +40,7 @@ export function ArmorCard({ armor }: { armor: Armor }) {
         <div className="flex justify-center">
           <Image
             className="h-52 w-auto"
-            src={getArmorPath(armor)}
+            src={getDetectedPath(armor)}
             alt={"A picture of " + armor.displayName}
             width={0}
             height={0}
