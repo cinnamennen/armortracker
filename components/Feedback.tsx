@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { Mail } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
