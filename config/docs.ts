@@ -24,6 +24,5 @@ export const docsConfig: DocsConfig = {
       title: "FAQ",
       href: "/faq",
     },
-
   ],
 }

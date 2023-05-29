@@ -12,10 +12,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { ArmorRemaining } from "@/components/ArmorRemaining"
 import { ArmorIgnore } from "@/app/armor/armorIgnore"
 import ArmorSelect from "@/app/armor/armorSelect"
 import { ArmorUpgrade } from "@/app/armor/armorUpgrade"
-import {ArmorRemaining} from "@/components/ArmorRemaining";
 
 export function ArmorCard({ armor }: { armor: Armor }) {
   const { value } = useArmor(armor.displayName)

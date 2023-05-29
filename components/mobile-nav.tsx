@@ -62,10 +62,13 @@ export function MobileNav() {
             >
               Export Data
             </a>
-            <a className="hover:cursor-pointer" onClick={() => {
+            <a
+              className="hover:cursor-pointer"
+              onClick={() => {
                 load()
                 setOpen(false)
-              }}>
+              }}
+            >
               Import Data
             </a>
             <MobileLink href={siteConfig.links.feedback} onOpenChange={setOpen}>
