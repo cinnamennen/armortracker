@@ -15,8 +15,6 @@ export enum Level {
   Four = 4,
 }
 
-
-
 export type Recipe = RequireAtLeastOne<{ [key in Ingredient]?: number }>
 
 interface BaseArmor {

@@ -1,7 +1,7 @@
 import { armorGroup } from "@/data/enum"
 
+import { isNotString } from "@/lib/utils"
 import ArmorSection from "@/app/armor/armorSection"
-import {isNotString} from "@/lib/utils";
 
 export default function Armor() {
   return (

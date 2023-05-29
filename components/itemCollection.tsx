@@ -7,7 +7,7 @@ import { Plus } from "lucide-react"
 import { getDetectedPath } from "@/lib/utils"
 
 export function ItemCollection({ ingredient }: { ingredient: Ingredient }) {
-  const {value, set} = useItem(ingredientData[ingredient].displayName)
+  const { value, set } = useItem(ingredientData[ingredient].displayName)
   return (
     <div className="relative">
       <Image
@@ -20,7 +20,10 @@ export function ItemCollection({ ingredient }: { ingredient: Ingredient }) {
         quality={100}
       />
       <div className="absolute inset-0 z-10 flex items-center justify-center opacity-0 transition-opacity hover:opacity-80">
-        <Plus className="h-3/4 w-auto" onClick={()=> set(ingredientData[ingredient].displayName, value + 1)}/>
+        <Plus
+          className="h-3/4 w-auto"
+          onClick={() => set(ingredientData[ingredient].displayName, value + 1)}
+        />
       </div>
     </div>
   )
