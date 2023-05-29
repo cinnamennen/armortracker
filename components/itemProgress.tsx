@@ -1,11 +1,15 @@
 import { useItem } from "@/context/ItemContext"
 import { Ingredients } from "@/data/enum"
 import { ingredientsData } from "@/data/ingredients"
-import { CircularProgressbarWithChildren } from "react-circular-progressbar"
-import 'react-circular-progressbar/dist/styles.css';
-import {getDetectedPath} from "@/lib/utils";
-import Image from "next/image";
+import {
+  CircularProgressbarWithChildren,
+  buildStyles,
+} from "react-circular-progressbar"
 
+import "react-circular-progressbar/dist/styles.css"
+import Image from "next/image"
+
+import { getDetectedPath } from "@/lib/utils"
 
 export function ItemProgress({
   ingredient,
@@ -18,8 +22,13 @@ export function ItemProgress({
   const percent = Math.max(Math.min(1, value / need), 0) * 100
   return (
     <div className="flex flex-col items-center">
-      <CircularProgressbarWithChildren value={percent}>
-        {/* Put any JSX content in here that you'd like. It'll be vertically and horizonally centered. */}
+      <CircularProgressbarWithChildren
+        value={percent}
+        styles={buildStyles({
+          pathColor: "hsl(var(--primary))",
+          trailColor: "hsl(var(--secondary))",
+        })}
+      >
         <Image
           className="h-3/4 w-auto"
           src={getDetectedPath(ingredientsData[ingredient])}
