@@ -7,6 +7,7 @@ import { SidebarOpen } from "lucide-react"
 
 import { docsConfig } from "@/config/docs"
 import { siteConfig } from "@/config/site"
+import { useExport, useImport } from "@/lib/hooks"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -15,6 +16,8 @@ import { Icons } from "@/components/icons"
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false)
+  const out = useExport()
+  const load = useImport()
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -50,10 +53,26 @@ export function MobileNav() {
                   </MobileLink>
                 )
             )}
+            <a
+              className="hover:cursor-pointer"
+              onClick={() => {
+                out()
+                setOpen(false)
+              }}
+            >
+              Export Data
+            </a>
+            <a className="hover:cursor-pointer" onClick={() => {
+                load()
+                setOpen(false)
+              }}>
+              Import Data
+            </a>
+            <MobileLink href={siteConfig.links.feedback} onOpenChange={setOpen}>
+              Give Feedback
+            </MobileLink>
           </div>
-          <div className="flex flex-col space-y-2">
-
-          </div>
+          <div className="flex flex-col space-y-2"></div>
         </ScrollArea>
       </SheetContent>
     </Sheet>
