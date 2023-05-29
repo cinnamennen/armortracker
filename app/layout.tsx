@@ -6,7 +6,11 @@ import { ItemWrapper } from "@/context/ItemContext"
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
+import { Toaster } from "@/components/ui/toaster"
+import { Analytics } from "@/components/analytics"
 import { SiteHeader } from "@/components/site-header"
+import { StyleSwitcher } from "@/components/style-switcher"
+import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
@@ -15,15 +19,46 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Server Components",
+    "Radix UI",
+  ],
+  authors: [
+    {
+      name: "cinnamennen",
+      url: "https://totkarmortracker.com",
+    },
+  ],
+  creator: "cinnamennen",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
+  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
+  manifest: `${siteConfig.url}/site.webmanifest`,
 }
 
 interface RootLayoutProps {
@@ -44,13 +79,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ArmorWrapper>
               <ItemWrapper>
-                <div className="relative flex min-h-screen flex-col ">
+                <div className="relative flex min-h-screen flex-col">
                   <SiteHeader />
-                  <div className=" container">{children}</div>
+                  <div className="container flex-1">{children}</div>
                 </div>
               </ItemWrapper>
             </ArmorWrapper>
           </ThemeProvider>
+          <StyleSwitcher />
+          <Analytics />
+          <Toaster />
         </body>
       </html>
     </>

@@ -1,33 +1,14 @@
-export type SiteConfig = typeof siteConfig
-
 export const siteConfig = {
   name: "TotK Armor Planner",
+  url: "https://totkarmortracker.com",
+  ogImage: "https://ui.shadcn.com/og.jpg",
   description:
-    "A handy tool for planning your armor upgrades in Tears of the Kingdom.",
-  mainNav: [
-    {
-      title: "Armor",
-      href: "/armor",
-    },
-    {
-      title: "Inventory",
-      href: "/inventory",
-    },
-    {
-      title: "Missing",
-      href: "/missing",
-    },
-    {
-      title: "How to use",
-      href: "/how-to-use",
-    },
-    {
-      title: "FAQ",
-      href: "/faq",
-    },
-  ],
+    "Beautifully designed components built with Radix UI and Tailwind CSS.",
   links: {
-    github: "https://github.com/cinnamennen/armortracker",
-    feedback: "https://github.com/cinnamennen/armortracker/issues/new",
+    feedback: "https://github.com/shadcn/ui",
+    twitter: "https://twitter.com/shadcn",
+    github: "https://github.com/shadcn/ui",
   },
 }
+
+export type SiteConfig = typeof siteConfig
