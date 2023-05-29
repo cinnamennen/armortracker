@@ -14,7 +14,7 @@ export function ArmorRemaining({ armor }: { armor: Armor }) {
   return (
     <div className="grid grid-cols-3 gap-6">
       {Object.entries(val).map(([ingredient, count]) => {
-        return <ItemProgress ingredient={ingredient} need={count ?? 0} />
+        return <ItemProgress key={ingredient} ingredient={ingredient} need={count ?? 0} />
       })}
     </div>
   )
