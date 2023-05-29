@@ -1,11 +1,12 @@
 "use client"
 
+import { useEffect } from "react"
 import { useSelectedLayoutSegments } from "next/navigation"
 
 export function StyleSwitcher() {
   const segments = useSelectedLayoutSegments()
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.removeAttribute("data-section")
 
     const section = segments.at(-1)

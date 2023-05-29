@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { ReactNode, useState } from "react"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/navigation"
 import { SidebarOpen } from "lucide-react"
@@ -94,7 +94,7 @@ export function MobileNav() {
 
 interface MobileLinkProps extends LinkProps {
   onOpenChange?: (open: boolean) => void
-  children: React.ReactNode
+  children: ReactNode
   className?: string
 }
 

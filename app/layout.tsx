@@ -1,4 +1,5 @@
 import "@/styles/globals.css"
+import { ReactNode } from "react"
 import { Metadata } from "next"
 import { ArmorWrapper } from "@/context/ArmorContext"
 import { ItemWrapper } from "@/context/ItemContext"
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
 }
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
