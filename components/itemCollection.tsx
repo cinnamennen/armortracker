@@ -1,10 +1,10 @@
 import Image from "next/image"
-import { Ingredients } from "@/data/enum"
+import { Ingredient } from "@/data/enum"
 
 import { getDetectedPath } from "@/lib/utils"
 import {ingredientsData} from "@/data/ingredients";
 
-export function ItemCollection({ ingredient }: { ingredient: Ingredients }) {
+export function ItemCollection({ ingredient }: { ingredient: Ingredient }) {
   return (
     <div>
       <Image

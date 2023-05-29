@@ -37,7 +37,7 @@ export enum armorGroup {
   Ancient,
 }
 
-export enum Ingredients {
+export enum Ingredient {
   Voltfruit,
   MightyBananas,
   FireFruit,

@@ -1,5 +1,5 @@
 import { useItem } from "@/context/ItemContext"
-import { Ingredients } from "@/data/enum"
+import { Ingredient } from "@/data/enum"
 import { ingredientsData } from "@/data/ingredients"
 import {
   CircularProgressbarWithChildren,
@@ -13,7 +13,7 @@ export function ItemProgress({
   ingredient,
   need,
 }: {
-  ingredient: Ingredients
+  ingredient: Ingredient
   need: number
 }) {
   const { value } = useItem(ingredientsData[ingredient].displayName)

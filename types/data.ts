@@ -1,4 +1,4 @@
-import { Ingredients, armorGroup } from "@/data/enum"
+import { Ingredient, armorGroup } from "@/data/enum"
 import { RequireAtLeastOne } from "type-fest"
 
 export enum Slot {
@@ -17,7 +17,7 @@ export enum Level {
 
 
 
-export type Recipe = RequireAtLeastOne<{ [key in Ingredients]?: number }>
+export type Recipe = RequireAtLeastOne<{ [key in Ingredient]?: number }>
 
 interface BaseArmor {
   displayName: string

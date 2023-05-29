@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Ingredients } from "@/data/enum"
+import { Ingredient } from "@/data/enum"
 import { ingredientsData } from "@/data/ingredients"
 
 import { getDetectedPath } from "@/lib/utils"
@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card"
 import IngredientSelect from "@/app/inventory/ingredientSelect"
 
-export function IngredientCard({ ingredient }: { ingredient: Ingredients }) {
+export function IngredientCard({ ingredient }: { ingredient: Ingredient }) {
   return (
     <Card>
       <CardHeader>
