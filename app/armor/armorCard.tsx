@@ -16,10 +16,6 @@ import { ArmorIgnore } from "@/app/armor/armorIgnore"
 import ArmorSelect from "@/app/armor/armorSelect"
 import { ArmorUpgrade } from "@/app/armor/armorUpgrade"
 
-
-
-
-
 export function ArmorCard({ armor }: { armor: Armor }) {
   const { value } = useArmor(armor.displayName)
   return (

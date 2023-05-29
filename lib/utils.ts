@@ -7,9 +7,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function getDetectedPath(
-  item: { displayName: string; path?: string },
-) {
+export function getDetectedPath(item: { displayName: string; path?: string }) {
   return "/static/images/" + item.displayName + ".png"
 }
 

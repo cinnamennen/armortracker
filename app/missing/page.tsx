@@ -8,7 +8,6 @@ import useChecklist from "@/components/useChecklist"
 import { Missing, columns } from "./columns"
 import { DataTable } from "./data-table"
 
-
 export default function MissingItems() {
   const foo = useChecklist()
   const data = Object.entries(foo).map(([key, val]) => ({

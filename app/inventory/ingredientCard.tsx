@@ -11,10 +11,6 @@ import {
 } from "@/components/ui/card"
 import IngredientSelect from "@/app/inventory/ingredientSelect"
 
-
-
-
-
 export function IngredientCard({ ingredient }: { ingredient: Ingredient }) {
   return (
     <Card>
