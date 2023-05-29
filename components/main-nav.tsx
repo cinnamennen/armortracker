@@ -17,7 +17,9 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import Clear from "@/components/Clear"
 import Export from "@/components/Export"
+import Feedback from "@/components/Feedback"
 import Import from "@/components/Import"
 import { Icons } from "@/components/icons"
 import { ListItem } from "@/components/list-item"
@@ -44,13 +46,8 @@ export function MainNav() {
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                   <Export />
                   <Import />
-                  <ListItem
-                    title={"Give Feedback"}
-                    href={siteConfig.links.feedback}
-                    Icon={Mail}
-                  >
-                    Open a issue in GitHub to provide feedback.
-                  </ListItem>
+                  <Feedback />
+                  <Clear />
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
