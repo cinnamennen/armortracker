@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/navigation"
 import { SidebarOpen } from "lucide-react"
@@ -14,7 +15,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Icons } from "@/components/icons"
 
 export function MobileNav() {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
   const out = useExport()
   const load = useImport()
   const clear = useClear()
