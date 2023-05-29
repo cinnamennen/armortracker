@@ -36,7 +36,7 @@ export const sharedUpgrades = {
   charged: [
     { [Ingredients.ShockFruit]: 3 },
     {
-      [Ingredients.ElectricLizalHorn]: 5,
+      [Ingredients.ElectricLizalfosHorn]: 5,
       [Ingredients.ThunderwingButterfly]: 3,
     },
     {
@@ -192,7 +192,7 @@ export const sharedUpgrades = {
       [Ingredients.BrightCaps]: 5,
     },
     {
-      [Ingredients.GiantBrightbloomSeeds]: 15,
+      [Ingredients.GiantBrightbloomSeed]: 15,
       [Ingredients.GlowingCaveFish]: 5,
       [Ingredients.DeepFirefly]: 10,
     },
@@ -347,7 +347,7 @@ export const sharedUpgrades = {
     },
     {
       [Ingredients.IceKeeseWing]: 5,
-      [Ingredients.IceBreathLizalTail]: 3,
+      [Ingredients.IceBreathLizalfosTail]: 3,
       [Ingredients.Chillshroom]: 5,
     },
     {
@@ -421,45 +421,35 @@ type DRAGON_NAME = "Dinraal" | "Farosh" | "Naydra" | "Light"
 const dragons = {
   Dinraal: {
     claw: Ingredients.DinraalsClaw,
-    fang: Ingredients.DinraalsFang,
+    fang: Ingredients.ShardofDinraalsFang,
     scale: Ingredients.DinraalsScale,
     horn: Ingredients.DinraalsHorn,
-    shardFang: Ingredients.ShardofDinraalsFang,
     shardSpike: Ingredients.ShardofDinraalsSpike,
   },
   Farosh: {
     claw: Ingredients.FaroshsClaw,
-    fang: Ingredients.FaroshsFang,
+    fang: Ingredients.ShardofFaroshsFang,
     scale: Ingredients.FaroshsScale,
     horn: Ingredients.FaroshsHorn,
-    shardFang: Ingredients.ShardofFaroshsFang,
     shardSpike: Ingredients.ShardofFaroshsSpike,
   },
   Naydra: {
     claw: Ingredients.NaydrasClaw,
-    fang: Ingredients.NaydrasFang,
+    fang: Ingredients.ShardofNaydrasFang,
     scale: Ingredients.NaydrasScale,
     horn: Ingredients.NaydrasHorn,
-    shardFang: Ingredients.ShardofNaydrasFang,
     shardSpike: Ingredients.ShardofNaydrasSpike,
   },
   Light: {
-    claw: Ingredients.LightDragonClaw,
-    fang: Ingredients.LightDragonFang,
+    claw: Ingredients.LightDragonsTalon,
+    fang: Ingredients.ShardofLightDragonsFang,
     scale: Ingredients.LightDragonsScale,
     horn: Ingredients.LightDragonHorn,
-    shardFang: Ingredients.ShardofLightDragonsFang,
     shardSpike: Ingredients.ShardofLightDragonsSpike,
   },
 } satisfies {
   [key in DRAGON_NAME]: {
-    [key in
-      | "claw"
-      | "fang"
-      | "scale"
-      | "horn"
-      | "shardFang"
-      | "shardSpike"]: Ingredients
+    [key in "claw" | "fang" | "scale" | "horn" | "shardSpike"]: Ingredients
   }
 }
 

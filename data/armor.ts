@@ -110,12 +110,12 @@ export const armor: Armor[] = [
       { [Ingredients.SilentPrincess]: 3, [Ingredients.LightDragonsScale]: 2 },
       {
         [Ingredients.SilentPrincess]: 3,
-        [Ingredients.LightDragonClaw]: 2,
+        [Ingredients.LightDragonsTalon]: 2,
         [Ingredients.Sundelion]: 10,
       },
       {
         [Ingredients.SilentPrincess]: 5,
-        [Ingredients.LightDragonFang]: 2,
+        [Ingredients.ShardofLightDragonsFang]: 2,
         [Ingredients.Sundelion]: 15,
       },
       {
