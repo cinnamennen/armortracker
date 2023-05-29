@@ -13,7 +13,6 @@ export enum Level {
   Two = 2,
   Three = 3,
   Four = 4,
-  Ignored = -1,
 }
 
 export type Ingredient = { displayName: string; path?: string }

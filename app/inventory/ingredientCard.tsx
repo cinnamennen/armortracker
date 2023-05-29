@@ -23,6 +23,7 @@ export function IngredientCard({ ingredient }: { ingredient: Ingredient }) {
           alt={"A picture of " + ingredient.displayName}
           width="100"
           height="100"
+          quality={100}
         />
       </CardContent>
       <CardFooter className="grid place-content-center gap-4">

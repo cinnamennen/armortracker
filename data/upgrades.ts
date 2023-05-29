@@ -1,6 +1,6 @@
-import { UpgradeList } from "@/types/data"
+import { Ingredients } from "@/data/enum"
 
-import {Ingredients} from "@/data/enum";
+import { UpgradeList } from "@/types/data"
 
 export const sharedUpgrades = {
   awakening: [

@@ -10,36 +10,37 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 export default function ArmorSelect({ name }: { name: string }) {
   const { value, set } = useArmor(name)
 
-  useEffect(() => {
-    if (value == undefined) set(name, Level.Base)
-  }, [name, value, set])
+  // useEffect(() => {
+  //   if (value == undefined) set(name, Level.Base)
+  // }, [name, value, set])
 
+  const star = <Star size="1em" />
   return (
     <Tabs
-      value={value?.toString()}
-      onValueChange={(value) => set(name, Number(value))}
-      className="grid w-[400px] place-content-center gap-4"
+      value={value?.level.toString()}
+      onValueChange={(value) => {
+        console.log("value changed to", value)
+        set(name, Number(value))
+      }}
     >
       <TabsList>
-        <TabsTrigger value={Level.Ignored.toString()}>Ignored</TabsTrigger>
+        {/*<TabsTrigger value={Level.Ignored.toString()}>Ignored</TabsTrigger>*/}
         <TabsTrigger value={Level.Base.toString()}>Base</TabsTrigger>
-        <TabsTrigger value={Level.One.toString()}>
-          <Star size={14} />
-        </TabsTrigger>
+        <TabsTrigger value={Level.One.toString()}>{star}</TabsTrigger>
         <TabsTrigger value={Level.Two.toString()}>
-          <Star size={14} />
-          <Star size={14} />
+          {star}
+          {star}
         </TabsTrigger>
         <TabsTrigger value={Level.Three.toString()}>
-          <Star size={14} />
-          <Star size={14} />
-          <Star size={14} />
+          {star}
+          {star}
+          {star}
         </TabsTrigger>
         <TabsTrigger value={Level.Four.toString()}>
-          <Star size={14} />
-          <Star size={14} />
-          <Star size={14} />
-          <Star size={14} />
+          {star}
+          {star}
+          {star}
+          {star}
         </TabsTrigger>
       </TabsList>
     </Tabs>

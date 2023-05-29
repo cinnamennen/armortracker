@@ -44,9 +44,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ArmorWrapper>
               <ItemWrapper>
-                <div className="relative flex min-h-screen flex-col">
+                <div className="relative flex min-h-screen flex-col ">
                   <SiteHeader />
-                  <div className="flex-1 space-y-4 p-8 pt-6">{children}</div>
+                  <div className=" container">{children}</div>
                 </div>
               </ItemWrapper>
             </ArmorWrapper>
