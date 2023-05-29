@@ -1,10 +1,9 @@
 "use client"
 
-import Image from "next/image"
 import { useArmor } from "@/context/ArmorContext"
 
 import { Armor } from "@/types/data"
-import { cn, getDetectedPath } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import {
   Card,
   CardContent,
@@ -13,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { ArmorRemaining } from "@/components/ArmorRemaining"
+import { ZeldaImage } from "@/components/ZeldaImage"
 import { ArmorIgnore } from "@/app/armor/armorIgnore"
 import ArmorSelect from "@/app/armor/armorSelect"
 import { ArmorUpgrade } from "@/app/armor/armorUpgrade"
@@ -35,15 +35,7 @@ export function ArmorCard({ armor }: { armor: Armor }) {
       </CardHeader>
       <CardContent>
         <div className="flex justify-center">
-          <Image
-            className="h-52 w-auto"
-            src={getDetectedPath(armor)}
-            alt={"A picture of " + armor.displayName}
-            width={0}
-            height={0}
-            sizes="100vw"
-            quality={100}
-          />
+          <ZeldaImage className="h-52 w-auto" zelda={armor} />
         </div>
       </CardContent>
       <CardFooter className="flex flex-col gap-4">
