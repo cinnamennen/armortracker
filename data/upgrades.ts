@@ -449,12 +449,7 @@ const dragons = {
   },
 } satisfies {
   [key in DRAGON_NAME]: {
-    [key in
-      | "claw"
-      | "fang"
-      | "scale"
-      | "horn"
-      | "shardSpike"]: Ingredients
+    [key in "claw" | "fang" | "scale" | "horn" | "shardSpike"]: Ingredients
   }
 }
 
