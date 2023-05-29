@@ -1,7 +1,8 @@
 "use client"
 
-import Image from "next/image"
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table"
+
+import { ZeldaImage } from "@/components/ZeldaImage"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -17,14 +18,12 @@ export const columns = [
   columnHelper.display({
     id: "path",
     cell: (props) => (
-      <Image
+      <ZeldaImage
         className="h-52 w-auto"
-        src={props.row.original.path}
-        alt={"A picture of " + props.row.original.name}
-        width={0}
-        height={0}
-        sizes="100vw"
-        quality={100}
+        zelda={{
+          path: props.row.original.path,
+          displayName: props.row.original.name,
+        }}
       />
     ),
   }),
