@@ -3,8 +3,6 @@
 import Image from "next/image"
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table"
 
-import { getMaterialPath } from "@/lib/utils"
-
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Missing = {
