@@ -31,7 +31,7 @@ export default function useChecklist(): Recipe {
         .map((a) => ({
           ...a,
           upgrades: a.upgrades.slice(
-            (armorSelections[a.displayName]?.level ?? Level.Base) - 1
+            armorSelections[a.displayName]?.level ?? Level.Base
           ),
         }))
         .map((a) => a.upgrades)
