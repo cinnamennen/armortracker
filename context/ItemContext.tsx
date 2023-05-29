@@ -13,7 +13,7 @@ import {
   ItemReducer,
   ItemState,
 } from "@/context/ItemReducer"
-import { ingredientsData } from "@/data/ingredients"
+import { ingredientData } from "@/data/ingredients"
 import { useImmerReducer } from "use-immer"
 
 import { Recipe } from "@/types/data"
@@ -29,7 +29,7 @@ export type ItemDispatcher = <
   ...payload: Payload extends undefined ? [undefined?] : [Payload]
 ) => void
 export const initialState = Object.fromEntries(
-  Object.keys(ingredientsData).map((k) => [k, 0])
+  Object.keys(ingredientData).map((k) => [k, 0])
 ) satisfies ItemState
 export type ItemContextInterface = readonly [ItemState, ItemDispatcher]
 export const ItemContext = createContext<ItemContextInterface>([{}, () => {}])
@@ -77,7 +77,7 @@ export function useItemContext() {
     (recipe: Recipe) => {
       Object.entries(recipe).forEach(([item, amount]) =>
         dispatch("use_item", {
-          item: ingredientsData[item].displayName,
+          item: ingredientData[item].displayName,
           amount: amount ?? 0,
         })
       )

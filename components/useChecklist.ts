@@ -2,7 +2,7 @@ import { useMemo } from "react"
 import { useArmorContext } from "@/context/ArmorContext"
 import { useItemContext } from "@/context/ItemContext"
 import { armor } from "@/data/armor"
-import { ingredientsData } from "@/data/ingredients"
+import { ingredientData } from "@/data/ingredients"
 
 import { Level, Recipe, isUpgradeable } from "@/types/data"
 
@@ -44,7 +44,7 @@ export default function useChecklist(): Recipe {
     () =>
       Object.fromEntries(
         Object.entries(itemSelections).map(([key, val]) => [
-          (Object.entries(ingredientsData).find(
+          (Object.entries(ingredientData).find(
             ([ik, iv]) => iv.displayName == key
           ) ?? [null])[0],
           val,
