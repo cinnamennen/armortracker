@@ -2,7 +2,7 @@
 
 import { ingredientsData } from "@/data/ingredients"
 
-import { getMaterialPath } from "@/lib/utils"
+import { getDetectedPath } from "@/lib/utils"
 import useChecklist from "@/components/useChecklist"
 
 import { Missing, columns } from "./columns"
@@ -13,7 +13,7 @@ export default function MissingItems() {
   const data = Object.entries(foo).map(([key, val]) => ({
     name: ingredientsData[key].displayName,
     amount: val as number,
-    path: getMaterialPath(ingredientsData[key]),
+    path: getDetectedPath(ingredientsData[key]),
   })) satisfies Missing[]
 
   return (
