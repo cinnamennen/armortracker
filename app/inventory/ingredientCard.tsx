@@ -1,6 +1,7 @@
 import Image from "next/image"
+import { Ingredient } from "@/data/enum"
+import { ingredientData } from "@/data/ingredients"
 
-import { Ingredient } from "@/types/data"
 import { getDetectedPath } from "@/lib/utils"
 import {
   Card,
@@ -15,19 +16,21 @@ export function IngredientCard({ ingredient }: { ingredient: Ingredient }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{ingredient.displayName}</CardTitle>
+        <CardTitle>{ingredientData[ingredient].displayName}</CardTitle>
       </CardHeader>
       <CardContent className="grid place-content-center gap-4">
         <Image
-          src={getDetectedPath(ingredient)}
-          alt={"A picture of " + ingredient.displayName}
-          width="100"
-          height="100"
+          className="h-52 w-auto"
+          src={getDetectedPath(ingredientData[ingredient])}
+          alt={"A picture of " + ingredientData[ingredient].displayName}
+          width={0}
+          height={0}
+          sizes="100vw"
           quality={100}
         />
       </CardContent>
       <CardFooter className="grid place-content-center gap-4">
-        <IngredientSelect name={ingredient.displayName} />
+        <IngredientSelect name={ingredientData[ingredient].displayName} />
       </CardFooter>
     </Card>
   )

@@ -6,16 +6,14 @@ import {
   useCallback,
   useContext,
   useEffect,
-  useReducer,
 } from "react"
-import { ArmorState } from "@/context/ArmorReducer"
 import {
   ItemActions,
   ItemActionsMap,
   ItemReducer,
   ItemState,
 } from "@/context/ItemReducer"
-import { ingredientsData } from "@/data/ingredients"
+import { ingredientData } from "@/data/ingredients"
 import { useImmerReducer } from "use-immer"
 
 import { Recipe } from "@/types/data"
@@ -30,7 +28,9 @@ export type ItemDispatcher = <
   // there should be a payload then you need the second argument.
   ...payload: Payload extends undefined ? [undefined?] : [Payload]
 ) => void
-const initialState = {} satisfies ItemState
+export const initialState = Object.fromEntries(
+  Object.keys(ingredientData).map((k) => [k, 0])
+) satisfies ItemState
 export type ItemContextInterface = readonly [ItemState, ItemDispatcher]
 export const ItemContext = createContext<ItemContextInterface>([{}, () => {}])
 
@@ -77,7 +77,7 @@ export function useItemContext() {
     (recipe: Recipe) => {
       Object.entries(recipe).forEach(([item, amount]) =>
         dispatch("use_item", {
-          item: ingredientsData[item].displayName,
+          item: ingredientData[item].displayName,
           amount: amount ?? 0,
         })
       )
@@ -88,7 +88,11 @@ export function useItemContext() {
     (items: ItemState) => dispatch("init_store", items),
     [dispatch]
   )
-  return { value, dispatch, set, consume, load }
+  const clear = useCallback(
+    () => dispatch("init_store", initialState),
+    [dispatch]
+  )
+  return { value, dispatch, set, consume, load, clear }
 }
 
 export function useItem(itemName: string) {

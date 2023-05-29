@@ -1,13 +1,16 @@
-import { ingredientsData } from "@/data/ingredients"
+import { Ingredient } from "@/data/enum"
 
+import { isNotString } from "@/lib/utils"
 import { IngredientCard } from "@/app/inventory/ingredientCard"
 
-export default function Ingredients() {
+export default function IngredientDisplay() {
   return (
     <div className="flex flex-wrap gap-4">
-      {Object.values(ingredientsData).map((ingredient) => (
-        <IngredientCard key={ingredient.displayName} ingredient={ingredient} />
-      ))}
+      {Object.values(Ingredient)
+        .filter(isNotString)
+        .map((ingredient) => (
+          <IngredientCard key={ingredient} ingredient={ingredient} />
+        ))}
     </div>
   )
 }

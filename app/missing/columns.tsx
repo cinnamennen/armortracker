@@ -18,10 +18,12 @@ export const columns = [
     id: "path",
     cell: (props) => (
       <Image
+        className="h-52 w-auto"
         src={props.row.original.path}
         alt={"A picture of " + props.row.original.name}
-        width="100"
-        height="100"
+        width={0}
+        height={0}
+        sizes="100vw"
         quality={100}
       />
     ),

@@ -1,6 +1,6 @@
 "use client"
 
-import { ingredientsData } from "@/data/ingredients"
+import { ingredientData } from "@/data/ingredients"
 
 import { getDetectedPath } from "@/lib/utils"
 import useChecklist from "@/components/useChecklist"
@@ -11,9 +11,9 @@ import { DataTable } from "./data-table"
 export default function MissingItems() {
   const foo = useChecklist()
   const data = Object.entries(foo).map(([key, val]) => ({
-    name: ingredientsData[key].displayName,
+    name: ingredientData[key].displayName,
     amount: val as number,
-    path: getDetectedPath(ingredientsData[key]),
+    path: getDetectedPath(ingredientData[key]),
   })) satisfies Missing[]
 
   return (

@@ -29,7 +29,7 @@ export type ArmorDispatcher = <
   // there should be a payload then you need the second argument.
   ...payload: Payload extends undefined ? [undefined?] : [Payload]
 ) => void
-const initialState: ArmorState = Object.fromEntries(
+export const initialState: ArmorState = Object.fromEntries(
   armor.map((a) => [a.displayName, { level: Level.Base, ignored: false }])
 )
 export type ArmorContextInterface = readonly [ArmorState, ArmorDispatcher]
@@ -89,7 +89,11 @@ export function useArmorContext() {
     (armor: string) => dispatch("toggle_ignore", { armor }),
     [dispatch]
   )
-  return { value, dispatch, set, upgrade, load, toggleIgnore }
+  const clear = useCallback(
+    () => dispatch("init_store", initialState),
+    [dispatch]
+  )
+  return { value, dispatch, set, upgrade, load, toggleIgnore, clear }
 }
 
 export function useArmor(armorName: string) {

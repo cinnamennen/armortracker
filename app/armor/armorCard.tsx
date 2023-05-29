@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { ArmorRemaining } from "@/components/ArmorRemaining"
 import { ArmorIgnore } from "@/app/armor/armorIgnore"
 import ArmorSelect from "@/app/armor/armorSelect"
 import { ArmorUpgrade } from "@/app/armor/armorUpgrade"
@@ -45,8 +46,9 @@ export function ArmorCard({ armor }: { armor: Armor }) {
           />
         </div>
       </CardContent>
-      <CardFooter className="grid place-content-center gap-4">
+      <CardFooter className="flex flex-col gap-4">
         <ArmorSelect name={armor.displayName} />
+        <ArmorRemaining armor={armor} />
       </CardFooter>
     </Card>
   )

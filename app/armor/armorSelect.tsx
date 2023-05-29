@@ -19,7 +19,6 @@ export default function ArmorSelect({ name }: { name: string }) {
     <Tabs
       value={value?.level.toString()}
       onValueChange={(value) => {
-        console.log("value changed to", value)
         set(name, Number(value))
       }}
     >

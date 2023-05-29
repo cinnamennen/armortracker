@@ -1,17 +1,60 @@
 import {
+  AlertTriangle,
+  ArrowRight,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  ClipboardCheck,
+  Copy,
+  CreditCard,
+  File,
+  FileText,
+  Github,
+  HelpCircle,
+  Image,
+  Laptop,
+  Loader2,
   LucideProps,
   Moon,
+  MoreVertical,
+  Pizza,
+  Plus,
+  Settings,
   SunMedium,
+  Trash,
   Twitter,
+  User,
+  X,
   type Icon as LucideIcon,
 } from "lucide-react"
 
 export type Icon = LucideIcon
 
 export const Icons = {
+  close: X,
+  spinner: Loader2,
+  chevronLeft: ChevronLeft,
+  chevronRight: ChevronRight,
+  trash: Trash,
+  post: FileText,
+  page: File,
+  media: Image,
+  settings: Settings,
+  billing: CreditCard,
+  ellipsis: MoreVertical,
+  add: Plus,
+  warning: AlertTriangle,
+  user: User,
+  arrowRight: ArrowRight,
+  help: HelpCircle,
+  pizza: Pizza,
+  twitter: Twitter,
+  check: Check,
+  copy: Copy,
+  copyDone: ClipboardCheck,
   sun: SunMedium,
   moon: Moon,
-  twitter: Twitter,
+  laptop: Laptop,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -61,4 +104,5 @@ export const Icons = {
       </g>
     </svg>
   ),
+  gitHub: Github,
 }

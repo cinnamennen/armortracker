@@ -3,7 +3,6 @@ import { Level } from "@/types/data"
 export const ArmorReducer = (state: ArmorState, action: ArmorActions) => {
   switch (action.type) {
     case "set_armor": {
-      console.log("setting", action)
       const stateElement = state[action.payload.armor]
       if (stateElement === undefined) {
         throw new Error("Armor didn't initialize itself")
