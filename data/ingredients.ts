@@ -2,10 +2,6 @@ import { Ingredients } from "@/data/enum"
 
 import { Ingredient } from "@/types/data"
 
-
-
-
-
 export const ingredientsData: { [key in Ingredients]: Ingredient } = {
   [Ingredients.Acorn]: { displayName: "Acorn" },
   [Ingredients.AerocudaEyes]: { displayName: "Aerocuda Eyeball" },
@@ -229,6 +225,8 @@ export const ingredientsData: { [key in Ingredients]: Ingredient } = {
   [Ingredients.HeartyLizard]: { displayName: "Hearty Lizard" },
   [Ingredients.SilverMoblinHorn]: { displayName: "Silver Moblin Horn" },
   [Ingredients.SilverLizalfosHorn]: { displayName: "Silver Lizalfos Horn" },
-  [Ingredients.SilverLynelSaberHorn]: { displayName: "Silver Lynel Saber Horn" },
+  [Ingredients.SilverLynelSaberHorn]: {
+    displayName: "Silver Lynel Saber Horn",
+  },
   [Ingredients.SilverLynelMaceHorn]: { displayName: "Silver Lynel Mace Horn" },
 }

@@ -23,7 +23,8 @@ export const columns = [
         src={props.row.original.path}
         alt={"A picture of " + props.row.original.name}
         width="100"
-        height="100" quality={100}
+        height="100"
+        quality={100}
       />
     ),
   }),

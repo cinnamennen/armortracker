@@ -14,21 +14,19 @@ export default function ArmorSelect({ name }: { name: string }) {
   //   if (value == undefined) set(name, Level.Base)
   // }, [name, value, set])
 
-  const star = <Star size="1em" />;
+  const star = <Star size="1em" />
   return (
     <Tabs
       value={value?.level.toString()}
       onValueChange={(value) => {
         console.log("value changed to", value)
-        set(name, Number(value));
+        set(name, Number(value))
       }}
     >
       <TabsList>
         {/*<TabsTrigger value={Level.Ignored.toString()}>Ignored</TabsTrigger>*/}
         <TabsTrigger value={Level.Base.toString()}>Base</TabsTrigger>
-        <TabsTrigger value={Level.One.toString()}>
-          {star}
-        </TabsTrigger>
+        <TabsTrigger value={Level.One.toString()}>{star}</TabsTrigger>
         <TabsTrigger value={Level.Two.toString()}>
           {star}
           {star}

@@ -2,13 +2,13 @@ import { armor, setData } from "@/data/armor"
 import { armorGroup } from "@/data/enum"
 
 import { isUpgradeable } from "@/types/data"
+import { sortArmor } from "@/lib/utils"
 import { ArmorCard } from "@/app/armor/armorCard"
-import {sortArmor} from "@/lib/utils";
 
 export default function ArmorSection({ group }: { group: armorGroup }) {
   const upgradeableArmors = armor
     .filter(isUpgradeable)
-    .filter((a) => a.armorGroup === group);
+    .filter((a) => a.armorGroup === group)
   upgradeableArmors.sort(sortArmor)
   return (
     <div>
@@ -16,10 +16,10 @@ export default function ArmorSection({ group }: { group: armorGroup }) {
         {setData[group].displayName}
       </h1>
       <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      {upgradeableArmors
-        .map((a) => (
+        {upgradeableArmors.map((a) => (
           <ArmorCard key={a.displayName} armor={a} />
-        ))}</div>
+        ))}
+      </div>
     </div>
   )
 }
