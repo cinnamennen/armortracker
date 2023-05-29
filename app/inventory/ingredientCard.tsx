@@ -19,10 +19,12 @@ export function IngredientCard({ ingredient }: { ingredient: Ingredient }) {
       </CardHeader>
       <CardContent className="grid place-content-center gap-4">
         <Image
+          className="h-52 w-auto"
           src={getDetectedPath(ingredient)}
           alt={"A picture of " + ingredient.displayName}
-          width="100"
-          height="100"
+          width={0}
+          height={0}
+          sizes="100vw"
           quality={100}
         />
       </CardContent>
