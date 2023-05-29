@@ -1,7 +1,7 @@
 import { Ingredients, armorGroup } from "@/data/enum"
 import { fierce, sharedUpgrades, wild } from "@/data/upgrades"
 
-import { Armor, Ingredient, Slot } from "@/types/data"
+import { Armor, Slot } from "@/types/data"
 
 export const armor: Armor[] = [
   {

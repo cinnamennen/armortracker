@@ -1,8 +1,8 @@
 import { Ingredients } from "@/data/enum"
 
-import { Ingredient } from "@/types/data"
+type IngredientData = { displayName: string; path?: string }
 
-export const ingredientsData: { [key in Ingredients]: Ingredient } = {
+export const ingredientsData: { [key in Ingredients]: IngredientData } = {
   [Ingredients.Acorn]: { displayName: "Acorn" },
   [Ingredients.AerocudaEyes]: { displayName: "Aerocuda Eyeball" },
   [Ingredients.AerocudaWing]: { displayName: "Aerocuda Wing" },

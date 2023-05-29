@@ -15,7 +15,7 @@ export enum Level {
   Four = 4,
 }
 
-export type Ingredient = { displayName: string; path?: string }
+
 
 export type Recipe = RequireAtLeastOne<{ [key in Ingredients]?: number }>
 

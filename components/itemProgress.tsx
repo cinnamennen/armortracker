@@ -7,9 +7,7 @@ import {
 } from "react-circular-progressbar"
 
 import "react-circular-progressbar/dist/styles.css"
-import Image from "next/image"
-
-import { getDetectedPath } from "@/lib/utils"
+import { ItemCollection } from "@/components/itemCollection"
 
 export function ItemProgress({
   ingredient,
@@ -29,15 +27,7 @@ export function ItemProgress({
           trailColor: "hsl(var(--secondary))",
         })}
       >
-        <Image
-          className="h-3/4 w-auto"
-          src={getDetectedPath(ingredientsData[ingredient])}
-          alt={"A picture of " + ingredientsData[ingredient].displayName}
-          width={0}
-          height={0}
-          sizes="100vw"
-          quality={100}
-        />
+        <ItemCollection ingredient={ingredient} />
       </CircularProgressbarWithChildren>
       {value} / {need}
       <p>{ingredientsData[ingredient].displayName}</p>
