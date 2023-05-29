@@ -10,7 +10,6 @@ import { Toaster } from "@/components/ui/toaster"
 import { Analytics } from "@/components/analytics"
 import { SiteHeader } from "@/components/site-header"
 import { StyleSwitcher } from "@/components/style-switcher"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
@@ -20,11 +19,13 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: [
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "Server Components",
-    "Radix UI",
+    "Zelda",
+    "TotK",
+    "Tears of the Kingdom",
+    "Armor",
+    "Tracker",
+    "BotW",
+    "Breath of the Wild",
   ],
   authors: [
     {

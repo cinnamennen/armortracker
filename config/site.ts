@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "TotK Armor Planner",
+  name: "TotK Armor Tracker",
   url: "https://totkarmortracker.com",
   description:
     "A tool to track your armor in TotK.",
