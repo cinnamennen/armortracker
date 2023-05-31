@@ -18,7 +18,13 @@ import { ArmorIgnore } from "@/app/armor/armorIgnore"
 import ArmorSelect from "@/app/armor/armorSelect"
 import { ArmorUpgrade } from "@/app/armor/armorUpgrade"
 
-export function ArmorCard({ armor }: { armor: Armor }) {
+export function ArmorCard({
+  armor,
+  aboveFold = false,
+}: {
+  armor: Armor
+  aboveFold?: boolean
+}) {
   const value = useAppSelector((state) =>
     selectArmorByName(state, armor.displayName)
   )
@@ -37,12 +43,16 @@ export function ArmorCard({ armor }: { armor: Armor }) {
       </CardHeader>
       <CardContent>
         <div className="flex justify-center">
-          <ZeldaImage className="h-52 w-auto" zelda={armor} />
+          <ZeldaImage
+            className="h-52 w-auto"
+            zelda={armor}
+            priority={aboveFold}
+          />
         </div>
       </CardContent>
       <CardFooter className="flex flex-col gap-4">
         <ArmorSelect armor={armor} />
-        <ArmorRemaining armor={armor} />
+        <ArmorRemaining armor={armor} aboveFold={aboveFold} />
       </CardFooter>
     </Card>
   )

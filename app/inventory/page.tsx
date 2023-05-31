@@ -8,8 +8,12 @@ export default function IngredientDisplay() {
     <div className="flex flex-wrap gap-4">
       {Object.values(Ingredient)
         .filter(isNotString)
-        .map((ingredient) => (
-          <IngredientCard key={ingredient} ingredient={ingredient} />
+        .map((ingredient, index) => (
+          <IngredientCard
+            key={ingredient}
+            ingredient={ingredient}
+            aboveFold={index <= 5}
+          />
         ))}
     </div>
   )

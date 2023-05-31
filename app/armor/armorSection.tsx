@@ -5,7 +5,13 @@ import { isUpgradeable } from "@/types/data"
 import { sortArmor } from "@/lib/utils"
 import { ArmorCard } from "@/app/armor/armorCard"
 
-export default function ArmorSection({ group }: { group: armorGroup }) {
+export default function ArmorSection({
+  group,
+  aboveFold = false,
+}: {
+  group: armorGroup
+  aboveFold?: boolean
+}) {
   const upgradeableArmors = armor
     .filter(isUpgradeable)
     .filter((a) => a.armorGroup === group)
@@ -17,7 +23,7 @@ export default function ArmorSection({ group }: { group: armorGroup }) {
       </h1>
       <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {upgradeableArmors.map((a) => (
-          <ArmorCard key={a.displayName} armor={a} />
+          <ArmorCard key={a.displayName} armor={a} aboveFold={aboveFold} />
         ))}
       </div>
     </div>

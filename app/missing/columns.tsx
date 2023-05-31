@@ -24,6 +24,7 @@ export const columns = [
           path: props.row.original.path,
           displayName: props.row.original.name,
         }}
+        priority={props.row.index < 10}
       />
     ),
   }),

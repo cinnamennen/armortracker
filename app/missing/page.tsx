@@ -1,18 +1,18 @@
 "use client"
 
-import { Ingredient } from "@/data/enum"
 import { ingredientData } from "@/data/ingredients"
+import { selectNeededItems } from "@/store/selectors"
+import { useAppSelector } from "@/store/store"
 
 import { getDetectedPath } from "@/lib/utils"
-import useChecklist from "@/components/useChecklist"
 
 import { Missing, columns } from "./columns"
 import { DataTable } from "./data-table"
 
 export default function MissingItems() {
-  const missingIngredients = useChecklist()
+  const missingIngredients = useAppSelector(selectNeededItems)
   const data = Object.entries(missingIngredients)
-    .sort(([keya, vala], [keyb, valb]) => keya - keyb)
+    .sort(([keya], [keyb]) => keya - keyb)
     .map(([key, val]) => ({
       name: ingredientData[key].displayName,
       amount: val as number,

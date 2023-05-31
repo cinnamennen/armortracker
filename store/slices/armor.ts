@@ -3,7 +3,7 @@ import { RootState } from "@/store/store"
 import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit"
 
 // import { HYDRATE } from "next-redux-wrapper"
-import { Level } from "@/types/data"
+import { Level, Recipe, isUpgradeable } from "@/types/data"
 
 type ArmorData = { level: number; ignored: boolean }
 export type ArmorState = Record<string, ArmorData>
@@ -78,4 +78,48 @@ export const selectArmorByName = createSelector(
 export const selectArmorIsUpgradable = createSelector(
   [selectArmorByName],
   (armor) => (armor?.level ?? Level.Base) < Level.Four
+)
+const mergeRecipe = (previousValue: Recipe, currentValue: Recipe) => {
+  Object.entries(currentValue).forEach(([name, count]) => {
+    if (!previousValue[name]) previousValue[name] = 0
+
+    // @ts-ignore
+    previousValue[name] += count
+  })
+
+  return previousValue
+}
+export const selectNeededIngredients = createSelector(
+  [selectArmor],
+  (allArmor) =>
+    armor
+      .filter(isUpgradeable)
+      .filter((a) => {
+        const armorSelection = allArmor[a.displayName]
+        return armorSelection && !armorSelection.ignored
+      })
+      .map((a) => ({
+        ...a,
+        upgrades: a.upgrades.slice(
+          allArmor[a.displayName]?.level ?? Level.Base
+        ),
+      }))
+      .map((a) => a.upgrades)
+      .map((u) => u.reduce(mergeRecipe, {} as Recipe))
+      .reduce(mergeRecipe, {} as Recipe)
+)
+export const selectNextUpgrades = createSelector([selectArmor], (allArmor) =>
+  Object.fromEntries(
+    armor
+      .filter(isUpgradeable)
+      .map((a) => [
+        a.displayName,
+        a.upgrades[allArmor[a.displayName]?.level ?? Level.Base],
+      ])
+  )
+)
+
+export const selectNextUpgradeByArmorName = createSelector(
+  [selectNextUpgrades, (_, name: string) => name],
+  (nextUpgrades, name): Partial<Recipe> => nextUpgrades[name] ?? {}
 )

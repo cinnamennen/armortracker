@@ -46,3 +46,16 @@ export const selectItemByName = createSelector(
   [selectItems, (_: RootState, name: string) => name],
   (items, name) => items[name] ?? 0
 )
+
+export const selectUsefulItems = createSelector(
+  [selectItems],
+  (itemSelections) =>
+    Object.fromEntries(
+      Object.entries(itemSelections).map(([key, val]) => [
+        (Object.entries(ingredientData).find(
+          ([_, iv]) => iv.displayName == key
+        ) ?? [null])[0],
+        val,
+      ])
+    )
+)
