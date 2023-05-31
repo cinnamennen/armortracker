@@ -5,14 +5,14 @@ import { IngredientCard } from "@/app/inventory/ingredientCard"
 
 export default function IngredientDisplay() {
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="grid grid-cols-4 gap-4">
       {Object.values(Ingredient)
         .filter(isNotString)
         .map((ingredient, index) => (
           <IngredientCard
             key={ingredient}
             ingredient={ingredient}
-            aboveFold={index <= 5}
+            aboveFold={index <= 15}
           />
         ))}
     </div>

@@ -71,7 +71,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             >
               <div className="relative flex min-h-screen flex-col">
                 <SiteHeader />
-                <div className="container flex-1">{children}</div>
+                <div className="container mb-4 flex-1">{children}</div>
               </div>
             </ThemeProvider>
             <StyleSwitcher />
