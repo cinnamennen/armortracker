@@ -1,8 +1,9 @@
 import { useMemo } from "react"
-import { useArmorContext } from "@/context/ArmorContext"
-import { useItemContext } from "@/context/ItemContext"
 import { armor } from "@/data/armor"
 import { ingredientData } from "@/data/ingredients"
+import { selectArmor } from "@/store/slices/armor"
+import { selectItems } from "@/store/slices/items"
+import { useAppSelector } from "@/store/store"
 
 import { Level, Recipe, isUpgradeable } from "@/types/data"
 
@@ -18,8 +19,9 @@ const mergeRecipe = (previousValue: Recipe, currentValue: Recipe) => {
 }
 
 export default function useChecklist(): Recipe {
-  const { value: armorSelections } = useArmorContext()
-  const { value: itemSelections } = useItemContext()
+  // TODO make selector
+  const armorSelections = useAppSelector(selectArmor)
+  const itemSelections = useAppSelector(selectItems)
   const recipeIngredients = useMemo(
     () =>
       armor

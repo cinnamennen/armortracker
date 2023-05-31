@@ -1,8 +1,7 @@
 import "@/styles/globals.css"
 import { ReactNode } from "react"
 import { Metadata } from "next"
-import { ArmorWrapper } from "@/context/ArmorContext"
-import { ItemWrapper } from "@/context/ItemContext"
+import { Providers } from "@/store/Provider"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
@@ -63,24 +62,22 @@ export default function RootLayout({ children }: RootLayoutProps) {
             fontSans.variable
           )}
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <ArmorWrapper>
-              <ItemWrapper>
-                <div className="relative flex min-h-screen flex-col">
-                  <SiteHeader />
-                  <div className="container flex-1">{children}</div>
-                </div>
-              </ItemWrapper>
-            </ArmorWrapper>
-          </ThemeProvider>
-          <StyleSwitcher />
-          <Analytics />
-          <Toaster />
+          <Providers>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <div className="relative flex min-h-screen flex-col">
+                <SiteHeader />
+                <div className="container flex-1">{children}</div>
+              </div>
+            </ThemeProvider>
+            <StyleSwitcher />
+            <Analytics />
+            <Toaster />
+          </Providers>
         </body>
       </html>
     </>

@@ -1,4 +1,3 @@
-import { useItem } from "@/context/ItemContext"
 import { Ingredient } from "@/data/enum"
 import { ingredientData } from "@/data/ingredients"
 import {
@@ -7,8 +6,10 @@ import {
 } from "react-circular-progressbar"
 
 import "react-circular-progressbar/dist/styles.css"
+import { selectItemByName } from "@/store/slices/items"
+import { useAppSelector } from "@/store/store"
+
 import { ZeldaImage } from "@/components/ZeldaImage"
-import { ItemCollection } from "@/components/itemCollection"
 
 export function ItemProgress({
   ingredient,
@@ -17,7 +18,9 @@ export function ItemProgress({
   ingredient: Ingredient
   need: number
 }) {
-  const { value } = useItem(ingredientData[ingredient].displayName)
+  const value = useAppSelector((state) =>
+    selectItemByName(state, ingredientData[ingredient].displayName)
+  )
   const percent = Math.max(Math.min(1, value / need), 0) * 100
   return (
     <div className="flex flex-col items-center">

@@ -1,11 +1,14 @@
 import { useMemo } from "react"
-import { useArmor } from "@/context/ArmorContext"
+import { selectArmorByName } from "@/store/slices/armor"
+import { useAppSelector } from "@/store/store"
 
-import { Armor, Level, Recipe, UpgradeList } from "@/types/data"
+import { Armor, Level, Recipe } from "@/types/data"
 import { ItemProgress } from "@/components/itemProgress"
 
 export function ArmorRemaining({ armor }: { armor: Armor }) {
-  const { value } = useArmor(armor.displayName)
+  const value = useAppSelector((state) =>
+    selectArmorByName(state, armor.displayName)
+  )
   const val: Partial<Recipe> = useMemo(() => {
     if (armor.upgrades == null) return {}
     return armor.upgrades[value?.level ?? Level.Base] ?? {}

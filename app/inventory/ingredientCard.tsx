@@ -24,7 +24,7 @@ export function IngredientCard({ ingredient }: { ingredient: Ingredient }) {
         />
       </CardContent>
       <CardFooter className="grid place-content-center gap-4">
-        <IngredientSelect name={ingredientData[ingredient].displayName} />
+        <IngredientSelect ingredient={ingredient} />
       </CardFooter>
     </Card>
   )
