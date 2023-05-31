@@ -6,7 +6,7 @@ import { Recipe } from "@/types/data"
 
 export type ItemState = Record<string, number>
 export const initialState: ItemState = Object.fromEntries(
-  Object.keys(ingredientData).map((k) => [k, 0])
+  Object.values(ingredientData).map((k) => [k.displayName, 0])
 )
 export const itemsSlice = createSlice({
   name: "items",
@@ -16,7 +16,7 @@ export const itemsSlice = createSlice({
       state[action.payload.item] = Math.max(action.payload.level, 0)
     },
     initStore(state, action: PayloadAction<ItemState>) {
-      state = action.payload
+      return action.payload
     },
     clear(state) {
       state = initialState

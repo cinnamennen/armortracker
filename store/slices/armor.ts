@@ -7,7 +7,7 @@ import { Level, Recipe, isUpgradeable } from "@/types/data"
 
 type ArmorData = { level: number; ignored: boolean }
 export type ArmorState = Record<string, ArmorData>
-const initialState: ArmorState = Object.fromEntries(
+export const initialState: ArmorState = Object.fromEntries(
   armor.map((a) => [a.displayName, { level: Level.Base, ignored: false }])
 )
 export const armorSlice = createSlice({
@@ -36,19 +36,8 @@ export const armorSlice = createSlice({
       }
       stateElement.ignored = !stateElement.ignored
     },
-    initStore(
-      state,
-      action: PayloadAction<ArmorState | Record<string, number>>
-    ) {
-      for (const key in action.payload) {
-        const payloadElement = action.payload[key]
-        if (payloadElement === undefined) continue
-        if (typeof payloadElement === "number") {
-          state[key] = { level: payloadElement, ignored: false }
-        } else {
-          state[key] = payloadElement
-        }
-      }
+    initStore(state, action: PayloadAction<ArmorState>) {
+      return action.payload
     },
     clear(state) {
       state = initialState

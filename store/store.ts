@@ -1,3 +1,4 @@
+import { localStorageMiddleware } from "@/store/localStorageMiddleware"
 import armor from "@/store/slices/armor"
 import items from "@/store/slices/items"
 import { configureStore } from "@reduxjs/toolkit"
@@ -8,6 +9,8 @@ export const store = configureStore({
     armor,
     items,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(localStorageMiddleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>
