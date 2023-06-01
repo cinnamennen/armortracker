@@ -25,7 +25,7 @@ export function IngredientCard({
         <CardTitle>{ingredientData[ingredient].displayName}</CardTitle>
       </CardHeader>
       <CardContent className="grid place-content-center gap-4">
-        <ItemProgress ingredient={ingredient} hideName />
+        <ItemProgress ingredient={ingredient} hideName aboveFold={aboveFold} />
       </CardContent>
       <CardFooter className="grid place-content-center gap-4">
         <IngredientSelect ingredient={ingredient} />

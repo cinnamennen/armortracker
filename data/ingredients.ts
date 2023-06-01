@@ -30,7 +30,7 @@ export const ingredientData: { [key in Ingredient]: IngredientData } = {
   [Ingredient.BokoblinHorn]: { displayName: "Bokoblin Horn" },
   [Ingredient.BossBokoblinHorn]: { displayName: "Boss Bokoblin Horn" },
   [Ingredient.BrightCaps]: { displayName: "Brightcap" },
-  [Ingredient.BrightbloomSeeds]: { displayName: "Brightbloom Seeds" },
+  [Ingredient.BrightbloomSeeds]: { displayName: "Brightbloom Seed" },
   [Ingredient.CaptainConstructIHorn]: {
     displayName: "Captain Construct I Horn",
   },
@@ -105,7 +105,7 @@ export const ingredientData: { [key in Ingredient]: IngredientData } = {
   [Ingredient.KeeseWing]: { displayName: "Keese Wing" },
   [Ingredient.LargeZonaiCharge]: { displayName: "Large Zonai Charge" },
   [Ingredient.LargeZonaite]: { displayName: "Large Zonaite" },
-  [Ingredient.LightDragonHorn]: { displayName: "Light Dragon Horn" },
+  [Ingredient.LightDragonHorn]: { displayName: "Light Dragon's Horn" },
   [Ingredient.LightDragonsScale]: { displayName: "Light Dragon's Scale" },
   [Ingredient.LightDragonsTalon]: { displayName: "Light Dragon's Talon" },
   [Ingredient.LizalfosHorn]: { displayName: "Lizalfos Horn" },

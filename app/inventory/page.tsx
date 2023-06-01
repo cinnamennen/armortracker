@@ -12,7 +12,7 @@ export default function IngredientDisplay() {
           <IngredientCard
             key={ingredient}
             ingredient={ingredient}
-            aboveFold={index <= 15}
+            aboveFold={index <= 30}
           />
         ))}
     </div>
