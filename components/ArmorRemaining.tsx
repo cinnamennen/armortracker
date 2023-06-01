@@ -23,6 +23,7 @@ export function ArmorRemaining({
             key={ingredient}
             ingredient={ingredient}
             aboveFold={aboveFold}
+            total={count ?? 0}
           />
         )
       })}
