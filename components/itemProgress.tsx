@@ -19,20 +19,18 @@ export function ItemProgress({
   ingredient,
   aboveFold = false,
   hideName = false,
-  padding = 2,
+  total,
 }: {
   ingredient: Ingredient
   aboveFold?: boolean
   hideName?: boolean
-  padding?: number
+  total: number
 }) {
   const value = useAppSelector((state) =>
     selectItemByIngredient(state, ingredient)
   )
-  const need = useAppSelector((state) =>
-    selectNeededItemsByName(state, ingredient)
-  )
-  const percent = Math.max(Math.min(1, value / need), 0) * 100
+
+  const percent = Math.max(Math.min(1, value / total), 0) * 100
   return (
     <div className="flex flex-col items-center">
       <CircularProgressbarWithChildren
@@ -48,7 +46,7 @@ export function ItemProgress({
           priority={aboveFold}
         />
       </CircularProgressbarWithChildren>
-      {value} / {need}
+      {value} / {total}
       {!hideName && <p>{ingredientData[ingredient].displayName}</p>}
     </div>
   )
