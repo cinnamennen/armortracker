@@ -1,14 +1,14 @@
 import { Ingredient } from "@/data/enum"
 import { selectNeededIngredients } from "@/store/slices/armor"
-import { selectUsefulItems } from "@/store/slices/items"
+import { selectItems, selectUsefulItems } from "@/store/slices/items"
 import { RootState } from "@/store/store"
 import { createSelector } from "@reduxjs/toolkit"
 
 import { Recipe } from "@/types/data"
 
 export const selectNeededItems = createSelector(
-  [selectNeededIngredients, selectUsefulItems],
-  (recipeIngredients, usefulItems): Record<string, number> =>
+  [selectNeededIngredients, selectItems],
+  (recipeIngredients, usefulItems): Record<Ingredient, number> =>
     Object.fromEntries(
       Object.entries(recipeIngredients)
         .map(([key, val]) => [key, (val ?? Infinity) - (usefulItems[key] ?? 0)])
@@ -16,6 +16,6 @@ export const selectNeededItems = createSelector(
     )
 )
 export const selectNeededItemsByName = createSelector(
-  [selectNeededItems, (_: RootState, name: string) => name],
+  [selectNeededItems, (_: RootState, name: Ingredient) => name],
   (items, name): number => items[name] ?? 0
 )

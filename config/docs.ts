@@ -12,10 +12,7 @@ export const docsConfig: DocsConfig = {
       title: "Inventory",
       href: "/inventory",
     },
-    {
-      title: "Missing",
-      href: "/missing",
-    },
+
     {
       title: "How To Use",
       href: "/how-to-use",

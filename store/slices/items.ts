@@ -1,3 +1,4 @@
+import { Ingredient } from "@/data/enum"
 import { ingredientData } from "@/data/ingredients"
 import { RootState } from "@/store/store"
 import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit"
@@ -47,14 +48,22 @@ export const selectItemByName = createSelector(
   (items, name) => items[name] ?? 0
 )
 
+export const selectItemByIngredient = createSelector(
+  [selectItems, (_: RootState, ingredient: Ingredient) => ingredient],
+  (items, ingredient) => items[ingredientData[ingredient].displayName] ?? 0
+)
+
+export const getIngredientByName = (name: string) =>
+  (Object.entries(ingredientData).find(([_, iv]) => iv.displayName == name) ?? [
+    null,
+  ])[0]
+
 export const selectUsefulItems = createSelector(
   [selectItems],
   (itemSelections) =>
     Object.fromEntries(
       Object.entries(itemSelections).map(([key, val]) => [
-        (Object.entries(ingredientData).find(
-          ([_, iv]) => iv.displayName == key
-        ) ?? [null])[0],
+        getIngredientByName(key),
         val,
       ])
     )

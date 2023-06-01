@@ -2,7 +2,7 @@
 
 import { Ingredient } from "@/data/enum"
 import { ingredientData } from "@/data/ingredients"
-import { selectNeededItems } from "@/store/selectors"
+import { selectNeededItems, selectNeededItemsByName } from "@/store/selectors"
 import { selectItemByName, set } from "@/store/slices/items"
 import { useAppDispatch, useAppSelector } from "@/store/store"
 
@@ -17,21 +17,21 @@ export default function IngredientSelect({
   const name = ingredientData[ingredient].displayName
   const dispatch = useAppDispatch()
   const value = useAppSelector((state) => selectItemByName(state, name))
-  const needed = useAppSelector(selectNeededItems)[ingredient]
+  const needed = useAppSelector((state) =>
+    selectNeededItemsByName(state, ingredient)
+  )
 
   const percentage = needed ? Math.round((value / (needed + value)) * 100) : 100
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center gap-1">
       <Input
-        className="mb-4"
         type="number"
         value={value}
         onChange={(event) =>
           dispatch(set({ item: name, level: Number(event.target.value) }))
         }
       />
-      <Progress value={percentage} />
     </div>
   )
 }
