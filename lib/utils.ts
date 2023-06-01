@@ -9,7 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getDetectedPath(item: { displayName: string; path?: string }) {
-  return "/static/images/" + item.displayName + ".png"
+  return "/images/" + item.displayName + ".png"
 }
 
 export function sortByKey(a: Armor, b: Armor) {
