@@ -8,8 +8,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function getDetectedPath(item: { displayName: string; path?: string }) {
-  return "/static/images/" + item.displayName + ".png"
+export function getDetectedPath(displayName: string) {
+  return "/static/images/" + displayName + ".png"
 }
 
 export function sortByKey(a: Armor, b: Armor) {

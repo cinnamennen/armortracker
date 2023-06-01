@@ -1,8 +1,13 @@
 "use client"
 
-import { forwardRef, useCallback, useMemo } from "react"
-import { useArmor } from "@/context/ArmorContext"
-import { useItemContext } from "@/context/ItemContext"
+import { forwardRef, useCallback } from "react"
+import {
+  selectArmorByName,
+  selectArmorIsUpgradable,
+  upgrade,
+} from "@/store/slices/armor"
+import { consume } from "@/store/slices/items"
+import { useAppDispatch, useAppSelector } from "@/store/store"
 import { ChevronsUp } from "lucide-react"
 
 import { Armor, Level } from "@/types/data"
@@ -10,26 +15,30 @@ import { Button } from "@/components/ui/button"
 
 const ArmorUpgradeButton = forwardRef<HTMLButtonElement, { armor: Armor }>(
   ({ armor, ...rest }, forwardedRef) => {
-    const { value, upgrade } = useArmor(armor.displayName)
-    const { consume } = useItemContext()
+    const value = useAppSelector((state) =>
+      selectArmorByName(state, armor.displayName)
+    )
+    const dispatch = useAppDispatch()
+
+    const isUpgradable = useAppSelector((state) =>
+      selectArmorIsUpgradable(state, armor.displayName)
+    )
 
     const doUpgrade = useCallback(() => {
-      if (armor.upgrades == null) return
-      upgrade(armor.displayName)
-      const upgradeCost = armor.upgrades[value?.level ?? Level.Base]
+      // Todo: define elsewhere
+      dispatch(upgrade(armor.displayName))
+      const upgradeCost =
+        armor.upgrades && armor.upgrades[value?.level ?? Level.Base]
       if (upgradeCost == null) return
+      dispatch(consume(upgradeCost))
       consume(upgradeCost)
-    }, [armor.displayName, armor.upgrades, consume, upgrade, value])
+    }, [armor.displayName, armor.upgrades, dispatch, value?.level])
 
-    const disabled = useMemo(
-      () => value?.level === Level.Four || armor.upgrades == null,
-      [value, armor.upgrades]
-    )
     return (
       <Button
         {...rest}
         ref={forwardedRef}
-        disabled={disabled}
+        disabled={!isUpgradable}
         variant="outline"
         className="w-10 rounded-lg p-0"
         onClick={() => doUpgrade()}

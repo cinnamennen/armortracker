@@ -1,29 +1,27 @@
 "use client"
 
-import { useEffect } from "react"
-import { useArmor, useArmorContext } from "@/context/ArmorContext"
+import { selectArmorByName, set } from "@/store/slices/armor"
+import { useAppDispatch, useAppSelector } from "@/store/store"
 import { Star } from "lucide-react"
 
-import { Level } from "@/types/data"
+import { Armor, Level } from "@/types/data"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-export default function ArmorSelect({ name }: { name: string }) {
-  const { value, set } = useArmor(name)
-
-  // useEffect(() => {
-  //   if (value == undefined) set(name, Level.Base)
-  // }, [name, value, set])
+export default function ArmorSelect({ armor }: { armor: Armor }) {
+  const value = useAppSelector((state) =>
+    selectArmorByName(state, armor.displayName)
+  )
+  const dispatch = useAppDispatch()
 
   const star = <Star size="1em" />
   return (
     <Tabs
       value={value?.level.toString()}
       onValueChange={(value) => {
-        set(name, Number(value))
+        dispatch(set({ armor: armor.displayName, level: Number(value) }))
       }}
     >
       <TabsList>
-        {/*<TabsTrigger value={Level.Ignored.toString()}>Ignored</TabsTrigger>*/}
         <TabsTrigger value={Level.Base.toString()}>Base</TabsTrigger>
         <TabsTrigger value={Level.One.toString()}>{star}</TabsTrigger>
         <TabsTrigger value={Level.Two.toString()}>

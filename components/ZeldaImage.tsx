@@ -9,13 +9,13 @@ import { cn, getDetectedPath } from "@/lib/utils"
 const fallback = "/static/images/Rupee.png"
 
 export function ZeldaImage({
-  zelda,
+  displayName,
   className,
   ...props
 }: {
-  zelda: { displayName: string; path?: string }
+  displayName: string
 } & Partial<ImageProps>) {
-  const [imgSrc, setImgSrc] = useState(getDetectedPath(zelda))
+  const [imgSrc, setImgSrc] = useState(getDetectedPath(displayName))
 
   return (
     <Image
@@ -23,8 +23,12 @@ export function ZeldaImage({
       onError={() => {
         setImgSrc(fallback)
       }}
-      className={cn(className, imgSrc === fallback && "opacity-30")}
-      alt={`A picture of ${zelda.displayName}`}
+      className={cn(
+        className,
+        imgSrc === fallback && "opacity-30",
+        "w-fill h-auto"
+      )}
+      alt={`A picture of ${displayName}`}
       width={0}
       height={0}
       sizes="100vw"

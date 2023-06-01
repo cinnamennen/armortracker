@@ -1,4 +1,5 @@
-import { useItem } from "@/context/ItemContext"
+"use client"
+
 import { Ingredient } from "@/data/enum"
 import { ingredientData } from "@/data/ingredients"
 import {
@@ -7,17 +8,30 @@ import {
 } from "react-circular-progressbar"
 
 import "react-circular-progressbar/dist/styles.css"
+import { selectNeededItemsByName } from "@/store/selectors"
+import { selectItemByIngredient, selectItemByName } from "@/store/slices/items"
+import { useAppSelector } from "@/store/store"
+
+import { cn } from "@/lib/utils"
 import { ZeldaImage } from "@/components/ZeldaImage"
-import { ItemCollection } from "@/components/itemCollection"
 
 export function ItemProgress({
   ingredient,
-  need,
+  aboveFold = false,
+  hideName = false,
+  padding = 2,
 }: {
   ingredient: Ingredient
-  need: number
+  aboveFold?: boolean
+  hideName?: boolean
+  padding?: number
 }) {
-  const { value } = useItem(ingredientData[ingredient].displayName)
+  const value = useAppSelector((state) =>
+    selectItemByIngredient(state, ingredient)
+  )
+  const need = useAppSelector((state) =>
+    selectNeededItemsByName(state, ingredient)
+  )
   const percent = Math.max(Math.min(1, value / need), 0) * 100
   return (
     <div className="flex flex-col items-center">
@@ -29,12 +43,13 @@ export function ItemProgress({
         })}
       >
         <ZeldaImage
-          className="h-fit w-auto p-2"
-          zelda={ingredientData[ingredient]}
+          className="position-absolute h-2/3 w-2/3"
+          displayName={ingredientData[ingredient].displayName}
+          priority={aboveFold}
         />
       </CircularProgressbarWithChildren>
       {value} / {need}
-      <p>{ingredientData[ingredient].displayName}</p>
+      {!hideName && <p>{ingredientData[ingredient].displayName}</p>}
     </div>
   )
 }
