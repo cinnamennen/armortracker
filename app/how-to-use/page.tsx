@@ -37,30 +37,10 @@ export default function HowToUse() {
         </Link>
         . Using the input underneath each item you can set how many of each item
         you have. For small tweaks you can also use the increment and decrement
-        buttons at the end.
+        buttons at the end. Progress is measured against the goal of getting all
+        upgradable armor to level 4.
       </p>
-      <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-        Tracking your progress
-      </h2>
-      <p className="leading-7 [&:not(:first-child)]:mt-6">
-        You can track your progress on the{" "}
-        <Link
-          href="/missing"
-          className="font-medium text-primary underline underline-offset-4"
-        >
-          missing page
-        </Link>
-        . On this page you will be shown how many more of each item you need to
-        go track and gather. Once you&apos;ve collected more of an item you can
-        update it on the{" "}
-        <Link
-          href="/inventory"
-          className="font-medium text-primary underline underline-offset-4"
-        >
-          inventory page
-        </Link>
-        .
-      </p>
+
       <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
         Easily inputting an upgrade
       </h2>
