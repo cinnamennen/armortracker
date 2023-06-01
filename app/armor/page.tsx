@@ -8,8 +8,10 @@ export default function Armor() {
     <>
       {Object.values(armorGroup)
         .filter(isNotString)
-        .map((group) => {
-          return <ArmorSection group={group} key={group} />
+        .map((group, index) => {
+          return (
+            <ArmorSection group={group} key={group} aboveFold={index <= 2} />
+          )
         })}
     </>
   )
