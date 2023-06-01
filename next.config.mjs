@@ -5,11 +5,14 @@ const nextConfig = {
     appDir: true,
   },
   async redirects() {
-    return [{source: "/", destination: "/armor", permanent: true}, {
-      source: "/missing",
-      destination: "/inventory",
-      permanent: true
-    }]
+    return [
+      { source: "/", destination: "/armor", permanent: true },
+      {
+        source: "/missing",
+        destination: "/inventory",
+        permanent: true,
+      },
+    ]
   },
 }
 
