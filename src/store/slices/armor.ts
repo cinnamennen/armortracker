@@ -62,6 +62,7 @@ export const selectArmorIsUpgradable = createSelector(
 const mergeRecipe = (previousValue: Recipe, currentValue: Recipe) => {
   Object.entries(currentValue).forEach(([name, count]) => {
     const prior: number = previousValue[name] ?? 0
+
     previousValue[name] = (count ?? 0) + prior
   })
 
