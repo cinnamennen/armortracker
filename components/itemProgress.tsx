@@ -34,7 +34,7 @@ export function ItemProgress({
   return (
     <div className="flex flex-col items-center">
       <CircularProgressbarWithChildren
-        value={percent}
+        value={total > 0 ? percent : 100}
         styles={buildStyles({
           pathColor: "hsl(var(--primary))",
           trailColor: "hsl(var(--secondary))",
