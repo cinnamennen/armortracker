@@ -2,7 +2,6 @@ import { armor } from "@/data/armor"
 import { RootState } from "@/store/store"
 import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit"
 
-// import { HYDRATE } from "next-redux-wrapper"
 import { Level, Recipe, isUpgradeable } from "@/types/data"
 
 type ArmorData = { level: number; ignored: boolean }
@@ -44,15 +43,6 @@ export const armorSlice = createSlice({
       state = initialState
     },
   },
-  // extraReducers: {
-  //   [HYDRATE]: (state, action) => {
-  //     console.log("HYDRATE", state, action.payload)
-  //     return {
-  //       ...state,
-  //       ...action.payload.armor,
-  //     }
-  //   },
-  // },
 })
 
 export const { clear, set, upgrade, toggleIgnore, initStore } =
