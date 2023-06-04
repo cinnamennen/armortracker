@@ -2440,6 +2440,7 @@ __metadata:
     eslint-config-prettier: ^8.3.0
     eslint-plugin-react: ^7.31.11
     eslint-plugin-tailwindcss: ^3.8.0
+    eslint-plugin-unused-imports: ^2.0.0
     husky: ^8.0.0
     immer: ^10.0.2
     lucide-react: 0.105.0-alpha.4
@@ -3456,6 +3457,28 @@ __metadata:
   peerDependencies:
     tailwindcss: ^3.3.2
   checksum: 8a0391e87d2b676e02da3ce0e6483492a081022fbf7add65470326733bb0cdd6e5e15bf1bbc67e7026a18b1be0276446a801f8415bde4feb54ff0af6fe8c506f
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-unused-imports@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "eslint-plugin-unused-imports@npm:2.0.0"
+  dependencies:
+    eslint-rule-composer: ^0.3.0
+  peerDependencies:
+    "@typescript-eslint/eslint-plugin": ^5.0.0
+    eslint: ^8.0.0
+  peerDependenciesMeta:
+    "@typescript-eslint/eslint-plugin":
+      optional: true
+  checksum: 8aa1e03e75da2a62a354065e0cb8fe370118c6f8d9720a32fe8c1da937de6adb81a4fed7d0d391d115ac9453b49029fb19f970d180a2cf3dba451fd4c20f0dc4
+  languageName: node
+  linkType: hard
+
+"eslint-rule-composer@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "eslint-rule-composer@npm:0.3.0"
+  checksum: c2f57cded8d1c8f82483e0ce28861214347e24fd79fd4144667974cd334d718f4ba05080aaef2399e3bbe36f7d6632865110227e6b176ed6daa2d676df9281b1
   languageName: node
   linkType: hard
 

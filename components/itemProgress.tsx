@@ -8,11 +8,9 @@ import {
 } from "react-circular-progressbar"
 
 import "react-circular-progressbar/dist/styles.css"
-import { selectNeededItemsByName } from "@/store/selectors"
-import { selectItemByIngredient, selectItemByName } from "@/store/slices/items"
+import { selectItemByIngredient } from "@/store/slices/items"
 import { useAppSelector } from "@/store/store"
 
-import { cn } from "@/lib/utils"
 import { ZeldaImage } from "@/components/ZeldaImage"
 
 export function ItemProgress({

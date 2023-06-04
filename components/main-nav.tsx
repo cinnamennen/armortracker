@@ -21,8 +21,6 @@ import Import from "@/components/Import"
 import { Icons } from "@/components/icons"
 
 export function MainNav() {
-  const pathname = usePathname()
-
   return (
     <NavigationMenu>
       <NavigationMenuList>
