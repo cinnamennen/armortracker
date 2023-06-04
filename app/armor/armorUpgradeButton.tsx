@@ -30,6 +30,7 @@ const ArmorUpgradeButton = forwardRef<HTMLButtonElement, { armor: Armor }>(
       const upgradeCost =
         armor.upgrades && armor.upgrades[value?.level ?? Level.Base]
       if (upgradeCost == null) return
+      console.log("consuming", upgradeCost)
       dispatch(consume(upgradeCost))
       consume(upgradeCost)
     }, [armor.displayName, armor.upgrades, dispatch, value?.level])
