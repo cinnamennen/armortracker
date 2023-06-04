@@ -1,5 +1,6 @@
 "use client"
 
+import { FC } from "react"
 import NextLink from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -52,7 +53,7 @@ export function MainNav() {
   )
 }
 
-const Link = ({ href, ...props }: any) => {
+const Link: FC<{ href: string }> = ({ href, ...props }) => {
   const path = usePathname()
   const isActive = path === href
 
