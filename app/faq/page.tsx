@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { CornerRightUp } from "lucide-react"
 
 export default function FAQ() {
   return (
