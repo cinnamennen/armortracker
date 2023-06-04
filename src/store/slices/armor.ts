@@ -2,7 +2,6 @@ import { armor } from "@/data/armor"
 import { RootState } from "@/store/store"
 import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit"
 
-// import { HYDRATE } from "next-redux-wrapper"
 import { Level, Recipe, isUpgradeable } from "@/types/data"
 
 type ArmorData = { level: number; ignored: boolean }
@@ -40,18 +39,10 @@ export const armorSlice = createSlice({
       return action.payload
     },
     clear(state) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       state = initialState
     },
   },
-  // extraReducers: {
-  //   [HYDRATE]: (state, action) => {
-  //     console.log("HYDRATE", state, action.payload)
-  //     return {
-  //       ...state,
-  //       ...action.payload.armor,
-  //     }
-  //   },
-  // },
 })
 
 export const { clear, set, upgrade, toggleIgnore, initStore } =
@@ -70,10 +61,8 @@ export const selectArmorIsUpgradable = createSelector(
 )
 const mergeRecipe = (previousValue: Recipe, currentValue: Recipe) => {
   Object.entries(currentValue).forEach(([name, count]) => {
-    if (!previousValue[name]) previousValue[name] = 0
-
-    // @ts-ignore
-    previousValue[name] += count
+    const prior: number = previousValue[name] ?? 0
+    previousValue[name] = (count ?? 0) + prior
   })
 
   return previousValue
