@@ -1,5 +1,4 @@
-import { Ingredient, armorGroup } from "@/data/enum"
-import { ingredientData } from "@/data/ingredients"
+import { armorGroup } from "@/data/enum"
 
 import { isNotString } from "@/lib/utils"
 import ArmorSection from "@/app/armor/armorSection"
