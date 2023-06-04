@@ -40,6 +40,7 @@ export const armorSlice = createSlice({
       return action.payload
     },
     clear(state) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       state = initialState
     },
   },
@@ -70,10 +71,9 @@ export const selectArmorIsUpgradable = createSelector(
 )
 const mergeRecipe = (previousValue: Recipe, currentValue: Recipe) => {
   Object.entries(currentValue).forEach(([name, count]) => {
-    if (!previousValue[name]) previousValue[name] = 0
+    const prior: number = previousValue[name] ?? 0
 
-    // @ts-ignore
-    previousValue[name] += count
+    previousValue[name] = (count ?? 0) + prior
   })
 
   return previousValue
