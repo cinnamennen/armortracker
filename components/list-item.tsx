@@ -21,7 +21,7 @@ export const ListItem = forwardRef<
         >
           <div className="inline-flex items-end text-sm font-medium leading-none">
             <>
-              {Icon && <Icon className="h-4 w-4 mr-2" />}
+              {Icon && <Icon className="mr-2 h-4 w-4" />}
               {title}
             </>
           </div>

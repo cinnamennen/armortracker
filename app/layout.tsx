@@ -1,6 +1,7 @@
 import "@/styles/globals.css"
 import { ReactNode } from "react"
 import { Metadata } from "next"
+import Head from "next/head"
 import { Providers } from "@/store/Provider"
 
 import { siteConfig } from "@/config/site"
@@ -55,7 +56,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
       <html lang="en" suppressHydrationWarning>
-        <head />
+        <Head>
+          {" "}
+          <title>{siteConfig.name}</title>
+        </Head>
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
