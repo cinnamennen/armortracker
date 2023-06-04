@@ -20,6 +20,7 @@ export const itemsSlice = createSlice({
       return action.payload
     },
     clear(state) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       state = initialState
     },
     consume(state, action: PayloadAction<Recipe>) {
@@ -54,7 +55,7 @@ export const selectItemByIngredient = createSelector(
 )
 
 export const getIngredientByName = (name: string) =>
-  (Object.entries(ingredientData).find(([_, iv]) => iv.displayName == name) ?? [
+  (Object.entries(ingredientData).find(([, iv]) => iv.displayName == name) ?? [
     null,
   ])[0]
 
