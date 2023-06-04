@@ -1,6 +1,6 @@
 "use client"
 
-import { FC } from "react"
+import { FC, ReactNode } from "react"
 import NextLink from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -53,7 +53,10 @@ export function MainNav() {
   )
 }
 
-const Link: FC<{ href: string }> = ({ href, ...props }) => {
+const Link: FC<{ href: string; children: ReactNode }> = ({
+  href,
+  ...props
+}) => {
   const path = usePathname()
   const isActive = path === href
 
