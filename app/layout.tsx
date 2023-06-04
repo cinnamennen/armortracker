@@ -57,7 +57,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <>
       <html lang="en" suppressHydrationWarning>
         <Head>
-          {" "}
           <title>{siteConfig.name}</title>
         </Head>
         <body
