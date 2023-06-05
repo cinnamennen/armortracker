@@ -2,8 +2,7 @@
 
 import { Ingredient } from "@/data/enum"
 import { ingredientData } from "@/data/ingredients"
-import { selectNeededItemsByName } from "@/store/selectors"
-import { selectItemByIngredient } from "@/store/slices/items"
+import { selectNeededIngredientsByName } from "@/store/selectors"
 import { useAppSelector } from "@/store/store"
 
 import {
@@ -24,10 +23,7 @@ export function IngredientCard({
   aboveFold?: boolean
 }) {
   const need = useAppSelector((state) =>
-    selectNeededItemsByName(state, ingredient)
-  )
-  const have = useAppSelector((state) =>
-    selectItemByIngredient(state, ingredient)
+    selectNeededIngredientsByName(state, ingredient)
   )
 
   return (
@@ -40,7 +36,7 @@ export function IngredientCard({
           ingredient={ingredient}
           hideName
           aboveFold={aboveFold}
-          total={need + have}
+          total={need}
         />
       </CardContent>
       <CardFooter className="grid place-content-center gap-4">

@@ -6,7 +6,7 @@ import { createSelector } from "@reduxjs/toolkit"
 
 import { Recipe } from "@/types/data"
 
-export const selectNeededItems = createSelector(
+export const selectMissingItems = createSelector(
   [selectNeededIngredients, selectItems],
   (recipeIngredients, usefulItems): Partial<Recipe> => {
     return Object.fromEntries(
@@ -19,7 +19,11 @@ export const selectNeededItems = createSelector(
     )
   }
 )
-export const selectNeededItemsByName = createSelector(
-  [selectNeededItems, (_: RootState, name: Ingredient) => name],
+export const selectMissingItemsByName = createSelector(
+  [selectMissingItems, (_: RootState, name: Ingredient) => name],
+  (items, name): number => items[name] ?? 0
+)
+export const selectNeededIngredientsByName = createSelector(
+  [selectNeededIngredients, (_, name: Ingredient) => name],
   (items, name): number => items[name] ?? 0
 )
