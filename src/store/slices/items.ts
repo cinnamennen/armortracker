@@ -19,9 +19,8 @@ export const itemsSlice = createSlice({
     initStore(state, action: PayloadAction<ItemState>) {
       return action.payload
     },
-    clear(state) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      state = initialState
+    clear() {
+      return initialState
     },
     consume(state, action: PayloadAction<Recipe>) {
       Object.entries(action.payload).forEach(([name, amount]) => {
