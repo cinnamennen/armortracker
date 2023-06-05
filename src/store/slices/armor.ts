@@ -38,9 +38,8 @@ export const armorSlice = createSlice({
     initStore(state, action: PayloadAction<ArmorState>) {
       return action.payload
     },
-    clear(state) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      state = initialState
+    clear() {
+      return initialState
     },
   },
 })

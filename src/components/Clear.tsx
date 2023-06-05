@@ -6,8 +6,9 @@ import { useClear } from "@/lib/hooks"
 import { ListItem } from "@/components/list-item"
 
 export default function Clear() {
+  const clear = useClear()
   return (
-    <ListItem title="Clear Data" Icon={Trash2} onClick={useClear}>
+    <ListItem title="Clear Data" Icon={Trash2} onClick={clear}>
       Reset all entered data.
     </ListItem>
   )
