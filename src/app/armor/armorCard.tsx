@@ -50,7 +50,7 @@ export function ArmorCard({
           />
         </div>
       </CardContent>
-      <CardFooter className="flex flex-col gap-4 overflow-hidden">
+      <CardFooter className="flex flex-col gap-4">
         <ArmorSelect armor={armor} />
         <ArmorRemaining armor={armor} aboveFold={aboveFold} />
       </CardFooter>
