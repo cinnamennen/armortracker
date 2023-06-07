@@ -24,9 +24,9 @@ export function ZeldaImage({
         setImgSrc(fallback)
       }}
       className={cn(
-        className,
         imgSrc === fallback && "opacity-30",
-        "w-fill h-auto"
+        "w-fill h-auto",
+        className
       )}
       alt={`A picture of ${displayName}`}
       width={0}
