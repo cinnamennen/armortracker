@@ -5,6 +5,7 @@ import NextLink from "next/link"
 import { usePathname } from "next/navigation"
 
 import { docsConfig } from "@/config/docs"
+import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import {
   NavigationMenu,
@@ -45,8 +46,8 @@ export function MainNav() {
                   <Import />
                   <Feedback />
                   <Clear />
-                  <Compact />
-                  <Dense />
+                  {siteConfig.features.compact && <Compact />}
+                  {siteConfig.features.dense && <Dense />}
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>

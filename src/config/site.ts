@@ -6,6 +6,10 @@ export const siteConfig = {
     feedback: "https://github.com/cinnamennen/armortracker/issues/new/choose",
     github: "https://github.com/cinnamennen/armortracker",
   },
+  features: {
+    compact: false,
+    dense: false,
+  },
 }
 
 export type SiteConfig = typeof siteConfig

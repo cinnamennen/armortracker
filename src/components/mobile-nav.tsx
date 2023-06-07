@@ -96,24 +96,28 @@ export function MobileNav() {
             >
               Clear Data
             </a>
-            <a
-              className="hover:cursor-pointer"
-              onClick={() => {
-                compact()
-                setOpen(false)
-              }}
-            >
-              {isCompact ? "Spacious" : "Compact"} UI
-            </a>
-            <a
-              className="hover:cursor-pointer"
-              onClick={() => {
-                dense()
-                setOpen(false)
-              }}
-            >
-              {isDense ? "Show" : "Hide"} Complete
-            </a>
+            {siteConfig.features.compact && (
+              <a
+                className="hover:cursor-pointer"
+                onClick={() => {
+                  compact()
+                  setOpen(false)
+                }}
+              >
+                {isCompact ? "Spacious" : "Compact"} UI
+              </a>
+            )}
+            {siteConfig.features.dense && (
+              <a
+                className="hover:cursor-pointer"
+                onClick={() => {
+                  dense()
+                  setOpen(false)
+                }}
+              >
+                {isDense ? "Show" : "Hide"} Complete
+              </a>
+            )}
           </div>
           <div className="flex flex-col space-y-2"></div>
         </ScrollArea>

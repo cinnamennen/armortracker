@@ -44,13 +44,13 @@ export function ArmorCard({
       <CardContent>
         <div className="flex justify-center">
           <ZeldaImage
-            className="h-52 w-auto"
+            className="h-52 w-52"
             displayName={armor.displayName}
             priority={aboveFold}
           />
         </div>
       </CardContent>
-      <CardFooter className="flex flex-col gap-4">
+      <CardFooter className="flex flex-col gap-4 overflow-hidden">
         <ArmorSelect armor={armor} />
         <ArmorRemaining armor={armor} aboveFold={aboveFold} />
       </CardFooter>
