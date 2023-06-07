@@ -467,7 +467,7 @@ export function wild(dragon_name: DRAGON_NAME): UpgradeList {
       [fang]: 2,
       [shardSpike]: 5,
     },
-    { [Ingredient.StarFragment]: 2, [horn]: 2, [shardSpike]: 10 },
+    { [Ingredient.StarFragment]: 3, [horn]: 2, [shardSpike]: 10 },
   ]
 }
 
