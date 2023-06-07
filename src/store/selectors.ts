@@ -1,10 +1,15 @@
 import { Ingredient } from "@/data/enum"
-import { selectNeededIngredients } from "@/store/slices/armor"
+import {
+  selectArmor,
+  selectArmorByCategory,
+  selectNeededIngredients,
+} from "@/store/slices/armor"
 import { selectItems } from "@/store/slices/items"
+import { selectDense } from "@/store/slices/settings"
 import { RootState } from "@/store/store"
 import { createSelector } from "@reduxjs/toolkit"
 
-import { Recipe } from "@/types/data"
+import { Level, Recipe } from "@/types/data"
 
 export const selectMissingItems = createSelector(
   [selectNeededIngredients, selectItems],
@@ -26,4 +31,12 @@ export const selectMissingItemsByName = createSelector(
 export const selectNeededIngredientsByName = createSelector(
   [selectNeededIngredients, (_, name: Ingredient) => name],
   (items, name): number => items[name] ?? 0
+)
+
+export const selectRelevantArmor = createSelector(
+  [selectArmorByCategory, selectDense, selectArmor],
+  (armor, dense, allArmor) =>
+    !dense
+      ? armor
+      : armor.filter((a) => allArmor[a.displayName]?.level !== Level.Four)
 )

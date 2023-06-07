@@ -1,4 +1,4 @@
-export enum armorGroup {
+export enum ArmorGroup {
   Hylian,
   Soldier,
   Snowquill,

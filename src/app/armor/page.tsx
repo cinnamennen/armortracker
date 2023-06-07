@@ -1,6 +1,6 @@
 "use client"
 
-import { armorGroup } from "@/data/enum"
+import { ArmorGroup } from "@/data/enum"
 import { selectCompact } from "@/store/slices/settings"
 import { useAppSelector } from "@/store/store"
 
@@ -11,7 +11,7 @@ export default function Armor() {
   const isCompact = useAppSelector(selectCompact)
   return (
     <div className={cn("grid", isCompact && "grid-cols-2 gap-4")}>
-      {Object.values(armorGroup)
+      {Object.values(ArmorGroup)
         .filter(isNotString)
         .map((group, index) => {
           return (
