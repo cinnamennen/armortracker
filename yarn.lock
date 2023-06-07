@@ -2549,7 +2549,7 @@ __metadata:
     eslint-plugin-unused-imports: ^2.0.0
     husky: ^8.0.0
     immer: ^10.0.2
-    lucide-react: 0.105.0-alpha.4
+    lucide-react: ^0.241.0
     next: latest
     next-redux-wrapper: ^8.1.0
     next-themes: ^0.2.1
@@ -5036,12 +5036,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:0.105.0-alpha.4":
-  version: 0.105.0-alpha.4
-  resolution: "lucide-react@npm:0.105.0-alpha.4"
+"lucide-react@npm:^0.241.0":
+  version: 0.241.0
+  resolution: "lucide-react@npm:0.241.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0
-  checksum: 44820feab7ed2336388c69b4dd3734393a3912cf50d025968ccc6ba9d62a7fd27ae36671961d4c3f671304e94db58b70d1d5157f92c11e437c873c86cd20c41f
+  checksum: e10b40589e4c844024b48956530968f98f667d9417bfcde2736a3c3e16252e2a63e99893b45df19183c91e2fbfed0f280e43cf12f03f3f3b5c5ad08da4764201
   languageName: node
   linkType: hard
 

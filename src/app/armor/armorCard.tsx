@@ -44,7 +44,7 @@ export function ArmorCard({
       <CardContent>
         <div className="flex justify-center">
           <ZeldaImage
-            className="h-52 w-auto"
+            className="h-52 w-52"
             displayName={armor.displayName}
             priority={aboveFold}
           />
