@@ -1,5 +1,9 @@
+"use client"
+
 import { armor, setData } from "@/data/armor"
 import { armorGroup } from "@/data/enum"
+import { selectDense } from "@/store/slices/settings"
+import { useAppSelector } from "@/store/store"
 
 import { isUpgradeable } from "@/types/data"
 import { sortArmor } from "@/lib/utils"
@@ -12,6 +16,8 @@ export default function ArmorSection({
   group: armorGroup
   aboveFold?: boolean
 }) {
+  const isDense = useAppSelector(selectDense)
+
   const upgradeableArmors = armor
     .filter(isUpgradeable)
     .filter((a) => a.armorGroup === group)

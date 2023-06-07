@@ -3,7 +3,7 @@
 import { selectArmorByName } from "@/store/slices/armor"
 import { useAppSelector } from "@/store/store"
 
-import { Armor } from "@/types/data"
+import { Armor, Level } from "@/types/data"
 import { cn } from "@/lib/utils"
 import {
   Card,
@@ -28,6 +28,7 @@ export function ArmorCard({
   const value = useAppSelector((state) =>
     selectArmorByName(state, armor.displayName)
   )
+  if (value?.level === Level.Four) return null
   return (
     <Card className={cn(value?.ignored && "opacity-50", "transition-opacity")}>
       <CardHeader>
