@@ -3,11 +3,19 @@
 import { ReactNode, useState } from "react"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/navigation"
+import { selectCompact, selectDense } from "@/store/slices/settings"
+import { useAppSelector } from "@/store/store"
 import { SidebarOpen } from "lucide-react"
 
 import { docsConfig } from "@/config/docs"
 import { siteConfig } from "@/config/site"
-import { useClear, useExport, useImport } from "@/lib/hooks"
+import {
+  useClear,
+  useCompact,
+  useDense,
+  useExport,
+  useImport,
+} from "@/lib/hooks"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -19,6 +27,10 @@ export function MobileNav() {
   const out = useExport()
   const load = useImport()
   const clear = useClear()
+  const compact = useCompact()
+  const dense = useDense()
+  const isCompact = useAppSelector(selectCompact)
+  const isDense = useAppSelector(selectDense)
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -83,6 +95,24 @@ export function MobileNav() {
               }}
             >
               Clear Data
+            </a>
+            <a
+              className="hover:cursor-pointer"
+              onClick={() => {
+                compact()
+                setOpen(false)
+              }}
+            >
+              {isCompact ? "Spacious" : "Compact"} UI
+            </a>
+            <a
+              className="hover:cursor-pointer"
+              onClick={() => {
+                dense()
+                setOpen(false)
+              }}
+            >
+              {isDense ? "Show" : "Hide"} Complete
             </a>
           </div>
           <div className="flex flex-col space-y-2"></div>

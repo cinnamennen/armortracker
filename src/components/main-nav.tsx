@@ -16,6 +16,8 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import Clear from "@/components/Clear"
+import Compact from "@/components/Compact"
+import Dense from "@/components/Dense"
 import Export from "@/components/Export"
 import Feedback from "@/components/Feedback"
 import Import from "@/components/Import"
@@ -43,6 +45,8 @@ export function MainNav() {
                   <Import />
                   <Feedback />
                   <Clear />
+                  <Compact />
+                  <Dense />
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
