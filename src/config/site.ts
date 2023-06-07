@@ -1,3 +1,4 @@
+const isDevelopment = process.env.NODE_ENV === "development"
 export const siteConfig = {
   name: "TotK Armor Tracker",
   url: "https://totkarmortracker.com",
@@ -7,8 +8,8 @@ export const siteConfig = {
     github: "https://github.com/cinnamennen/armortracker",
   },
   features: {
-    compact: false,
-    dense: false,
+    compact: isDevelopment,
+    dense: isDevelopment,
   },
 }
 
