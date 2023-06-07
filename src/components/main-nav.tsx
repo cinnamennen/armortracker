@@ -47,7 +47,7 @@ export function MainNav() {
                   <Feedback />
                   <Clear />
                   {siteConfig.features.compact && <Compact />}
-                  {siteConfig.features.dense && <Dense />}
+                  <Dense />
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>

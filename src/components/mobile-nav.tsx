@@ -107,17 +107,15 @@ export function MobileNav() {
                 {isCompact ? "Spacious" : "Compact"} UI
               </a>
             )}
-            {siteConfig.features.dense && (
-              <a
-                className="hover:cursor-pointer"
-                onClick={() => {
-                  dense()
-                  setOpen(false)
-                }}
-              >
-                {isDense ? "Show" : "Hide"} Complete
-              </a>
-            )}
+            <a
+              className="hover:cursor-pointer"
+              onClick={() => {
+                dense()
+                setOpen(false)
+              }}
+            >
+              {isDense ? "Show" : "Hide"} Complete
+            </a>
           </div>
           <div className="flex flex-col space-y-2"></div>
         </ScrollArea>
