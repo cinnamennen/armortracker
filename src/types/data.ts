@@ -1,4 +1,4 @@
-import { Ingredient, armorGroup } from "@/data/enum"
+import { ArmorGroup, Ingredient } from "@/data/enum"
 import { RequireAtLeastOne } from "type-fest"
 
 export enum Slot {
@@ -26,7 +26,7 @@ interface BaseArmor {
 
 export interface UpgradeableArmor extends BaseArmor {
   upgrades: UpgradeList
-  armorGroup: armorGroup
+  armorGroup: ArmorGroup
 }
 
 interface StaticArmor extends BaseArmor {

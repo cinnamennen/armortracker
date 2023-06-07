@@ -1,8 +1,10 @@
 import { armor } from "@/data/armor"
+import { ArmorGroup } from "@/data/enum"
 import { RootState } from "@/store/store"
 import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit"
 
 import { Level, Recipe, isUpgradeable } from "@/types/data"
+import { sortArmor } from "@/lib/utils"
 
 type ArmorData = { level: number; ignored: boolean }
 export type ArmorState = Record<string, ArmorData>
@@ -100,4 +102,23 @@ export const selectNextUpgrades = createSelector([selectArmor], (allArmor) =>
 export const selectNextUpgradeByArmorName = createSelector(
   [selectNextUpgrades, (_, name: string) => name],
   (nextUpgrades, name): Partial<Recipe> => nextUpgrades[name] ?? {}
+)
+
+export const selectArmorByCategory = createSelector(
+  [(_, category: ArmorGroup) => category],
+  (category) =>
+    armor
+      .filter(isUpgradeable)
+      .filter((a) => a.armorGroup === category)
+      .sort(sortArmor)
+)
+
+export const selectArmorByCategoryAndFinished = createSelector(
+  [selectArmor, (_, category: ArmorGroup) => category],
+  (allArmor, category) =>
+    armor
+      .filter(isUpgradeable)
+      .filter((a) => a.armorGroup === category)
+      .filter((a) => allArmor[a.displayName]?.level !== Level.Four)
+      .sort(sortArmor)
 )
