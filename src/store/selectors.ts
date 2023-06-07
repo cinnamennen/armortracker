@@ -40,3 +40,11 @@ export const selectRelevantArmor = createSelector(
       ? armor
       : armor.filter((a) => allArmor[a.displayName]?.level !== Level.Four)
 )
+
+export const selectRelevantIngredients = createSelector(
+  [selectNeededIngredients, selectDense],
+  (neededIngredients, dense) =>
+    !dense
+      ? Object.values(Ingredient)
+      : Object.values(Ingredient).filter((i) => neededIngredients[i] ?? 0 > 0)
+)
