@@ -9,7 +9,6 @@ export const siteConfig = {
   },
   features: {
     compact: isDevelopment,
-    dense: isDevelopment,
   },
 }
 

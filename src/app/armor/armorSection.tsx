@@ -1,21 +1,23 @@
-import { armor, setData } from "@/data/armor"
-import { armorGroup } from "@/data/enum"
+"use client"
 
-import { isUpgradeable } from "@/types/data"
-import { sortArmor } from "@/lib/utils"
+import { setData } from "@/data/armor"
+import { ArmorGroup } from "@/data/enum"
+import { selectRelevantArmor } from "@/store/selectors"
+import { useAppSelector } from "@/store/store"
+
 import { ArmorCard } from "@/app/armor/armorCard"
 
 export default function ArmorSection({
   group,
   aboveFold = false,
 }: {
-  group: armorGroup
+  group: ArmorGroup
   aboveFold?: boolean
 }) {
-  const upgradeableArmors = armor
-    .filter(isUpgradeable)
-    .filter((a) => a.armorGroup === group)
-  upgradeableArmors.sort(sortArmor)
+  const upgradeableArmors = useAppSelector((state) =>
+    selectRelevantArmor(state, group)
+  )
+  if (upgradeableArmors.length === 0) return null
   return (
     <div className="mb-8">
       <h1 className="mb-4 scroll-m-20 text-4xl font-extrabold tracking-tight  lg:text-5xl">
