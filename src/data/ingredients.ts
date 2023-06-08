@@ -3,6 +3,10 @@ import { Ingredient } from "@/data/enum"
 type IngredientData = { displayName: string; path?: string; id: Ingredient }
 
 export const ingredientData: { [key in Ingredient]: IngredientData } = {
+  [Ingredient.BossBokoblinGuts]: {
+    displayName: "Boss Bokoblin Guts",
+    id: Ingredient.BossBokoblinGuts,
+  },
   [Ingredient.Acorn]: { displayName: "Acorn", id: Ingredient.Acorn },
   [Ingredient.AerocudaEyes]: {
     displayName: "Aerocuda Eyeball",

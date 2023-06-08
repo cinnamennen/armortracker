@@ -103,6 +103,7 @@ export enum Ingredient {
   MoblinGuts = "Moblin Guts",
   HorriblinGuts = "Horriblin Guts",
   GibdoGuts = "Gibdo Guts",
+  BossBokoblinGuts = "Boss Bokoblin Guts",
   LynelGuts = "Lynel Guts",
   GleeokGuts = "Gleeok Guts",
   FroxGuts = "Frox Guts",
