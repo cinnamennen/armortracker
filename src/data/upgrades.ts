@@ -223,7 +223,7 @@ export const sharedUpgrades = {
     { [Ingredient.BossBokoblinHorn]: 3, [Ingredient.BokoblinGuts]: 3 },
     {
       [Ingredient.BlueBossBokoblinHorn]: 3,
-      [Ingredient.BossBokoblinFang]: 3,
+      [Ingredient.BossBokoblinGuts]: 3,
     },
     {
       [Ingredient.BlackBossBokoblinHorn]: 3,
