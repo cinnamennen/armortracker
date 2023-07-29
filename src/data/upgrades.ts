@@ -87,7 +87,7 @@ export const sharedUpgrades = {
     },
     {
       [Ingredient.FireLikeStone]: 5,
-      [Ingredient.WarmDarner]: 7,
+      [Ingredient.WarmDarner]: 5,
       [Ingredient.LargeZonaiCharge]: 5,
     },
     {
@@ -293,7 +293,7 @@ export const sharedUpgrades = {
       [Ingredient.Flint]: 30,
     },
     {
-      [Ingredient.LynelGuts]: 3,
+      [Ingredient.LynelGuts]: 5,
       [Ingredient.LynelHoof]: 5,
       [Ingredient.Amber]: 30,
     },
