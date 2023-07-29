@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ImageProps } from "next/dist/client/image"
+import type { ImageProps } from "next/dist/client/image"
 import Image from "next/image"
 
 import { cn, getDetectedPath } from "@/lib/utils"
