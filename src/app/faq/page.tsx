@@ -26,7 +26,7 @@ export default function FAQ() {
           opening an issue on GitHub
         </Link>
         . When you do so please include some sort of citation for the recipe,
-        whether that&quot;s some links to other sites with the recipe or a
+        whether that&apos;s some links to other sites with the recipe or a
         screenshot of the recipe in game.
       </p>
     </div>
