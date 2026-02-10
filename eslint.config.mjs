@@ -1,16 +1,11 @@
-import { FlatCompat } from '@eslint/eslintrc'
 import js from '@eslint/js'
 import nextPlugin from '@next/eslint-plugin-next'
+import tsEslint from '@typescript-eslint/eslint-plugin'
+import tsParser from '@typescript-eslint/parser'
 import betterTailwindCSS from 'eslint-plugin-better-tailwindcss'
-import path from 'path'
-import { fileURLToPath } from 'url'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-})
+import eslintConfigPrettier from 'eslint-config-prettier/flat'
+import unusedImports from 'eslint-plugin-unused-imports'
+import globals from 'globals'
 
 const eslintConfig = [
   {
@@ -26,11 +21,31 @@ const eslintConfig = [
     ],
   },
   js.configs.recommended,
-  ...compat.extends(
-    'prettier',
-    'plugin:@typescript-eslint/recommended'
-  ),
   {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parser: tsParser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tsEslint,
+    },
+    rules: {
+      ...tsEslint.configs.recommended.rules,
+    },
+  },
+  {
+    files: ['**/*.{ts,tsx,js,jsx}'],
     plugins: {
       '@next/next': nextPlugin,
     },
@@ -41,13 +56,17 @@ const eslintConfig = [
       'no-console': 'warn',
     },
   },
-  ...compat.plugins('unused-imports'),
   {
+    files: ['**/*.{ts,tsx,js,jsx}'],
+    plugins: {
+      'unused-imports': unusedImports,
+    },
     rules: {
       'unused-imports/no-unused-imports': 'error',
     },
   },
   {
+    files: ['**/*.{ts,tsx,js,jsx}'],
     plugins: {
       'better-tailwindcss': betterTailwindCSS,
     },
@@ -58,6 +77,7 @@ const eslintConfig = [
       'better-tailwindcss/enforce-consistent-class-order': 'off',
     },
   },
+  eslintConfigPrettier,
 ]
 
 export default eslintConfig
