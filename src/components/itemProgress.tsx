@@ -40,7 +40,7 @@ export function ItemProgress({
         })}
       >
         <ZeldaImage
-          className="position-absolute size-2/3"
+          className="absolute size-2/3"
           displayName={ingredientData[ingredient].displayName}
           priority={aboveFold}
         />

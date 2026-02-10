@@ -83,6 +83,7 @@
     "eslint": "^9.39.2",
     "eslint-config-next": "^15.0.0",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-better-tailwindcss": "^4.1.1",
     "eslint-plugin-react": "^7.33.1",
     "eslint-plugin-unused-imports": "^4.4.1",
     "husky": "^9.1.7",

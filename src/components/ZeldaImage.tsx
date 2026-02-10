@@ -24,7 +24,7 @@ export function ZeldaImage({
       }}
       className={cn(
         imgSrc === fallback && "opacity-30",
-        "w-fill h-auto",
+        "h-auto w-full",
         className
       )}
       alt={`A picture of ${displayName}`}

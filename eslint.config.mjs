@@ -1,6 +1,7 @@
 import { FlatCompat } from '@eslint/eslintrc'
 import js from '@eslint/js'
 import nextPlugin from '@next/eslint-plugin-next'
+import betterTailwindCSS from 'eslint-plugin-better-tailwindcss'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -44,6 +45,17 @@ const eslintConfig = [
   {
     rules: {
       'unused-imports/no-unused-imports': 'error',
+    },
+  },
+  {
+    plugins: {
+      'better-tailwindcss': betterTailwindCSS,
+    },
+    rules: {
+      ...betterTailwindCSS.configs.recommended.rules,
+      'better-tailwindcss/no-unknown-classes': 'warn',
+      'better-tailwindcss/enforce-consistent-line-wrapping': 'off',
+      'better-tailwindcss/enforce-consistent-class-order': 'off',
     },
   },
 ]
