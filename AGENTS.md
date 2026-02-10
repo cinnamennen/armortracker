@@ -1,6 +1,7 @@
 # AGENTS.md
 
 ## Commands
+
 - **Dev server**: `pnpm dev`
 - **Build**: `pnpm build`
 - **Lint**: `pnpm lint --fix`
@@ -9,6 +10,7 @@
 - **Task tracking**: `bd ready`, `bd create`, `bd update`, `bd show`, `bd dep add`
 
 ## Architecture
+
 - **Framework**: Next.js 13 with TypeScript
 - **State**: Redux + Redux Toolkit with localStorage persistence (localStorageMiddleware)
 - **UI**: Radix UI components with Tailwind CSS, Lucide icons
@@ -16,6 +18,7 @@
 - **Domain**: Armor/RPG tracker app with armor sets, items, upgrades, and settings
 
 ## Code Style
+
 - **Imports**: Auto-sorted via @ianvs/prettier-plugin-sort-imports (React/Next, third-party, types, internal aliases)
 - **Formatting**: 2-space indent, no semicolons, double quotes, trailing commas (es5)
 - **Path alias**: `@/*` resolves to `/src`
@@ -44,6 +47,7 @@
 7. **Hand off** - Provide context for next session
 
 **CRITICAL RULES:**
+
 - Work is NOT complete until `git push` succeeds
 - NEVER stop before pushing - that leaves work stranded locally
 - NEVER say "ready to push when you are" - YOU must push

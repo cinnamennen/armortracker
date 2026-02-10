@@ -41,14 +41,14 @@ export function MobileNav() {
         >
           <SidebarOpen className="size-6" />
           <span className="sr-only">Toggle Menu</span>
-          </Button>
-          </SheetTrigger>
-          <SheetContent size="xl" position="left" className="pr-0">
-          <MobileLink
+        </Button>
+      </SheetTrigger>
+      <SheetContent size="xl" position="left" className="pr-0">
+        <MobileLink
           href="/"
           className="flex flex-col items-center"
           onOpenChange={setOpen}
-          >
+        >
           <Icons.logo className="mr-2 size-10" />
           <span className="font-bold">{siteConfig.name}</span>
         </MobileLink>
