@@ -65,7 +65,7 @@
     "react-redux": "^9.2.0",
     "redux": "^5.0.1",
     "sharp": "^0.34.5",
-    "tailwind-merge": "^1.14.0",
+    "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
     "type-fest": "^5.4.4",
     "use-immer": "^0.11.0"
