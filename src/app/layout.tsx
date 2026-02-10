@@ -1,7 +1,7 @@
 import "@/styles/globals.css"
 
 import { ReactNode } from "react"
-import { Metadata } from "next"
+import { Metadata, Viewport } from "next"
 import { Providers } from "@/store/Provider"
 
 import { siteConfig } from "@/config/site"
@@ -35,17 +35,19 @@ export const metadata: Metadata = {
     },
   ],
   creator: "cinnamennen",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 }
 
 interface RootLayoutProps {
