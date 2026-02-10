@@ -26,6 +26,13 @@
 - **Eslint**: Extends next/core-web-vitals, uses unused-imports, tailwindcss linting
 - **Naming**: Tailwind's `cn()` utility for class merging; avoid custom Tailwind classes
 
+## Task Tracking
+
+- **Use beads for all task management**: `bd create`, `bd update`, `bd show`, `bd dep add`
+- **Do NOT create .md task summary files** - beads is the source of truth
+- **Document complex decisions in commit messages** instead (git log for history)
+- \*\*Use `bd update <taskid> --description` to document task context and approach
+
 ## Landing the Plane (Session Completion)
 
 **When ending a work session**, you MUST complete ALL steps below. Work is NOT complete until `git push` succeeds.
