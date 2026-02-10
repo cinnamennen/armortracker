@@ -13,6 +13,7 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageMiddleware),
+  devTools: true,
 })
 
 export type RootState = ReturnType<typeof store.getState>
