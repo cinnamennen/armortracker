@@ -32,7 +32,7 @@ export const itemsSlice = createSlice({
     use(state, action: PayloadAction<{ item: string; amount: number }>) {
       if (state[action.payload.item] === undefined)
         state[action.payload.item] = 0
-      state[action.payload.item] -= action.payload.amount
+      state[action.payload.item]! -= action.payload.amount
       state[action.payload.item] = Math.max(
         state[action.payload.item] as number,
         0
