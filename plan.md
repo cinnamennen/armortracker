@@ -1,5 +1,10 @@
 # Armor Tracker Upgrade Plan
 
+## Progress
+
+- ✅ **Phase 1**: Complete (2025-02-10)
+- ⏳ **Phase 2-10**: Pending
+
 ## Overview
 
 This plan outlines a careful, incremental approach to upgrading dependencies by **dependency isolation**. Rather than upgrading by category, we prioritize packages that can be upgraded all the way to their latest versions without affecting other packages. This minimizes integration issues and makes rollback simpler.
@@ -13,7 +18,19 @@ The strategy:
 
 Each phase is independent and can be completed to the latest stable version before moving to the next phase.
 
-## Current Baseline (Clean State)
+## Baseline State After Phase 1
+
+**Completed upgrades:**
+- **date-fns**: 2.30.0 → 4.1.0
+- **clsx**: 1.2.1 → 2.1.1
+- **cmdk**: 0.2.0 → 1.1.1
+- **lucide-react**: 0.241.0 → 0.563.0
+- **sharp**: 0.31.3 → 0.34.5
+- **type-fest**: 3.13.1 → 4.41.0 (capped at 4.x due to noUncheckedIndexedAccess incompatibility)
+- **react-circular-progressbar**: 2.1.0 → 2.2.0
+- **@vercel/analytics**: 1.0.1 → 1.6.1
+
+**Unchanged (awaiting later phases):**
 - **Node**: ^18.0.0
 - **TypeScript**: ~5.0.4 (pinned to 5.0.x)
 - **Next.js**: 13.4.12
@@ -27,32 +44,33 @@ Each phase is independent and can be completed to the latest stable version befo
 
 ## Upgrade Phases (by Dependency Isolation)
 
-### Phase 1: Completely Independent Utilities (No Dependents)
-**Risk Level**: ✅ Very Low
+### Phase 1: Completely Independent Utilities (No Dependents) ✅
+**Status**: COMPLETE (2025-02-10)
 
 **Rationale**: These packages have zero dependencies from other project packages. They can be upgraded all the way to latest without affecting anything else. Most are simply imported and used directly.
 
-**Packages in this phase**:
-- `date-fns`: ^2.30.0 → ^2.latest
-- `copy-to-clipboard`: ^3.3.3 → ^3.latest
-- `sharp`: ^0.31.3 → ^0.latest
-- `type-fest`: ^3.13.1 → ^3.latest
-- `lucide-react`: ^0.241.0 → ^0.latest (icon library)
-- `clsx`: ^1.2.1 → ^2.latest
-- `cmdk`: ^0.2.0 → ^0.latest (command palette)
-- `react-circular-progressbar`: ^2.1.0 → ^2.latest
-- `@vercel/analytics`: ^1.0.1 → ^1.latest
+**Upgraded packages**:
+- `date-fns`: ^2.30.0 → ^4.1.0
+- `sharp`: ^0.31.3 → ^0.34.5
+- `type-fest`: ^3.13.1 → ^4.41.0 (v5.x rejected due to strict TypeScript incompatibility)
+- `lucide-react`: ^0.241.0 → ^0.563.0 (fixed import: direct LucideIcon export)
+- `clsx`: ^1.2.1 → ^2.1.1
+- `cmdk`: ^0.2.0 → ^1.1.1
+- `react-circular-progressbar`: ^2.1.0 → ^2.2.0
+- `@vercel/analytics`: ^1.0.1 → ^1.6.1
+- `copy-to-clipboard`: ^3.3.3 (not in use, skipped)
 
-**Steps**:
-1. Update all packages in `package.json` to their latest stable versions
-2. Run: `pnpm install`
-3. Run: `pnpm typecheck` - should pass
-4. Run: `pnpm lint` - should pass
-5. Run: `pnpm build` - should pass
-6. Manual testing: `pnpm dev` - spot check any visible features using these libs
-7. Commit: "upgrade: independent utilities to latest versions"
+**Results**:
+- ✅ pnpm install
+- ✅ pnpm typecheck
+- ✅ pnpm lint
+- ✅ pnpm build
+- ✅ pnpm dev
 
-**Rollback if**: Build fails or runtime errors occur (unlikely for these packages)
+**Notes**:
+- type-fest capped at 4.x: version 5.x introduces stricter type constraints that conflict with noUncheckedIndexedAccess mode used in Immer types
+- lucide-react import updated to use direct LucideIcon export (API change in 0.563.0)
+- react-day-picker reports unmet peer dep for date-fns but works correctly (its package.json lists 4.1.0 as dependency)
 
 ---
 
