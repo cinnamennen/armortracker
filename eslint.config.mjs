@@ -1,5 +1,6 @@
 import { FlatCompat } from '@eslint/eslintrc'
 import js from '@eslint/js'
+import nextPlugin from '@next/eslint-plugin-next'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -25,23 +26,24 @@ const eslintConfig = [
   },
   js.configs.recommended,
   ...compat.extends(
-    'next/core-web-vitals',
     'prettier',
     'plugin:@typescript-eslint/recommended'
   ),
-  ...compat.plugins('unused-imports'),
   {
+    plugins: {
+      '@next/next': nextPlugin,
+    },
     rules: {
+      ...nextPlugin.configs.recommended.rules,
       '@next/next/no-html-link-for-pages': 'off',
       'react/jsx-key': 'off',
       'no-console': 'warn',
-      'unused-imports/no-unused-imports': 'error',
     },
   },
+  ...compat.plugins('unused-imports'),
   {
-    files: ['**/tailwind.config.js', '**/postcss.config.js', '**/prettier.config.js'],
     rules: {
-      '@typescript-eslint/no-require-imports': 'off',
+      'unused-imports/no-unused-imports': 'error',
     },
   },
 ]
