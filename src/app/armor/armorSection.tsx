@@ -20,7 +20,7 @@ export default function ArmorSection({
   if (upgradeableArmors.length === 0) return null
   return (
     <div className="mb-8">
-      <h1 className="mb-4 scroll-m-20 text-4xl font-extrabold tracking-tight  lg:text-5xl">
+      <h1 className="mb-4 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         {setData[group].displayName}
       </h1>
       <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

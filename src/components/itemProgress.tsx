@@ -3,11 +3,12 @@
 import { Ingredient } from "@/data/enum"
 import { ingredientData } from "@/data/ingredients"
 import {
-  CircularProgressbarWithChildren,
   buildStyles,
+  CircularProgressbarWithChildren,
 } from "react-circular-progressbar"
 
 import "react-circular-progressbar/dist/styles.css"
+
 import { selectItemByIngredient } from "@/store/slices/items"
 import { useAppSelector } from "@/store/store"
 

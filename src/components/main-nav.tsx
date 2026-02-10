@@ -21,8 +21,8 @@ import Compact from "@/components/Compact"
 import Dense from "@/components/Dense"
 import Export from "@/components/Export"
 import Feedback from "@/components/Feedback"
-import Import from "@/components/Import"
 import { Icons } from "@/components/icons"
+import Import from "@/components/Import"
 
 export function MainNav() {
   return (
@@ -41,7 +41,7 @@ export function MainNav() {
             <NavigationMenuItem>
               <NavigationMenuTrigger>Options</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                   <Export />
                   <Import />
                   <Feedback />

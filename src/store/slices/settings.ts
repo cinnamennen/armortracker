@@ -1,5 +1,5 @@
 import { RootState } from "@/store/store"
-import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit"
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 export type SettingsState = { compact: boolean; dense: boolean }
 export const initialState: SettingsState = { compact: false, dense: false }

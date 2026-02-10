@@ -1,7 +1,7 @@
 import { Ingredient } from "@/data/enum"
 import { ingredientData } from "@/data/ingredients"
 import { RootState } from "@/store/store"
-import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit"
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 import { Recipe } from "@/types/data"
 

@@ -1,9 +1,9 @@
 import { armor } from "@/data/armor"
 import { ArmorGroup } from "@/data/enum"
 import { RootState } from "@/store/store"
-import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit"
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-import { Level, Recipe, isUpgradeable } from "@/types/data"
+import { isUpgradeable, Level, Recipe } from "@/types/data"
 import { sortArmor } from "@/lib/utils"
 
 type ArmorData = { level: number; ignored: boolean }
