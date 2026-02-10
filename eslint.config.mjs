@@ -38,6 +38,12 @@ const eslintConfig = [
       'unused-imports/no-unused-imports': 'error',
     },
   },
+  {
+    files: ['**/tailwind.config.js', '**/postcss.config.js', '**/prettier.config.js'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
 ]
 
 export default eslintConfig
