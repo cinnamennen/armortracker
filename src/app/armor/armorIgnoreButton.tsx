@@ -24,9 +24,9 @@ const ArmorIgnoreButton = forwardRef<HTMLButtonElement, { armor: Armor }>(
         onClick={() => dispatch(toggleIgnore(armor.displayName))}
       >
         {value?.ignored ? (
-          <PlusCircle className="h-4 w-4" />
+          <PlusCircle className="size-4" />
         ) : (
-          <MinusCircle className="h-4 w-4" />
+          <MinusCircle className="size-4" />
         )}
       </Button>
     )

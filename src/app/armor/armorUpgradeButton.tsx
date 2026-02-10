@@ -43,7 +43,7 @@ const ArmorUpgradeButton = forwardRef<HTMLButtonElement, { armor: Armor }>(
         className="w-10 rounded-lg p-0"
         onClick={() => doUpgrade()}
       >
-        <ChevronsUp className="h-4 w-4" />
+        <ChevronsUp className="size-4" />
       </Button>
     )
   }

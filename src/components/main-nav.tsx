@@ -30,7 +30,7 @@ export function MainNav() {
       <NavigationMenuList>
         <div className="mr-4 hidden md:flex">
           <NextLink href="/" className="mr-6 flex items-center space-x-2">
-            <Icons.logo className="h-8 w-8" />
+            <Icons.logo className="size-8" />
           </NextLink>
           <nav className="flex items-center space-x-1 text-sm font-medium">
             {docsConfig.mainNav?.map(({ href, title }) => (

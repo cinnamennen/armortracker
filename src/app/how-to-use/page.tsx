@@ -47,7 +47,7 @@ export default function HowToUse() {
       <p className="leading-7 [&:not(:first-child)]:mt-6">
         If you&apos;ve visited a great fairy to upgrade your armor you can
         quickly update everything using the upgrade button{" "}
-        <CornerRightUp className="inline h-4 w-4" /> on the{" "}
+        <CornerRightUp className="inline size-4" /> on the{" "}
         <Link
           href="/armor"
           className="font-medium text-primary underline underline-offset-4"
