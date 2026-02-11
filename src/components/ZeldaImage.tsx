@@ -5,7 +5,7 @@ import Image, { ImageProps } from "next/image"
 
 import { cn, getDetectedPath } from "@/lib/utils"
 
-const fallback = "/static/images/Rupee.png"
+const fallback = "/images/Rupee.png"
 
 export function ZeldaImage({
   displayName,
@@ -28,9 +28,8 @@ export function ZeldaImage({
         className
       )}
       alt={`A picture of ${displayName}`}
-      width={0}
-      height={0}
-      sizes="100vw"
+      width={256}
+      height={256}
       quality={100}
       {...props}
     />
