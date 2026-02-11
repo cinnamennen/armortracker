@@ -66,8 +66,9 @@ const Link: FC<{ href: string; children: ReactNode }> = ({
   const isActive = path === href
 
   return (
-    <NextLink href={href} passHref legacyBehavior>
-      <NavigationMenuLink
+    <NavigationMenuLink asChild>
+      <NextLink
+        href={href}
         className={cn(
           navigationMenuTriggerStyle(),
           "transition-colors hover:text-foreground/80",
@@ -75,6 +76,6 @@ const Link: FC<{ href: string; children: ReactNode }> = ({
         )}
         {...props}
       />
-    </NextLink>
+    </NavigationMenuLink>
   )
 }

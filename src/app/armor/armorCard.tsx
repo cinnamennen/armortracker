@@ -1,6 +1,7 @@
 "use client"
 
 import { selectArmorByName } from "@/store/slices/armor"
+import { selectCompact } from "@/store/slices/settings"
 import { useAppSelector } from "@/store/store"
 
 import { Armor } from "@/types/data"
@@ -28,6 +29,8 @@ export function ArmorCard({
   const value = useAppSelector((state) =>
     selectArmorByName(state, armor.displayName)
   )
+  const isCompact = useAppSelector(selectCompact)
+
   return (
     <Card className={cn(value?.ignored && "opacity-50", "transition-opacity")}>
       <CardHeader>
@@ -44,7 +47,7 @@ export function ArmorCard({
       <CardContent>
         <div className="flex justify-center">
           <ZeldaImage
-            className="size-52"
+            className={isCompact ? "size-32" : "size-52"}
             displayName={armor.displayName}
             priority={aboveFold}
           />

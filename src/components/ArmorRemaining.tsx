@@ -1,7 +1,9 @@
 import { selectNextUpgradeByArmorName } from "@/store/slices/armor"
+import { selectCompact } from "@/store/slices/settings"
 import { useAppSelector } from "@/store/store"
 
 import { Armor } from "@/types/data"
+import { cn } from "@/lib/utils"
 import { ItemProgress } from "@/components/itemProgress"
 
 export function ArmorRemaining({
@@ -14,9 +16,12 @@ export function ArmorRemaining({
   const nextUpgrade = useAppSelector((state) =>
     selectNextUpgradeByArmorName(state, armor.displayName)
   )
+  const isCompact = useAppSelector(selectCompact)
 
   return (
-    <div className="grid grid-cols-3 gap-6">
+    <div
+      className={cn("grid gap-6", isCompact ? "grid-cols-2" : "grid-cols-3")}
+    >
       {Object.entries(nextUpgrade).map(([ingredient, count]) => {
         return (
           <ItemProgress
